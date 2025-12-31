@@ -23,6 +23,7 @@ import { useAudioRecorder, RecordingPresets, useAudioPlayer } from "expo-audio";
 import { configureAudioMode, uploadAudioFile } from "@/lib/audio-recorder";
 import { addMemory, loadMemories } from "@/lib/memory-storage";
 import { Memory } from "@/types/memory";
+import { searchRelevantConversations, formatRelevantConversations } from "@/lib/conversation-search";
 
 const STORAGE_KEY = "chat_messages";
 
@@ -172,10 +173,28 @@ export default function ChatScreen() {
     }, 100);
 
     try {
+      // Load memories
+      const memories = await loadMemories();
+      const memoryContext = memories.length > 0
+        ? `\n\n【記憶している情報】\n${memories.map((m, i) => `${i + 1}. [${m.type}] ${m.content} (重要度: ${m.importance}/10)`).join("\n")}`
+        : "";
+
+      // Search for relevant past conversations
+      const relevantConversations = searchRelevantConversations(
+        userMessage.content,
+        messages,
+        5, // Top 5 relevant conversations
+        0.15 // Minimum relevance score
+      );
+      const conversationContext = formatRelevantConversations(relevantConversations);
+
+      // Prepare context with memories and relevant conversations
+      const contextMessage = memoryContext + conversationContext;
+
       // Call the tRPC API to get AI response
       const response = await chatMutation.mutateAsync({
-        message: userMessage.content,
-        history: messages.slice(-5).map((m) => ({
+        message: userMessage.content + contextMessage,
+        history: messages.slice(-3).map((m) => ({
           role: m.role,
           content: m.content,
         })),
