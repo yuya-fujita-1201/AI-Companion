@@ -1,48 +1,321 @@
-import { ScrollView, Text, View, TouchableOpacity } from "react-native";
-
+import {
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  Pressable,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
+} from "react-native";
+import { useState, useRef, useEffect } from "react";
 import { ScreenContainer } from "@/components/screen-container";
+import { MessageBubble } from "@/components/message-bubble";
+import { TypingIndicator } from "@/components/typing-indicator";
+import { VoiceInputButton } from "@/components/voice-input-button";
+import { IconSymbol } from "@/components/ui/icon-symbol";
+import { useColors } from "@/hooks/use-colors";
+import { Message } from "@/types/chat";
+import * as Haptics from "expo-haptics";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { trpc } from "@/lib/trpc";
+import { useAudioRecorder, RecordingPresets } from "expo-audio";
+import { configureAudioMode, uploadAudioFile } from "@/lib/audio-recorder";
+import { addMemory, loadMemories } from "@/lib/memory-storage";
+import { Memory } from "@/types/memory";
 
-/**
- * Home Screen - NativeWind Example
- *
- * This template uses NativeWind (Tailwind CSS for React Native).
- * You can use familiar Tailwind classes directly in className props.
- *
- * Key patterns:
- * - Use `className` instead of `style` for most styling
- * - Theme colors: use tokens directly (bg-background, text-foreground, bg-primary, etc.); no dark: prefix needed
- * - Responsive: standard Tailwind breakpoints work on web
- * - Custom colors defined in tailwind.config.js
- */
-export default function HomeScreen() {
+const STORAGE_KEY = "chat_messages";
+
+export default function ChatScreen() {
+  const colors = useColors();
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputText, setInputText] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [isTranscribing, setIsTranscribing] = useState(false);
+  const flatListRef = useRef<FlatList>(null);
+
+  const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
+  const chatMutation = trpc.chat.sendMessage.useMutation();
+  const transcribeMutation = trpc.voice.transcribe.useMutation();
+  const extractMemoriesMutation = trpc.memory.extractMemories.useMutation();
+
+  // Load messages from storage on mount
+  useEffect(() => {
+    loadMessages();
+  }, []);
+
+  // Save messages whenever they change
+  useEffect(() => {
+    if (messages.length > 0) {
+      saveMessages();
+    }
+  }, [messages]);
+
+  const loadMessages = async () => {
+    try {
+      const stored = await AsyncStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // Convert timestamp strings back to Date objects
+        const messagesWithDates = parsed.map((msg: any) => ({
+          ...msg,
+          timestamp: new Date(msg.timestamp),
+        }));
+        setMessages(messagesWithDates);
+      }
+    } catch (error) {
+      console.error("Failed to load messages:", error);
+    }
+  };
+
+  const saveMessages = async () => {
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    } catch (error) {
+      console.error("Failed to save messages:", error);
+    }
+  };
+
+  const handleStartRecording = async () => {
+    try {
+      await configureAudioMode();
+      audioRecorder.record();
+    } catch (error) {
+      console.error("Failed to start recording:", error);
+      Alert.alert("エラー", "音声録音の開始に失敗しました");
+    }
+  };
+
+  const handleStopRecording = async () => {
+    try {
+      await audioRecorder.stop();
+      const uri = audioRecorder.uri;
+      if (!uri) {
+        Alert.alert("エラー", "音声の保存に失敗しました");
+        return;
+      }
+
+      setIsTranscribing(true);
+
+      // Upload audio file
+      const audioUrl = await uploadAudioFile(uri);
+
+      // Transcribe audio
+      const transcription = await transcribeMutation.mutateAsync({
+        audioUrl,
+      });
+
+      setIsTranscribing(false);
+
+      // Send transcribed text as message
+      if (transcription.text) {
+        await handleSendMessage(transcription.text);
+      }
+    } catch (error) {
+      setIsTranscribing(false);
+      console.error("Failed to process voice input:", error);
+      Alert.alert("エラー", "音声の処理に失敗しました");
+    }
+  };
+
+  const handleSend = async () => {
+    if (!inputText.trim()) return;
+    await handleSendMessage(inputText.trim());
+    setInputText("");
+  };
+
+  const handleSendMessage = async (text: string) => {
+    if (isGenerating) return;
+
+    if (Platform.OS !== "web") {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: "user",
+      content: text,
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setIsGenerating(true);
+
+    // Scroll to bottom after adding user message
+    setTimeout(() => {
+      flatListRef.current?.scrollToEnd({ animated: true });
+    }, 100);
+
+    try {
+      // Call the tRPC API to get AI response
+      const response = await chatMutation.mutateAsync({
+        message: userMessage.content,
+        history: messages.slice(-5).map((m) => ({
+          role: m.role,
+          content: m.content,
+        })),
+      });
+
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: response.message,
+        timestamp: new Date(),
+      };
+
+      setMessages((prev) => [...prev, assistantMessage]);
+
+      // Scroll to bottom after adding AI response
+      setTimeout(() => {
+        flatListRef.current?.scrollToEnd({ animated: true });
+      }, 100);
+
+      // Extract memories from conversation (async, non-blocking)
+      extractAndSaveMemories([userMessage, assistantMessage]);
+    } catch (error) {
+      console.error("Failed to get AI response:", error);
+      
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: "assistant",
+        content: "申し訳ございません。エラーが発生しました。もう一度お試しください。",
+        timestamp: new Date(),
+      };
+
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const extractAndSaveMemories = async (newMessages: Message[]) => {
+    try {
+      const recentMessages = [...messages, ...newMessages].slice(-10);
+
+      const result = await extractMemoriesMutation.mutateAsync({
+        messages: recentMessages.map((m) => ({
+          role: m.role,
+          content: m.content,
+        })),
+      });
+
+      if (result.memories && result.memories.length > 0) {
+        for (const mem of result.memories) {
+          await addMemory({
+            type: mem.type,
+            content: mem.content,
+            importance: mem.importance,
+            timestamp: new Date(),
+          });
+        }
+        console.log(`Extracted and saved ${result.memories.length} memories`);
+      }
+    } catch (error) {
+      console.error("Failed to extract memories:", error);
+    }
+  };
+
+  const renderMessage = ({ item }: { item: Message }) => (
+    <MessageBubble message={item} />
+  );
+
   return (
-    <ScreenContainer className="p-6">
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="flex-1 gap-8">
-          {/* Hero Section */}
-          <View className="items-center gap-2">
-            <Text className="text-4xl font-bold text-foreground">Welcome</Text>
-            <Text className="text-base text-muted text-center">
-              Edit app/(tabs)/index.tsx to get started
-            </Text>
-          </View>
-
-          {/* Example Card */}
-          <View className="w-full max-w-sm self-center bg-surface rounded-2xl p-6 shadow-sm border border-border">
-            <Text className="text-lg font-semibold text-foreground mb-2">NativeWind Ready</Text>
-            <Text className="text-sm text-muted leading-relaxed">
-              Use Tailwind CSS classes directly in your React Native components.
-            </Text>
-          </View>
-
-          {/* Example Button */}
-          <View className="items-center">
-            <TouchableOpacity className="bg-primary px-6 py-3 rounded-full active:opacity-80">
-              <Text className="text-background font-semibold">Get Started</Text>
-            </TouchableOpacity>
-          </View>
+    <ScreenContainer edges={["top", "left", "right"]}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        className="flex-1"
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
+      >
+        {/* Header */}
+        <View className="px-4 py-3 border-b border-border">
+          <Text className="text-2xl font-bold text-foreground">
+            AI Companion
+          </Text>
+          <Text className="text-sm text-muted mt-1">
+            あなたのAIパートナー
+          </Text>
         </View>
-      </ScrollView>
+
+        {/* Messages List */}
+        <FlatList
+          ref={flatListRef}
+          data={messages}
+          renderItem={renderMessage}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={{
+            paddingTop: 16,
+            paddingBottom: 16,
+            flexGrow: 1,
+          }}
+          ListEmptyComponent={
+            <View className="flex-1 items-center justify-center px-8">
+              <Text className="text-4xl mb-4">👋</Text>
+              <Text className="text-xl font-semibold text-foreground text-center mb-2">
+                こんにちは!
+              </Text>
+              <Text className="text-base text-muted text-center leading-relaxed">
+                何でも話しかけてください。会話を通じてあなたのことを学んでいきます。
+              </Text>
+            </View>
+          }
+          onContentSizeChange={() =>
+            flatListRef.current?.scrollToEnd({ animated: true })
+          }
+        />
+
+        {/* Typing Indicator */}
+        {isGenerating && <TypingIndicator />}
+
+        {/* Input Area */}
+        <View className="px-4 py-3 border-t border-border bg-background">
+          <View className="flex-row items-center gap-2">
+            <TextInput
+              value={inputText}
+              onChangeText={setInputText}
+              placeholder="メッセージを入力..."
+              placeholderTextColor={colors.muted}
+              className="flex-1 bg-surface rounded-full px-4 py-3 text-base text-foreground"
+              style={{ minHeight: 44 }}
+              multiline
+              maxLength={1000}
+              returnKeyType="send"
+              onSubmitEditing={handleSend}
+              editable={!isGenerating && !isTranscribing}
+            />
+            {inputText.trim() ? (
+              <Pressable
+                onPress={handleSend}
+                disabled={isGenerating || isTranscribing}
+                style={({ pressed }) => [
+                  {
+                    width: 44,
+                    height: 44,
+                    borderRadius: 22,
+                    backgroundColor: colors.primary,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    opacity: isGenerating || isTranscribing ? 0.5 : pressed ? 0.8 : 1,
+                    transform: [{ scale: pressed ? 0.97 : 1 }],
+                  },
+                ]}
+              >
+                <IconSymbol name="paperplane.fill" size={20} color="white" />
+              </Pressable>
+            ) : (
+              <VoiceInputButton
+                onStartRecording={handleStartRecording}
+                onStopRecording={handleStopRecording}
+                disabled={isGenerating || isTranscribing}
+              />
+            )}
+          </View>
+          {isTranscribing && (
+            <Text className="text-sm text-muted text-center mt-2">
+              音声を認識中...
+            </Text>
+          )}
+        </View>
+      </KeyboardAvoidingView>
     </ScreenContainer>
   );
 }

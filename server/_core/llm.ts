@@ -252,6 +252,31 @@ const normalizeResponseFormat = ({
   };
 };
 
+export async function chat(params: {
+  messages: Message[];
+  temperature?: number;
+  max_tokens?: number;
+}): Promise<{ content: string }> {
+  const result = await invokeLLM({
+    messages: params.messages,
+    maxTokens: params.max_tokens,
+  });
+
+  const content = result.choices[0]?.message?.content;
+  if (typeof content === "string") {
+    return { content };
+  }
+
+  if (Array.isArray(content)) {
+    const textParts = content
+      .filter((part): part is TextContent => part.type === "text")
+      .map((part) => part.text);
+    return { content: textParts.join("\n") };
+  }
+
+  return { content: "" };
+}
+
 export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
   assertApiKey();
 
