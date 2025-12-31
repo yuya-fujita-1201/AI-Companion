@@ -7,12 +7,14 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  Image,
 } from "react-native";
 import { useState, useRef, useEffect } from "react";
 import { ScreenContainer } from "@/components/screen-container";
 import { MessageBubble } from "@/components/message-bubble";
 import { TypingIndicator } from "@/components/typing-indicator";
 import { VoiceInputButton } from "@/components/voice-input-button";
+import { CharacterStatus } from "@/components/character-status";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { useColors } from "@/hooks/use-colors";
 import { Message } from "@/types/chat";
@@ -26,6 +28,7 @@ import { Memory } from "@/types/memory";
 import { searchRelevantConversations, formatRelevantConversations } from "@/lib/conversation-search";
 
 const STORAGE_KEY = "chat_messages";
+const FIRST_MEET_DATE_KEY = "first_meet_date";
 
 export default function ChatScreen() {
   const colors = useColors();
@@ -35,6 +38,8 @@ export default function ChatScreen() {
   const [isTranscribing, setIsTranscribing] = useState(false);
   const [isTTSEnabled, setIsTTSEnabled] = useState(true);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+  const [firstMeetDate, setFirstMeetDate] = useState<Date>(new Date());
   const flatListRef = useRef<FlatList>(null);
   const audioPlayerRef = useRef<ReturnType<typeof useAudioPlayer> | null>(null);
 
@@ -48,27 +53,8 @@ export default function ChatScreen() {
   useEffect(() => {
     loadMessages();
     loadTTSSettings();
+    loadFirstMeetDate();
   }, []);
-
-  const loadTTSSettings = async () => {
-    try {
-      const stored = await AsyncStorage.getItem("tts_enabled");
-      if (stored !== null) {
-        setIsTTSEnabled(stored === "true");
-      }
-    } catch (error) {
-      console.error("Failed to load TTS settings:", error);
-    }
-  };
-
-  const saveTTSSettings = async (enabled: boolean) => {
-    try {
-      await AsyncStorage.setItem("tts_enabled", enabled.toString());
-      setIsTTSEnabled(enabled);
-    } catch (error) {
-      console.error("Failed to save TTS settings:", error);
-    }
-  };
 
   // Save messages whenever they change
   useEffect(() => {
@@ -76,6 +62,54 @@ export default function ChatScreen() {
       saveMessages();
     }
   }, [messages]);
+
+  const loadFirstMeetDate = async () => {
+    try {
+      const stored = await AsyncStorage.getItem(FIRST_MEET_DATE_KEY);
+      if (stored) {
+        setFirstMeetDate(new Date(stored));
+      } else {
+        const now = new Date();
+        await AsyncStorage.setItem(FIRST_MEET_DATE_KEY, now.toISOString());
+        setFirstMeetDate(now);
+      }
+    } catch (error) {
+      console.error("Failed to load first meet date:", error);
+    }
+  };
+
+  const getDaysTogether = (): number => {
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - firstMeetDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  };
+
+  const getFriendshipLevel = (): number => {
+    // Calculate based on conversation count (max 100)
+    const conversationCount = Math.floor(messages.length / 2);
+    return Math.min(100, conversationCount * 5);
+  };
+
+  const getMood = (): "happy" | "normal" | "thinking" => {
+    if (isGenerating) return "thinking";
+    if (messages.length > 0 && messages[messages.length - 1].role === "assistant") {
+      return "happy";
+    }
+    return "normal";
+  };
+
+  const getCharacterImage = () => {
+    const mood = getMood();
+    switch (mood) {
+      case "happy":
+        return require("@/assets/images/cat-character-happy.png");
+      case "thinking":
+        return require("@/assets/images/cat-character-thinking.png");
+      default:
+        return require("@/assets/images/cat-character.png");
+    }
+  };
 
   const loadMessages = async () => {
     try {
@@ -102,6 +136,17 @@ export default function ChatScreen() {
     }
   };
 
+  const loadTTSSettings = async () => {
+    try {
+      const stored = await AsyncStorage.getItem("tts_enabled");
+      if (stored !== null) {
+        setIsTTSEnabled(JSON.parse(stored));
+      }
+    } catch (error) {
+      console.error("Failed to load TTS settings:", error);
+    }
+  };
+
   const handleStartRecording = async () => {
     try {
       await configureAudioMode();
@@ -117,8 +162,7 @@ export default function ChatScreen() {
       await audioRecorder.stop();
       const uri = audioRecorder.uri;
       if (!uri) {
-        Alert.alert("エラー", "音声の保存に失敗しました");
-        return;
+        throw new Error("Recording URI is undefined");
       }
 
       setIsTranscribing(true);
@@ -133,25 +177,90 @@ export default function ChatScreen() {
 
       setIsTranscribing(false);
 
-      // Send transcribed text as message
       if (transcription.text) {
-        await handleSendMessage(transcription.text);
+        handleSendMessage(transcription.text);
       }
     } catch (error) {
-      setIsTranscribing(false);
       console.error("Failed to process voice input:", error);
+      setIsTranscribing(false);
       Alert.alert("エラー", "音声の処理に失敗しました");
     }
   };
 
-  const handleSend = async () => {
-    if (!inputText.trim()) return;
-    await handleSendMessage(inputText.trim());
-    setInputText("");
+  const extractAndSaveMemories = async (conversationMessages: Message[]) => {
+    try {
+      const conversation = conversationMessages
+        .map((m) => `${m.role === "user" ? "ユーザー" : "AI"}: ${m.content}`)
+        .join("\n");
+
+      const result = await extractMemoriesMutation.mutateAsync({
+        messages: conversationMessages.map((m) => ({
+          role: m.role,
+          content: m.content,
+        })),
+      });
+
+      // Save memories to local storage
+      for (const memory of result.memories) {
+        await addMemory(memory);
+      }
+    } catch (error) {
+      console.error("Failed to extract memories:", error);
+    }
+  };
+
+  const playTTS = async (text: string) => {
+    try {
+      setIsPlayingAudio(true);
+
+      const result = await ttsMutation.mutateAsync({
+        text,
+        voice: "female_voice",
+      });
+
+      if (result.audioUrl) {
+        // Create audio player
+        const player = useAudioPlayer(result.audioUrl);
+        audioPlayerRef.current = player;
+
+        // Play audio
+        player.play();
+
+        // Wait for audio to finish
+        await new Promise<void>((resolve) => {
+          const checkInterval = setInterval(() => {
+            if (!player.playing) {
+              clearInterval(checkInterval);
+              resolve();
+            }
+          }, 100);
+        });
+
+        // Clean up
+        player.release();
+        audioPlayerRef.current = null;
+      }
+
+      setIsPlayingAudio(false);
+    } catch (error) {
+      console.error("Failed to play TTS:", error);
+      setIsPlayingAudio(false);
+    }
+  };
+
+  const stopTTS = () => {
+    if (audioPlayerRef.current) {
+      audioPlayerRef.current.pause();
+      audioPlayerRef.current.release();
+      audioPlayerRef.current = null;
+      setIsPlayingAudio(false);
+    }
   };
 
   const handleSendMessage = async (text: string) => {
-    if (isGenerating) return;
+    if (!text.trim() || isGenerating) return;
+
+    setInputText("");
 
     if (Platform.OS !== "web") {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -222,196 +331,188 @@ export default function ChatScreen() {
         playTTS(response.message);
       }
     } catch (error) {
-      console.error("Failed to get AI response:", error);
-      
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: "assistant",
-        content: "申し訳ございません。エラーが発生しました。もう一度お試しください。",
-        timestamp: new Date(),
-      };
-
-      setMessages((prev) => [...prev, errorMessage]);
+      console.error("Failed to send message:", error);
+      Alert.alert("エラー", "メッセージの送信に失敗しました");
     } finally {
       setIsGenerating(false);
     }
   };
 
-  const playTTS = async (text: string) => {
-    try {
-      setIsPlayingAudio(true);
+  const conversationCount = Math.floor(messages.length / 2);
 
-      // Call TTS API
-      const result = await ttsMutation.mutateAsync({
-        text,
-        language: "ja",
-        speed: 1.0,
-      });
+  if (!showChat) {
+    // Home screen with character
+    return (
+      <ScreenContainer className="bg-gradient-to-b from-orange-50 to-white">
+        <View className="flex-1 items-center justify-center px-6">
+          {/* Character Image */}
+          <View className="items-center mb-8">
+            <Image
+              source={getCharacterImage()}
+              style={{ width: 280, height: 280 }}
+              resizeMode="contain"
+            />
+          </View>
 
-      // Stop any currently playing audio
-      if (audioPlayerRef.current) {
-        audioPlayerRef.current.release();
-      }
+          {/* Character Name */}
+          <Text
+            className="text-3xl font-bold mb-2"
+            style={{ color: colors.foreground }}
+          >
+            ミケ
+          </Text>
+          <Text className="text-base mb-8" style={{ color: colors.muted }}>
+            あなたのAIパートナー
+          </Text>
 
-      // Create new audio player and play
-      const player = useAudioPlayer(result.audioUrl);
-      audioPlayerRef.current = player;
+          {/* Character Status */}
+          <CharacterStatus
+            friendshipLevel={getFriendshipLevel()}
+            mood={getMood()}
+            daysTogether={getDaysTogether()}
+            conversationCount={conversationCount}
+          />
 
-      player.play();
+          {/* Talk Button */}
+          <Pressable
+            onPress={() => setShowChat(true)}
+            style={({ pressed }) => [
+              {
+                backgroundColor: colors.primary,
+                opacity: pressed ? 0.8 : 1,
+                transform: [{ scale: pressed ? 0.97 : 1 }],
+              },
+            ]}
+            className="mt-8 px-12 py-4 rounded-full shadow-lg"
+          >
+            <Text className="text-white text-lg font-bold">おしゃべりする</Text>
+          </Pressable>
+        </View>
+      </ScreenContainer>
+    );
+  }
 
-      // Wait for audio to finish
-      await new Promise<void>((resolve) => {
-        const checkInterval = setInterval(() => {
-          if (!player.playing) {
-            clearInterval(checkInterval);
-            resolve();
-          }
-        }, 100);
-      });
-
-      setIsPlayingAudio(false);
-    } catch (error) {
-      console.error("Failed to play TTS:", error);
-      setIsPlayingAudio(false);
-    }
-  };
-
-  const extractAndSaveMemories = async (newMessages: Message[]) => {
-    try {
-      const recentMessages = [...messages, ...newMessages].slice(-10);
-
-      const result = await extractMemoriesMutation.mutateAsync({
-        messages: recentMessages.map((m) => ({
-          role: m.role,
-          content: m.content,
-        })),
-      });
-
-      if (result.memories && result.memories.length > 0) {
-        for (const mem of result.memories) {
-          await addMemory({
-            type: mem.type,
-            content: mem.content,
-            importance: mem.importance,
-            timestamp: new Date(),
-          });
-        }
-        console.log(`Extracted and saved ${result.memories.length} memories`);
-      }
-    } catch (error) {
-      console.error("Failed to extract memories:", error);
-    }
-  };
-
-  const renderMessage = ({ item }: { item: Message }) => (
-    <MessageBubble message={item} />
-  );
-
+  // Chat screen
   return (
-    <ScreenContainer edges={["top", "left", "right"]}>
+    <ScreenContainer>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
+        keyboardVerticalOffset={100}
       >
         {/* Header */}
-        <View className="px-4 py-3 border-b border-border">
-          <View className="flex-row items-center justify-between">
+        <View
+          className="flex-row items-center justify-between px-4 py-3 border-b"
+          style={{ borderBottomColor: colors.border }}
+        >
+          <Pressable
+            onPress={() => setShowChat(false)}
+            style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
+          >
+            <IconSymbol name="chevron.left" size={24} color={colors.foreground} />
+          </Pressable>
+
+          <View className="flex-row items-center">
+            <Image
+              source={getCharacterImage()}
+              style={{ width: 40, height: 40, marginRight: 8 }}
+              resizeMode="contain"
+            />
             <View>
-              <Text className="text-2xl font-bold text-foreground">
-                AI Companion
+              <Text className="text-lg font-bold" style={{ color: colors.foreground }}>
+                ミケ
               </Text>
-              <Text className="text-sm text-muted mt-1">
-                あなたのAIパートナー
-              </Text>
+              {isPlayingAudio && (
+                <Text className="text-xs" style={{ color: colors.primary }}>
+                  🔊 話し中...
+                </Text>
+              )}
             </View>
-            {isPlayingAudio && (
-              <View className="flex-row items-center gap-2">
-                <Text className="text-sm text-primary">🔊</Text>
-                <Text className="text-xs text-muted">再生中</Text>
-              </View>
-            )}
           </View>
+
+          {isPlayingAudio && (
+            <Pressable
+              onPress={stopTTS}
+              style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
+            >
+              <Text className="text-sm" style={{ color: colors.error }}>
+                停止
+              </Text>
+            </Pressable>
+          )}
         </View>
 
-        {/* Messages List */}
+        {/* Messages */}
         <FlatList
           ref={flatListRef}
           data={messages}
-          renderItem={renderMessage}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={{
-            paddingTop: 16,
-            paddingBottom: 16,
-            flexGrow: 1,
-          }}
+          renderItem={({ item }) => <MessageBubble message={item} />}
+          contentContainerStyle={{ padding: 16, paddingBottom: 8 }}
           ListEmptyComponent={
-            <View className="flex-1 items-center justify-center px-8">
-              <Text className="text-4xl mb-4">👋</Text>
-              <Text className="text-xl font-semibold text-foreground text-center mb-2">
-                こんにちは!
+            <View className="flex-1 items-center justify-center py-20">
+              <Text className="text-6xl mb-4">👋</Text>
+              <Text className="text-xl font-bold mb-2" style={{ color: colors.foreground }}>
+                こんにちは！
               </Text>
-              <Text className="text-base text-muted text-center leading-relaxed">
-                何でも話しかけてください。会話を通じてあなたのことを学んでいきます。
+              <Text className="text-center px-8" style={{ color: colors.muted }}>
+                何でも話しかけてください。会話を通じて{"\n"}あなたのことを学んでいきます。
               </Text>
             </View>
-          }
-          onContentSizeChange={() =>
-            flatListRef.current?.scrollToEnd({ animated: true })
           }
         />
 
         {/* Typing Indicator */}
-        {isGenerating && <TypingIndicator />}
+        {(isGenerating || isTranscribing) && (
+          <View className="px-4 pb-2">
+            <TypingIndicator />
+          </View>
+        )}
 
         {/* Input Area */}
-        <View className="px-4 py-3 border-t border-border bg-background">
-          <View className="flex-row items-center gap-2">
-            <TextInput
-              value={inputText}
-              onChangeText={setInputText}
-              placeholder="メッセージを入力..."
-              placeholderTextColor={colors.muted}
-              className="flex-1 bg-surface rounded-full px-4 py-3 text-base text-foreground"
-              style={{ minHeight: 44 }}
-              multiline
-              maxLength={1000}
-              returnKeyType="send"
-              onSubmitEditing={handleSend}
-              editable={!isGenerating && !isTranscribing}
+        <View
+          className="flex-row items-center px-4 py-3 border-t"
+          style={{ borderTopColor: colors.border, backgroundColor: colors.background }}
+        >
+          <VoiceInputButton
+            onStartRecording={handleStartRecording}
+            onStopRecording={handleStopRecording}
+            disabled={isGenerating || isTranscribing}
+          />
+
+          <TextInput
+            value={inputText}
+            onChangeText={setInputText}
+            placeholder="メッセージを入力..."
+            placeholderTextColor={colors.muted}
+            className="flex-1 mx-3 px-4 py-3 rounded-full"
+            style={{
+              backgroundColor: colors.surface,
+              color: colors.foreground,
+            }}
+            onSubmitEditing={() => handleSendMessage(inputText)}
+            returnKeyType="send"
+            editable={!isGenerating && !isTranscribing}
+          />
+
+          <Pressable
+            onPress={() => handleSendMessage(inputText)}
+            disabled={!inputText.trim() || isGenerating || isTranscribing}
+            style={({ pressed }) => [
+              {
+                backgroundColor: inputText.trim() ? colors.primary : colors.surface,
+                opacity: pressed ? 0.8 : 1,
+                transform: [{ scale: pressed ? 0.95 : 1 }],
+              },
+            ]}
+            className="w-12 h-12 rounded-full items-center justify-center"
+          >
+            <IconSymbol
+              name="paperplane.fill"
+              size={20}
+              color={inputText.trim() ? "white" : colors.muted}
             />
-            {inputText.trim() ? (
-              <Pressable
-                onPress={handleSend}
-                disabled={isGenerating || isTranscribing}
-                style={({ pressed }) => [
-                  {
-                    width: 44,
-                    height: 44,
-                    borderRadius: 22,
-                    backgroundColor: colors.primary,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    opacity: isGenerating || isTranscribing ? 0.5 : pressed ? 0.8 : 1,
-                    transform: [{ scale: pressed ? 0.97 : 1 }],
-                  },
-                ]}
-              >
-                <IconSymbol name="paperplane.fill" size={20} color="white" />
-              </Pressable>
-            ) : (
-              <VoiceInputButton
-                onStartRecording={handleStartRecording}
-                onStopRecording={handleStopRecording}
-                disabled={isGenerating || isTranscribing}
-              />
-            )}
-          </View>
-          {isTranscribing && (
-            <Text className="text-sm text-muted text-center mt-2">
-              音声を認識中...
-            </Text>
-          )}
+          </Pressable>
         </View>
       </KeyboardAvoidingView>
     </ScreenContainer>

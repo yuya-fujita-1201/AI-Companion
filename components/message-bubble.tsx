@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Message } from "@/types/chat";
 import { cn } from "@/lib/utils";
 
@@ -12,13 +12,23 @@ export function MessageBubble({ message }: MessageBubbleProps) {
   return (
     <View
       className={cn(
-        "mb-3 px-4",
-        isUser ? "items-end" : "items-start"
+        "mb-4 flex-row",
+        isUser ? "justify-end" : "justify-start"
       )}
     >
+      {/* AI Avatar */}
+      {!isUser && (
+        <Image
+          source={require("@/assets/images/cat-character.png")}
+          style={{ width: 36, height: 36, marginRight: 8 }}
+          resizeMode="contain"
+        />
+      )}
+
+      {/* Message Bubble */}
       <View
         className={cn(
-          "max-w-[80%] rounded-2xl px-4 py-3",
+          "max-w-[75%] rounded-2xl px-4 py-3",
           isUser
             ? "bg-primary rounded-tr-sm"
             : "bg-surface rounded-tl-sm"
@@ -44,6 +54,9 @@ export function MessageBubble({ message }: MessageBubbleProps) {
           })}
         </Text>
       </View>
+
+      {/* User Avatar Placeholder */}
+      {isUser && <View style={{ width: 36, marginLeft: 8 }} />}
     </View>
   );
 }
