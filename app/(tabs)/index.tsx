@@ -19,7 +19,7 @@ import { Message } from "@/types/chat";
 import * as Haptics from "expo-haptics";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { trpc } from "@/lib/trpc";
-import { useAudioRecorder, RecordingPresets } from "expo-audio";
+import { useAudioRecorder, RecordingPresets, useAudioPlayer } from "expo-audio";
 import { configureAudioMode, uploadAudioFile } from "@/lib/audio-recorder";
 import { addMemory, loadMemories } from "@/lib/memory-storage";
 import { Memory } from "@/types/memory";
@@ -32,17 +32,42 @@ export default function ChatScreen() {
   const [inputText, setInputText] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [isTranscribing, setIsTranscribing] = useState(false);
+  const [isTTSEnabled, setIsTTSEnabled] = useState(true);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const flatListRef = useRef<FlatList>(null);
+  const audioPlayerRef = useRef<ReturnType<typeof useAudioPlayer> | null>(null);
 
   const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
   const chatMutation = trpc.chat.sendMessage.useMutation();
   const transcribeMutation = trpc.voice.transcribe.useMutation();
   const extractMemoriesMutation = trpc.memory.extractMemories.useMutation();
+  const ttsMutation = trpc.tts.synthesize.useMutation();
 
-  // Load messages from storage on mount
+  // Load messages and TTS settings from storage on mount
   useEffect(() => {
     loadMessages();
+    loadTTSSettings();
   }, []);
+
+  const loadTTSSettings = async () => {
+    try {
+      const stored = await AsyncStorage.getItem("tts_enabled");
+      if (stored !== null) {
+        setIsTTSEnabled(stored === "true");
+      }
+    } catch (error) {
+      console.error("Failed to load TTS settings:", error);
+    }
+  };
+
+  const saveTTSSettings = async (enabled: boolean) => {
+    try {
+      await AsyncStorage.setItem("tts_enabled", enabled.toString());
+      setIsTTSEnabled(enabled);
+    } catch (error) {
+      console.error("Failed to save TTS settings:", error);
+    }
+  };
 
   // Save messages whenever they change
   useEffect(() => {
@@ -172,6 +197,11 @@ export default function ChatScreen() {
 
       // Extract memories from conversation (async, non-blocking)
       extractAndSaveMemories([userMessage, assistantMessage]);
+
+      // Play TTS if enabled
+      if (isTTSEnabled) {
+        playTTS(response.message);
+      }
     } catch (error) {
       console.error("Failed to get AI response:", error);
       
@@ -185,6 +215,45 @@ export default function ChatScreen() {
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const playTTS = async (text: string) => {
+    try {
+      setIsPlayingAudio(true);
+
+      // Call TTS API
+      const result = await ttsMutation.mutateAsync({
+        text,
+        language: "ja",
+        speed: 1.0,
+      });
+
+      // Stop any currently playing audio
+      if (audioPlayerRef.current) {
+        audioPlayerRef.current.release();
+      }
+
+      // Create new audio player and play
+      const player = useAudioPlayer(result.audioUrl);
+      audioPlayerRef.current = player;
+
+      player.play();
+
+      // Wait for audio to finish
+      await new Promise<void>((resolve) => {
+        const checkInterval = setInterval(() => {
+          if (!player.playing) {
+            clearInterval(checkInterval);
+            resolve();
+          }
+        }, 100);
+      });
+
+      setIsPlayingAudio(false);
+    } catch (error) {
+      console.error("Failed to play TTS:", error);
+      setIsPlayingAudio(false);
     }
   };
 
@@ -228,12 +297,22 @@ export default function ChatScreen() {
       >
         {/* Header */}
         <View className="px-4 py-3 border-b border-border">
-          <Text className="text-2xl font-bold text-foreground">
-            AI Companion
-          </Text>
-          <Text className="text-sm text-muted mt-1">
-            あなたのAIパートナー
-          </Text>
+          <View className="flex-row items-center justify-between">
+            <View>
+              <Text className="text-2xl font-bold text-foreground">
+                AI Companion
+              </Text>
+              <Text className="text-sm text-muted mt-1">
+                あなたのAIパートナー
+              </Text>
+            </View>
+            {isPlayingAudio && (
+              <View className="flex-row items-center gap-2">
+                <Text className="text-sm text-primary">🔊</Text>
+                <Text className="text-xs text-muted">再生中</Text>
+              </View>
+            )}
+          </View>
         </View>
 
         {/* Messages List */}

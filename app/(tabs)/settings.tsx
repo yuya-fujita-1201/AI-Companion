@@ -1,11 +1,38 @@
-import { View, Text, Pressable, ScrollView, Alert } from "react-native";
+import { View, Text, Pressable, ScrollView, Alert, Switch } from "react-native";
 import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { clearAllMemories } from "@/lib/memory-storage";
+import { useState, useEffect } from "react";
 
 export default function SettingsScreen() {
   const colors = useColors();
+  const [isTTSEnabled, setIsTTSEnabled] = useState(true);
+
+  useEffect(() => {
+    loadTTSSettings();
+  }, []);
+
+  const loadTTSSettings = async () => {
+    try {
+      const stored = await AsyncStorage.getItem("tts_enabled");
+      if (stored !== null) {
+        setIsTTSEnabled(stored === "true");
+      }
+    } catch (error) {
+      console.error("Failed to load TTS settings:", error);
+    }
+  };
+
+  const handleTTSToggle = async (value: boolean) => {
+    try {
+      await AsyncStorage.setItem("tts_enabled", value.toString());
+      setIsTTSEnabled(value);
+    } catch (error) {
+      console.error("Failed to save TTS settings:", error);
+      Alert.alert("エラー", "設定の保存に失敗しました");
+    }
+  };
 
   const handleClearChatHistory = () => {
     Alert.alert(
@@ -60,6 +87,32 @@ export default function SettingsScreen() {
       </View>
 
       <ScrollView className="flex-1">
+        {/* Voice Settings Section */}
+        <View className="px-4 py-4">
+          <Text className="text-sm font-semibold text-muted uppercase mb-3">
+            音声設定
+          </Text>
+
+          <View className="bg-surface rounded-2xl p-4 mb-3 border border-border">
+            <View className="flex-row items-center justify-between">
+              <View className="flex-1 mr-4">
+                <Text className="text-base font-medium text-foreground mb-1">
+                  AI応答を音声で読み上げ
+                </Text>
+                <Text className="text-sm text-muted">
+                  AIの返答を自動的に音声で再生します
+                </Text>
+              </View>
+              <Switch
+                value={isTTSEnabled}
+                onValueChange={handleTTSToggle}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="white"
+              />
+            </View>
+          </View>
+        </View>
+
         {/* Data Management Section */}
         <View className="px-4 py-4">
           <Text className="text-sm font-semibold text-muted uppercase mb-3">
