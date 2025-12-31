@@ -4,13 +4,23 @@ import { useColors } from "@/hooks/use-colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { clearAllMemories } from "@/lib/memory-storage";
 import { useState, useEffect } from "react";
+import {
+  areNotificationsEnabled,
+  setNotificationsEnabled,
+  getNotificationFrequency,
+  setNotificationFrequency,
+} from "@/lib/notification-manager";
+import { scheduleProactiveNotifications } from "@/lib/proactive-notification-scheduler";
 
 export default function SettingsScreen() {
   const colors = useColors();
   const [isTTSEnabled, setIsTTSEnabled] = useState(true);
+  const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(true);
+  const [notificationFrequency, setNotificationFrequencyState] = useState(3);
 
   useEffect(() => {
     loadTTSSettings();
+    loadNotificationSettings();
   }, []);
 
   const loadTTSSettings = async () => {
@@ -21,6 +31,45 @@ export default function SettingsScreen() {
       }
     } catch (error) {
       console.error("Failed to load TTS settings:", error);
+    }
+  };
+
+  const loadNotificationSettings = async () => {
+    try {
+      const enabled = await areNotificationsEnabled();
+      const frequency = await getNotificationFrequency();
+      setIsNotificationsEnabled(enabled);
+      setNotificationFrequencyState(frequency);
+    } catch (error) {
+      console.error("Failed to load notification settings:", error);
+    }
+  };
+
+  const handleNotificationToggle = async (value: boolean) => {
+    try {
+      await setNotificationsEnabled(value);
+      setIsNotificationsEnabled(value);
+      if (value) {
+        // Re-schedule notifications when enabled
+        await scheduleProactiveNotifications();
+        Alert.alert("成功", "ミケからの通知を有効にしました！");
+      }
+    } catch (error) {
+      console.error("Failed to save notification settings:", error);
+      Alert.alert("エラー", "設定の保存に失敗しました");
+    }
+  };
+
+  const handleFrequencyChange = async (frequency: number) => {
+    try {
+      await setNotificationFrequency(frequency);
+      setNotificationFrequencyState(frequency);
+      // Re-schedule with new frequency
+      await scheduleProactiveNotifications();
+      Alert.alert("成功", `1日${frequency}回の通知に設定しました！`);
+    } catch (error) {
+      console.error("Failed to save notification frequency:", error);
+      Alert.alert("エラー", "設定の保存に失敗しました");
     }
   };
 
@@ -87,6 +136,69 @@ export default function SettingsScreen() {
       </View>
 
       <ScrollView className="flex-1">
+        {/* Notification Settings Section */}
+        <View className="px-4 py-4">
+          <Text className="text-sm font-semibold text-muted uppercase mb-3">
+            通知設定
+          </Text>
+
+          <View className="bg-surface rounded-2xl p-4 mb-3 border border-border">
+            <View className="flex-row items-center justify-between mb-4">
+              <View className="flex-1 mr-4">
+                <Text className="text-base font-medium text-foreground mb-1">
+                  ミケからの通知
+                </Text>
+                <Text className="text-sm text-muted">
+                  1日数回、ミケが話しかけてきます
+                </Text>
+              </View>
+              <Switch
+                value={isNotificationsEnabled}
+                onValueChange={handleNotificationToggle}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="white"
+              />
+            </View>
+
+            {isNotificationsEnabled && (
+              <View className="pt-4 border-t border-border">
+                <Text className="text-sm font-medium text-foreground mb-3">
+                  1日の通知回数: {notificationFrequency}回
+                </Text>
+                <View className="flex-row gap-2">
+                  {[1, 2, 3, 4, 5].map((freq) => (
+                    <Pressable
+                      key={freq}
+                      onPress={() => handleFrequencyChange(freq)}
+                      style={({ pressed }) => ({
+                        opacity: pressed ? 0.7 : 1,
+                      })}
+                    >
+                      <View
+                        className={`px-4 py-2 rounded-full border ${
+                          notificationFrequency === freq
+                            ? "bg-primary border-primary"
+                            : "bg-surface border-border"
+                        }`}
+                      >
+                        <Text
+                          className={`text-sm font-medium ${
+                            notificationFrequency === freq
+                              ? "text-white"
+                              : "text-foreground"
+                          }`}
+                        >
+                          {freq}
+                        </Text>
+                      </View>
+                    </Pressable>
+                  ))}
+                </View>
+              </View>
+            )}
+          </View>
+        </View>
+
         {/* Voice Settings Section */}
         <View className="px-4 py-4">
           <Text className="text-sm font-semibold text-muted uppercase mb-3">
