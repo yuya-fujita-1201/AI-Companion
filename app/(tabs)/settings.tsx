@@ -1,9 +1,11 @@
 import { View, Text, Pressable, ScrollView, Alert, Switch } from "react-native";
+import { useState, useEffect, useCallback } from "react";
 import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { clearAllMemories } from "@/lib/memory-storage";
-import { useState, useEffect } from "react";
+import { useThemeContext } from "@/lib/theme-provider";
+import { loadBooleanSetting, saveBooleanSetting, saveThemeScheme, SETTINGS_KEYS } from "@/lib/settings";
 import {
   areNotificationsEnabled,
   setNotificationsEnabled,
@@ -14,25 +16,26 @@ import { scheduleProactiveNotifications } from "@/lib/proactive-notification-sch
 
 export default function SettingsScreen() {
   const colors = useColors();
+  const { colorScheme, setColorScheme } = useThemeContext();
   const [isTTSEnabled, setIsTTSEnabled] = useState(true);
+  const [isVoiceInputEnabled, setIsVoiceInputEnabled] = useState(true);
   const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(true);
   const [notificationFrequency, setNotificationFrequencyState] = useState(3);
+  const isDarkMode = colorScheme === "dark";
 
-  useEffect(() => {
-    loadTTSSettings();
-    loadNotificationSettings();
+  const loadSettings = useCallback(async () => {
+    const [ttsEnabled, voiceEnabled] = await Promise.all([
+      loadBooleanSetting(SETTINGS_KEYS.ttsEnabled, true),
+      loadBooleanSetting(SETTINGS_KEYS.voiceInputEnabled, true),
+    ]);
+    setIsTTSEnabled(ttsEnabled);
+    setIsVoiceInputEnabled(voiceEnabled);
   }, []);
 
-  const loadTTSSettings = async () => {
-    try {
-      const stored = await AsyncStorage.getItem("tts_enabled");
-      if (stored !== null) {
-        setIsTTSEnabled(stored === "true");
-      }
-    } catch (error) {
-      console.error("Failed to load TTS settings:", error);
-    }
-  };
+  useEffect(() => {
+    loadSettings();
+    loadNotificationSettings();
+  }, [loadSettings]);
 
   const loadNotificationSettings = async () => {
     try {
@@ -75,11 +78,34 @@ export default function SettingsScreen() {
 
   const handleTTSToggle = async (value: boolean) => {
     try {
-      await AsyncStorage.setItem("tts_enabled", value.toString());
+      await saveBooleanSetting(SETTINGS_KEYS.ttsEnabled, value);
       setIsTTSEnabled(value);
     } catch (error) {
       console.error("Failed to save TTS settings:", error);
       Alert.alert("エラー", "設定の保存に失敗しました");
+    }
+  };
+
+  const handleVoiceInputToggle = async (value: boolean) => {
+    try {
+      await saveBooleanSetting(SETTINGS_KEYS.voiceInputEnabled, value);
+      setIsVoiceInputEnabled(value);
+    } catch (error) {
+      console.error("Failed to save voice input settings:", error);
+      Alert.alert("エラー", "設定の保存に失敗しました");
+    }
+  };
+
+  const handleThemeToggle = async (value: boolean) => {
+    const nextScheme = value ? "dark" : "light";
+    const previousScheme = colorScheme;
+    try {
+      setColorScheme(nextScheme);
+      await saveThemeScheme(nextScheme);
+    } catch (error) {
+      console.error("Failed to save theme settings:", error);
+      setColorScheme(previousScheme);
+      Alert.alert("エラー", "テーマ設定の保存に失敗しました");
     }
   };
 
@@ -209,6 +235,25 @@ export default function SettingsScreen() {
             <View className="flex-row items-center justify-between">
               <View className="flex-1 mr-4">
                 <Text className="text-base font-medium text-foreground mb-1">
+                  音声入力を有効にする
+                </Text>
+                <Text className="text-sm text-muted">
+                  マイクボタンで音声入力できます
+                </Text>
+              </View>
+              <Switch
+                value={isVoiceInputEnabled}
+                onValueChange={handleVoiceInputToggle}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="white"
+              />
+            </View>
+          </View>
+
+          <View className="bg-surface rounded-2xl p-4 mb-3 border border-border">
+            <View className="flex-row items-center justify-between">
+              <View className="flex-1 mr-4">
+                <Text className="text-base font-medium text-foreground mb-1">
                   AI応答を音声で読み上げ
                 </Text>
                 <Text className="text-sm text-muted">
@@ -218,6 +263,32 @@ export default function SettingsScreen() {
               <Switch
                 value={isTTSEnabled}
                 onValueChange={handleTTSToggle}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="white"
+              />
+            </View>
+          </View>
+        </View>
+
+        {/* Appearance Section */}
+        <View className="px-4 py-4">
+          <Text className="text-sm font-semibold text-muted uppercase mb-3">
+            表示設定
+          </Text>
+
+          <View className="bg-surface rounded-2xl p-4 mb-3 border border-border">
+            <View className="flex-row items-center justify-between">
+              <View className="flex-1 mr-4">
+                <Text className="text-base font-medium text-foreground mb-1">
+                  ダークモード
+                </Text>
+                <Text className="text-sm text-muted">
+                  暗い配色に切り替えます
+                </Text>
+              </View>
+              <Switch
+                value={isDarkMode}
+                onValueChange={handleThemeToggle}
                 trackColor={{ false: colors.border, true: colors.primary }}
                 thumbColor="white"
               />

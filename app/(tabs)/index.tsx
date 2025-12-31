@@ -9,7 +9,7 @@ import {
   Alert,
   Image,
 } from "react-native";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { ScreenContainer } from "@/components/screen-container";
 import { MessageBubble } from "@/components/message-bubble";
 import { TypingIndicator } from "@/components/typing-indicator";
@@ -24,10 +24,11 @@ import { trpc } from "@/lib/trpc";
 import { useAudioRecorder, RecordingPresets, useAudioPlayer } from "expo-audio";
 import { configureAudioMode, uploadAudioFile } from "@/lib/audio-recorder";
 import { addMemory, loadMemories } from "@/lib/memory-storage";
-import { Memory } from "@/types/memory";
 import { searchRelevantConversations, formatRelevantConversations } from "@/lib/conversation-search";
 import { analyzeEmotion, getCharacterImageForEmotion, type Emotion } from "@/lib/emotion-analyzer";
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, withSequence } from "react-native-reanimated";
+import { loadBooleanSetting, SETTINGS_KEYS } from "@/lib/settings";
+import { useFocusEffect } from "@react-navigation/native";
 
 const STORAGE_KEY = "chat_messages";
 const FIRST_MEET_DATE_KEY = "first_meet_date";
@@ -39,6 +40,7 @@ export default function ChatScreen() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isTranscribing, setIsTranscribing] = useState(false);
   const [isTTSEnabled, setIsTTSEnabled] = useState(true);
+  const [isVoiceInputEnabled, setIsVoiceInputEnabled] = useState(true);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [firstMeetDate, setFirstMeetDate] = useState<Date>(new Date());
@@ -56,13 +58,27 @@ export default function ChatScreen() {
   const extractMemoriesMutation = trpc.memory.extractMemories.useMutation();
   const ttsMutation = trpc.tts.synthesize.useMutation();
 
-  // Load messages and TTS settings from storage on mount
-  useEffect(() => {
-    loadMessages();
-    loadTTSSettings();
-    loadFirstMeetDate();
+  const loadAudioSettings = useCallback(async () => {
+    const [ttsEnabled, voiceEnabled] = await Promise.all([
+      loadBooleanSetting(SETTINGS_KEYS.ttsEnabled, true),
+      loadBooleanSetting(SETTINGS_KEYS.voiceInputEnabled, true),
+    ]);
+    setIsTTSEnabled(ttsEnabled);
+    setIsVoiceInputEnabled(voiceEnabled);
   }, []);
 
+  // Load messages and audio settings from storage on mount
+  useEffect(() => {
+    loadMessages();
+    loadAudioSettings();
+    loadFirstMeetDate();
+  }, [loadAudioSettings]);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadAudioSettings();
+    }, [loadAudioSettings])
+  );
   // Save messages whenever they change
   useEffect(() => {
     if (messages.length > 0) {
@@ -133,6 +149,14 @@ export default function ChatScreen() {
     }
   };
 
+  useEffect(() => {
+    if (!isTTSEnabled && audioPlayerRef.current) {
+      audioPlayerRef.current.release();
+      audioPlayerRef.current = null;
+      setIsPlayingAudio(false);
+    }
+  }, [isTTSEnabled]);
+
   const loadMessages = async () => {
     try {
       const stored = await AsyncStorage.getItem(STORAGE_KEY);
@@ -158,18 +182,8 @@ export default function ChatScreen() {
     }
   };
 
-  const loadTTSSettings = async () => {
-    try {
-      const stored = await AsyncStorage.getItem("tts_enabled");
-      if (stored !== null) {
-        setIsTTSEnabled(JSON.parse(stored));
-      }
-    } catch (error) {
-      console.error("Failed to load TTS settings:", error);
-    }
-  };
-
   const handleStartRecording = async () => {
+    if (!isVoiceInputEnabled) return;
     try {
       await configureAudioMode();
       audioRecorder.record();
@@ -504,7 +518,7 @@ export default function ChatScreen() {
           <VoiceInputButton
             onStartRecording={handleStartRecording}
             onStopRecording={handleStopRecording}
-            disabled={isGenerating || isTranscribing}
+            disabled={isGenerating || isTranscribing || !isVoiceInputEnabled}
           />
 
           <TextInput

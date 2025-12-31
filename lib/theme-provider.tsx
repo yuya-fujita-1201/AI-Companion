@@ -3,6 +3,7 @@ import { Appearance, View, useColorScheme as useSystemColorScheme } from "react-
 import { colorScheme as nativewindColorScheme, vars } from "nativewind";
 
 import { SchemeColors, type ColorScheme } from "@/constants/theme";
+import { loadThemeScheme } from "@/lib/settings";
 
 type ThemeContextValue = {
   colorScheme: ColorScheme;
@@ -14,6 +15,19 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const systemScheme = useSystemColorScheme() ?? "light";
   const [colorScheme, setColorSchemeState] = useState<ColorScheme>(systemScheme);
+
+  useEffect(() => {
+    let isMounted = true;
+    const loadScheme = async () => {
+      const storedScheme = await loadThemeScheme();
+      if (!isMounted) return;
+      setColorSchemeState(storedScheme ?? systemScheme);
+    };
+    loadScheme();
+    return () => {
+      isMounted = false;
+    };
+  }, [systemScheme]);
 
   const applyScheme = useCallback((scheme: ColorScheme) => {
     nativewindColorScheme.set(scheme);
@@ -31,8 +45,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setColorScheme = useCallback((scheme: ColorScheme) => {
     setColorSchemeState(scheme);
-    applyScheme(scheme);
-  }, [applyScheme]);
+  }, []);
 
   useEffect(() => {
     applyScheme(colorScheme);
