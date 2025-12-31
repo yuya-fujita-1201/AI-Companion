@@ -26,6 +26,8 @@ import { configureAudioMode, uploadAudioFile } from "@/lib/audio-recorder";
 import { addMemory, loadMemories } from "@/lib/memory-storage";
 import { Memory } from "@/types/memory";
 import { searchRelevantConversations, formatRelevantConversations } from "@/lib/conversation-search";
+import { analyzeEmotion, getCharacterImageForEmotion, type Emotion } from "@/lib/emotion-analyzer";
+import Animated, { useSharedValue, useAnimatedStyle, withSpring, withSequence } from "react-native-reanimated";
 
 const STORAGE_KEY = "chat_messages";
 const FIRST_MEET_DATE_KEY = "first_meet_date";
@@ -40,6 +42,11 @@ export default function ChatScreen() {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [firstMeetDate, setFirstMeetDate] = useState<Date>(new Date());
+  const [currentEmotion, setCurrentEmotion] = useState<Emotion>("neutral");
+  
+  // Animation values
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
   const flatListRef = useRef<FlatList>(null);
   const audioPlayerRef = useRef<ReturnType<typeof useAudioPlayer> | null>(null);
 
@@ -98,6 +105,21 @@ export default function ChatScreen() {
     }
     return "normal";
   };
+
+  // Animate character when emotion changes
+  const animateCharacter = () => {
+    scale.value = withSequence(
+      withSpring(1.1, { damping: 10 }),
+      withSpring(1, { damping: 10 })
+    );
+  };
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }],
+      opacity: opacity.value,
+    };
+  });
 
   const getCharacterImage = () => {
     const mood = getMood();
@@ -318,6 +340,11 @@ export default function ChatScreen() {
 
       setMessages((prev) => [...prev, assistantMessage]);
 
+      // Analyze emotion from AI response
+      const detectedEmotion = analyzeEmotion(response.message);
+      setCurrentEmotion(detectedEmotion);
+      animateCharacter();
+
       // Scroll to bottom after adding AI response
       setTimeout(() => {
         flatListRef.current?.scrollToEnd({ animated: true });
@@ -346,13 +373,13 @@ export default function ChatScreen() {
       <ScreenContainer className="bg-gradient-to-b from-orange-50 to-white">
         <View className="flex-1 items-center justify-center px-6">
           {/* Character Image */}
-          <View className="items-center mb-8">
+          <Animated.View className="items-center mb-8" style={animatedStyle}>
             <Image
-              source={getCharacterImage()}
+              source={showChat ? getCharacterImageForEmotion(currentEmotion) : getCharacterImage()}
               style={{ width: 280, height: 280 }}
               resizeMode="contain"
             />
-          </View>
+          </Animated.View>
 
           {/* Character Name */}
           <Text
