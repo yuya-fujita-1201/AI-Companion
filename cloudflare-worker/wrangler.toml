@@ -1,0 +1,20 @@
+name = "ai-companion-proxy"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# 環境変数（後でダッシュボードまたはwrangler secretコマンドから設定）
+# OPENAI_API_KEY は環境変数として設定（コードに含めない）
+
+# カスタムドメイン（オプション）
+# 独自ドメインを使用する場合は、以下のコメントを解除して設定
+# routes = [
+#   { pattern = "api.your-domain.com/*", zone_name = "your-domain.com" }
+# ]
+
+# 開発環境設定
+[env.development]
+# 開発環境用の設定（必要に応じて追加）
+
+# 本番環境設定
+[env.production]
+# 本番環境用の設定（必要に応じて追加）
