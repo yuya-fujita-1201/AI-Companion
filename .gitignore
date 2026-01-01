@@ -60,3 +60,8 @@ Thumbs.db
 *.tgz
 *.tar.gz
 .cache/
+
+# AI tools working directories
+.kamui/
+.cursor/
+.continue/
