@@ -2,8 +2,9 @@ import { View, Text, FlatList, Pressable, Alert } from "react-native";
 import { useState, useEffect } from "react";
 import { ScreenContainer } from "@/components/screen-container";
 import { MemoryCard } from "@/components/memory-card";
-import { Memory, MemoryType } from "@/types/memory";
+import { Memory, MemoryType, MEMORY_TYPE_ICONS, MEMORY_TYPE_LABELS } from "@/types/memory";
 import { loadMemories, removeMemory, clearAllMemories } from "@/lib/memory-storage";
+import { calculateMemoryProgress, MEMORY_LEVEL_STEP } from "@/lib/memory-progress";
 import { cn } from "@/lib/utils";
 
 type FilterType = "ALL" | MemoryType;
@@ -65,26 +66,47 @@ export default function MemoriesScreen() {
       ? memories
       : memories.filter((m) => m.type === filter);
 
-  const filters: { label: string; value: FilterType }[] = [
-    { label: "すべて", value: "ALL" },
-    { label: "事実", value: MemoryType.FACT },
-    { label: "好み", value: MemoryType.PREFERENCE },
-    { label: "イベント", value: MemoryType.EVENT },
-    { label: "会話要約", value: MemoryType.CONVERSATION_SUMMARY },
+  const filters: { label: string; value: FilterType; icon?: string }[] = [
+    { label: "すべて", value: "ALL", icon: "✨" },
+    { label: MEMORY_TYPE_LABELS[MemoryType.FACT], value: MemoryType.FACT, icon: MEMORY_TYPE_ICONS[MemoryType.FACT] },
+    {
+      label: MEMORY_TYPE_LABELS[MemoryType.PREFERENCE],
+      value: MemoryType.PREFERENCE,
+      icon: MEMORY_TYPE_ICONS[MemoryType.PREFERENCE],
+    },
+    { label: MEMORY_TYPE_LABELS[MemoryType.EVENT], value: MemoryType.EVENT, icon: MEMORY_TYPE_ICONS[MemoryType.EVENT] },
+    {
+      label: MEMORY_TYPE_LABELS[MemoryType.CONVERSATION_SUMMARY],
+      value: MemoryType.CONVERSATION_SUMMARY,
+      icon: MEMORY_TYPE_ICONS[MemoryType.CONVERSATION_SUMMARY],
+    },
   ];
+
+  const memoryCount = memories.length;
+  const progress = calculateMemoryProgress(memoryCount, MEMORY_LEVEL_STEP);
+  const progressPercentage = Math.round(progress.progress * 100);
+  const milestoneMessage = isLoading
+    ? "読み込み中..."
+    : progress.isLevelUp
+      ? `レベル${progress.level}になったにゃ！`
+      : `次のレベルまであと${progress.remaining}個だにゃ`;
 
   return (
     <ScreenContainer edges={["top", "left", "right"]}>
       {/* Header */}
-      <View className="px-4 py-3 border-b border-border">
-        <View className="flex-row items-center justify-between">
-          <View>
-            <Text className="text-2xl font-bold text-foreground">記憶</Text>
+      <View className="px-4 py-4 border-b border-border">
+        <View className="flex-row items-start justify-between gap-3">
+          <View className="flex-1">
+            <Text className="text-2xl font-bold text-foreground">
+              ミケが覚えたこと 🐱
+            </Text>
             <Text className="text-sm text-muted mt-1">
-              {memories.length}件の記憶
+              {isLoading
+                ? "記憶を読み込み中..."
+                : `ミケは${memoryCount}個のことを覚えているにゃ！`}
             </Text>
           </View>
-          {memories.length > 0 && (
+          {memoryCount > 0 && (
             <Pressable
               onPress={handleClearAll}
               style={({ pressed }) => ({
@@ -94,6 +116,27 @@ export default function MemoriesScreen() {
               <Text className="text-sm text-error">すべて削除</Text>
             </Pressable>
           )}
+        </View>
+
+        <View className="mt-4 bg-surface rounded-2xl border border-border p-4">
+          <View className="flex-row items-center justify-between">
+            <Text className="text-sm text-muted">ミケの知識レベル</Text>
+            <Text className="text-sm font-semibold text-foreground">
+              Lv.{progress.level}
+            </Text>
+          </View>
+          <View className="h-2 bg-muted/20 rounded-full overflow-hidden mt-2">
+            <View
+              className="h-full bg-primary"
+              style={{ width: `${progressPercentage}%` }}
+            />
+          </View>
+          <View className="flex-row items-center justify-between mt-2">
+            <Text className="text-xs text-muted">{milestoneMessage}</Text>
+            <Text className="text-xs text-muted">
+              次: {progress.nextLevelAt}個
+            </Text>
+          </View>
         </View>
       </View>
 
@@ -110,12 +153,22 @@ export default function MemoriesScreen() {
             >
               <View
                 className={cn(
-                  "px-4 py-2 rounded-full border",
+                  "px-4 py-2 rounded-full border flex-row items-center gap-2",
                   filter === f.value
                     ? "bg-primary border-primary"
                     : "bg-surface border-border"
                 )}
               >
+                {f.icon && (
+                  <Text
+                    className={cn(
+                      "text-sm",
+                      filter === f.value ? "text-white" : "text-foreground"
+                    )}
+                  >
+                    {f.icon}
+                  </Text>
+                )}
                 <Text
                   className={cn(
                     "text-sm font-medium",
@@ -145,13 +198,14 @@ export default function MemoriesScreen() {
         }}
         ListEmptyComponent={
           <View className="flex-1 items-center justify-center px-8">
-            <Text className="text-4xl mb-4">🧠</Text>
+            <Text className="text-4xl mb-4">🐾</Text>
             <Text className="text-xl font-semibold text-foreground text-center mb-2">
-              {isLoading ? "読み込み中..." : "まだ記憶がありません"}
+              {isLoading ? "読み込み中..." : "ミケの記憶はまだ少なめだにゃ"}
             </Text>
             {!isLoading && (
               <Text className="text-base text-muted text-center leading-relaxed">
-                会話を通じて、AIがあなたのことを学んでいきます。
+                いろんなお話を聞かせてくれると、
+                ミケが少しずつ覚えていくにゃ。
               </Text>
             )}
           </View>
