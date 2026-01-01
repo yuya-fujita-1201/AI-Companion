@@ -45,12 +45,14 @@ export default function ChatScreen() {
   const [showChat, setShowChat] = useState(false);
   const [firstMeetDate, setFirstMeetDate] = useState<Date>(new Date());
   const [currentEmotion, setCurrentEmotion] = useState<Emotion>("neutral");
-  
+  const [ttsSource, setTtsSource] = useState<string | null>(null);
+
   // Animation values
   const scale = useSharedValue(1);
   const opacity = useSharedValue(1);
   const flatListRef = useRef<FlatList>(null);
-  const audioPlayerRef = useRef<ReturnType<typeof useAudioPlayer> | null>(null);
+
+  const ttsPlayer = useAudioPlayer(ttsSource);
 
   const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
   const chatMutation = trpc.chat.sendMessage.useMutation();
@@ -150,12 +152,40 @@ export default function ChatScreen() {
   };
 
   useEffect(() => {
-    if (!isTTSEnabled && audioPlayerRef.current) {
-      audioPlayerRef.current.release();
-      audioPlayerRef.current = null;
+    if (!isTTSEnabled && ttsPlayer) {
+      if (ttsPlayer.playing) {
+        ttsPlayer.pause();
+      }
       setIsPlayingAudio(false);
     }
-  }, [isTTSEnabled]);
+  }, [isTTSEnabled, ttsPlayer]);
+
+  // Effect to handle auto-play when ttsSource changes
+  useEffect(() => {
+    if (ttsSource && ttsPlayer && isTTSEnabled) {
+      // Small delay to ensure player is ready
+      const timer = setTimeout(() => {
+        ttsPlayer.play();
+        setIsPlayingAudio(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [ttsSource, ttsPlayer, isTTSEnabled]);
+
+  // Effect to monitor playback status
+  useEffect(() => {
+    if (!isPlayingAudio || !ttsPlayer) return;
+
+    const checkInterval = setInterval(() => {
+      // If we are supposed to be playing but player stopped (and processed some time)
+      if (!ttsPlayer.playing && ttsPlayer.currentTime > 0) {
+        setIsPlayingAudio(false);
+        setTtsSource(null); // Reset source
+      }
+    }, 500);
+
+    return () => clearInterval(checkInterval);
+  }, [isPlayingAudio, ttsPlayer]);
 
   const loadMessages = async () => {
     try {
@@ -247,37 +277,15 @@ export default function ChatScreen() {
 
   const playTTS = async (text: string) => {
     try {
-      setIsPlayingAudio(true);
-
       const result = await ttsMutation.mutateAsync({
         text,
         voice: "female_voice",
       });
 
       if (result.audioUrl) {
-        // Create audio player
-        const player = useAudioPlayer(result.audioUrl);
-        audioPlayerRef.current = player;
-
-        // Play audio
-        player.play();
-
-        // Wait for audio to finish
-        await new Promise<void>((resolve) => {
-          const checkInterval = setInterval(() => {
-            if (!player.playing) {
-              clearInterval(checkInterval);
-              resolve();
-            }
-          }, 100);
-        });
-
-        // Clean up
-        player.release();
-        audioPlayerRef.current = null;
+        setTtsSource(result.audioUrl);
+        // Playback will be triggered by useEffect
       }
-
-      setIsPlayingAudio(false);
     } catch (error) {
       console.error("Failed to play TTS:", error);
       setIsPlayingAudio(false);
@@ -285,11 +293,10 @@ export default function ChatScreen() {
   };
 
   const stopTTS = () => {
-    if (audioPlayerRef.current) {
-      audioPlayerRef.current.pause();
-      audioPlayerRef.current.release();
-      audioPlayerRef.current = null;
+    if (ttsPlayer && ttsPlayer.playing) {
+      ttsPlayer.pause();
       setIsPlayingAudio(false);
+      setTtsSource(null);
     }
   };
 
@@ -369,7 +376,7 @@ export default function ChatScreen() {
 
       // Play TTS if enabled
       if (isTTSEnabled) {
-        playTTS(response.message);
+        await playTTS(response.message);
       }
     } catch (error) {
       console.error("Failed to send message:", error);
@@ -378,6 +385,7 @@ export default function ChatScreen() {
       setIsGenerating(false);
     }
   };
+
 
   const conversationCount = Math.floor(messages.length / 2);
 
