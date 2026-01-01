@@ -1,0 +1,4819 @@
+{
+  "schemaVersion": 1,
+  "projectPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion",
+  "projectRootName": "AI-Companion",
+  "graphRenderingMode": "normal",
+  "linkDisplayMode": "all",
+  "graphStats": {
+    "totalNodes": 129,
+    "folders": 27,
+    "files": 102,
+    "images": 7,
+    "videos": 0,
+    "audio": 0,
+    "code": 83,
+    "text": 4,
+    "html": 0,
+    "yaml": 1,
+    "json": 4,
+    "other": 3,
+    "totalLines": 0,
+    "maxLines": 0
+  },
+  "directoryTree": {
+    "name": "AI-Companion",
+    "type": "directory",
+    "path": "AI-Companion",
+    "children": [
+      {
+        "name": "__tests__",
+        "type": "directory",
+        "path": "__tests__",
+        "children": [
+          {
+            "name": "chat.test.ts",
+            "type": "file",
+            "path": "__tests__/chat.test.ts"
+          },
+          {
+            "name": "memory.test.ts",
+            "type": "file",
+            "path": "__tests__/memory.test.ts"
+          }
+        ]
+      },
+      {
+        "name": "app",
+        "type": "directory",
+        "path": "app",
+        "children": [
+          {
+            "name": "(tabs)",
+            "type": "directory",
+            "path": "app/(tabs)",
+            "children": [
+              {
+                "name": "_layout.tsx",
+                "type": "file",
+                "path": "app/(tabs)/_layout.tsx"
+              },
+              {
+                "name": "index.tsx",
+                "type": "file",
+                "path": "app/(tabs)/index.tsx"
+              },
+              {
+                "name": "memories.tsx",
+                "type": "file",
+                "path": "app/(tabs)/memories.tsx"
+              },
+              {
+                "name": "settings.tsx",
+                "type": "file",
+                "path": "app/(tabs)/settings.tsx"
+              }
+            ]
+          },
+          {
+            "name": "dev",
+            "type": "directory",
+            "path": "app/dev",
+            "children": [
+              {
+                "name": "theme-lab.tsx",
+                "type": "file",
+                "path": "app/dev/theme-lab.tsx"
+              }
+            ]
+          },
+          {
+            "name": "oauth",
+            "type": "directory",
+            "path": "app/oauth",
+            "children": [
+              {
+                "name": "callback.tsx",
+                "type": "file",
+                "path": "app/oauth/callback.tsx"
+              }
+            ]
+          },
+          {
+            "name": "_layout.tsx",
+            "type": "file",
+            "path": "app/_layout.tsx"
+          }
+        ]
+      },
+      {
+        "name": "assets",
+        "type": "directory",
+        "path": "assets",
+        "children": [
+          {
+            "name": "images",
+            "type": "directory",
+            "path": "assets/images",
+            "children": [
+              {
+                "name": "favicon.png",
+                "type": "file",
+                "path": "assets/images/favicon.png"
+              },
+              {
+                "name": "icon.png",
+                "type": "file",
+                "path": "assets/images/icon.png"
+              },
+              {
+                "name": "partial-react-logo.png",
+                "type": "file",
+                "path": "assets/images/partial-react-logo.png"
+              },
+              {
+                "name": "react-logo.png",
+                "type": "file",
+                "path": "assets/images/react-logo.png"
+              },
+              {
+                "name": "react-logo@2x.png",
+                "type": "file",
+                "path": "assets/images/react-logo@2x.png"
+              },
+              {
+                "name": "react-logo@3x.png",
+                "type": "file",
+                "path": "assets/images/react-logo@3x.png"
+              },
+              {
+                "name": "splash-icon.png",
+                "type": "file",
+                "path": "assets/images/splash-icon.png"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "components",
+        "type": "directory",
+        "path": "components",
+        "children": [
+          {
+            "name": "ui",
+            "type": "directory",
+            "path": "components/ui",
+            "children": [
+              {
+                "name": "collapsible.tsx",
+                "type": "file",
+                "path": "components/ui/collapsible.tsx"
+              },
+              {
+                "name": "icon-symbol.ios.tsx",
+                "type": "file",
+                "path": "components/ui/icon-symbol.ios.tsx"
+              },
+              {
+                "name": "icon-symbol.tsx",
+                "type": "file",
+                "path": "components/ui/icon-symbol.tsx"
+              }
+            ]
+          },
+          {
+            "name": "external-link.tsx",
+            "type": "file",
+            "path": "components/external-link.tsx"
+          },
+          {
+            "name": "haptic-tab.tsx",
+            "type": "file",
+            "path": "components/haptic-tab.tsx"
+          },
+          {
+            "name": "hello-wave.tsx",
+            "type": "file",
+            "path": "components/hello-wave.tsx"
+          },
+          {
+            "name": "memory-card.tsx",
+            "type": "file",
+            "path": "components/memory-card.tsx"
+          },
+          {
+            "name": "message-bubble.tsx",
+            "type": "file",
+            "path": "components/message-bubble.tsx"
+          },
+          {
+            "name": "parallax-scroll-view.tsx",
+            "type": "file",
+            "path": "components/parallax-scroll-view.tsx"
+          },
+          {
+            "name": "screen-container.tsx",
+            "type": "file",
+            "path": "components/screen-container.tsx"
+          },
+          {
+            "name": "themed-view.tsx",
+            "type": "file",
+            "path": "components/themed-view.tsx"
+          },
+          {
+            "name": "typing-indicator.tsx",
+            "type": "file",
+            "path": "components/typing-indicator.tsx"
+          },
+          {
+            "name": "voice-input-button.tsx",
+            "type": "file",
+            "path": "components/voice-input-button.tsx"
+          }
+        ]
+      },
+      {
+        "name": "constants",
+        "type": "directory",
+        "path": "constants",
+        "children": [
+          {
+            "name": "const.ts",
+            "type": "file",
+            "path": "constants/const.ts"
+          },
+          {
+            "name": "oauth.ts",
+            "type": "file",
+            "path": "constants/oauth.ts"
+          },
+          {
+            "name": "theme.ts",
+            "type": "file",
+            "path": "constants/theme.ts"
+          }
+        ]
+      },
+      {
+        "name": "drizzle",
+        "type": "directory",
+        "path": "drizzle",
+        "children": [
+          {
+            "name": "meta",
+            "type": "directory",
+            "path": "drizzle/meta",
+            "children": [
+              {
+                "name": "_journal.json",
+                "type": "file",
+                "path": "drizzle/meta/_journal.json"
+              },
+              {
+                "name": "0000_snapshot.json",
+                "type": "file",
+                "path": "drizzle/meta/0000_snapshot.json"
+              }
+            ]
+          },
+          {
+            "name": "migrations",
+            "type": "directory",
+            "path": "drizzle/migrations",
+            "children": []
+          },
+          {
+            "name": "0000_elite_eternals.sql",
+            "type": "file",
+            "path": "drizzle/0000_elite_eternals.sql"
+          },
+          {
+            "name": "relations.ts",
+            "type": "file",
+            "path": "drizzle/relations.ts"
+          },
+          {
+            "name": "schema.ts",
+            "type": "file",
+            "path": "drizzle/schema.ts"
+          }
+        ]
+      },
+      {
+        "name": "hooks",
+        "type": "directory",
+        "path": "hooks",
+        "children": [
+          {
+            "name": "use-auth.ts",
+            "type": "file",
+            "path": "hooks/use-auth.ts"
+          },
+          {
+            "name": "use-color-scheme.ts",
+            "type": "file",
+            "path": "hooks/use-color-scheme.ts"
+          },
+          {
+            "name": "use-color-scheme.web.ts",
+            "type": "file",
+            "path": "hooks/use-color-scheme.web.ts"
+          },
+          {
+            "name": "use-colors.ts",
+            "type": "file",
+            "path": "hooks/use-colors.ts"
+          }
+        ]
+      },
+      {
+        "name": "lib",
+        "type": "directory",
+        "path": "lib",
+        "children": [
+          {
+            "name": "_core",
+            "type": "directory",
+            "path": "lib/_core",
+            "children": [
+              {
+                "name": "api.ts",
+                "type": "file",
+                "path": "lib/_core/api.ts"
+              },
+              {
+                "name": "auth.ts",
+                "type": "file",
+                "path": "lib/_core/auth.ts"
+              },
+              {
+                "name": "manus-runtime.ts",
+                "type": "file",
+                "path": "lib/_core/manus-runtime.ts"
+              },
+              {
+                "name": "nativewind-pressable.ts",
+                "type": "file",
+                "path": "lib/_core/nativewind-pressable.ts"
+              },
+              {
+                "name": "theme.ts",
+                "type": "file",
+                "path": "lib/_core/theme.ts"
+              }
+            ]
+          },
+          {
+            "name": "audio-recorder.ts",
+            "type": "file",
+            "path": "lib/audio-recorder.ts"
+          },
+          {
+            "name": "memory-storage.ts",
+            "type": "file",
+            "path": "lib/memory-storage.ts"
+          },
+          {
+            "name": "settings.ts",
+            "type": "file",
+            "path": "lib/settings.ts"
+          },
+          {
+            "name": "theme-provider.tsx",
+            "type": "file",
+            "path": "lib/theme-provider.tsx"
+          },
+          {
+            "name": "trpc.ts",
+            "type": "file",
+            "path": "lib/trpc.ts"
+          },
+          {
+            "name": "utils.ts",
+            "type": "file",
+            "path": "lib/utils.ts"
+          }
+        ]
+      },
+      {
+        "name": "scripts",
+        "type": "directory",
+        "path": "scripts",
+        "children": [
+          {
+            "name": "generate_qr.mjs",
+            "type": "file",
+            "path": "scripts/generate_qr.mjs"
+          },
+          {
+            "name": "load-env.js",
+            "type": "file",
+            "path": "scripts/load-env.js"
+          },
+          {
+            "name": "reset-project.js",
+            "type": "file",
+            "path": "scripts/reset-project.js"
+          }
+        ]
+      },
+      {
+        "name": "server",
+        "type": "directory",
+        "path": "server",
+        "children": [
+          {
+            "name": "__tests__",
+            "type": "directory",
+            "path": "server/__tests__",
+            "children": [
+              {
+                "name": "chat.test.ts",
+                "type": "file",
+                "path": "server/__tests__/chat.test.ts"
+              },
+              {
+                "name": "tts.test.ts",
+                "type": "file",
+                "path": "server/__tests__/tts.test.ts"
+              }
+            ]
+          },
+          {
+            "name": "_core",
+            "type": "directory",
+            "path": "server/_core",
+            "children": [
+              {
+                "name": "types",
+                "type": "directory",
+                "path": "server/_core/types",
+                "children": [
+                  {
+                    "name": "cookie.d.ts",
+                    "type": "file",
+                    "path": "server/_core/types/cookie.d.ts"
+                  },
+                  {
+                    "name": "manusTypes.ts",
+                    "type": "file",
+                    "path": "server/_core/types/manusTypes.ts"
+                  }
+                ]
+              },
+              {
+                "name": "context.ts",
+                "type": "file",
+                "path": "server/_core/context.ts"
+              },
+              {
+                "name": "cookies.ts",
+                "type": "file",
+                "path": "server/_core/cookies.ts"
+              },
+              {
+                "name": "dataApi.ts",
+                "type": "file",
+                "path": "server/_core/dataApi.ts"
+              },
+              {
+                "name": "env.ts",
+                "type": "file",
+                "path": "server/_core/env.ts"
+              },
+              {
+                "name": "imageGeneration.ts",
+                "type": "file",
+                "path": "server/_core/imageGeneration.ts"
+              },
+              {
+                "name": "index.ts",
+                "type": "file",
+                "path": "server/_core/index.ts"
+              },
+              {
+                "name": "llm.ts",
+                "type": "file",
+                "path": "server/_core/llm.ts"
+              },
+              {
+                "name": "notification.ts",
+                "type": "file",
+                "path": "server/_core/notification.ts"
+              },
+              {
+                "name": "oauth.ts",
+                "type": "file",
+                "path": "server/_core/oauth.ts"
+              },
+              {
+                "name": "sdk.ts",
+                "type": "file",
+                "path": "server/_core/sdk.ts"
+              },
+              {
+                "name": "systemRouter.ts",
+                "type": "file",
+                "path": "server/_core/systemRouter.ts"
+              },
+              {
+                "name": "textToSpeech.ts",
+                "type": "file",
+                "path": "server/_core/textToSpeech.ts"
+              },
+              {
+                "name": "trpc.ts",
+                "type": "file",
+                "path": "server/_core/trpc.ts"
+              },
+              {
+                "name": "voiceTranscription.ts",
+                "type": "file",
+                "path": "server/_core/voiceTranscription.ts"
+              }
+            ]
+          },
+          {
+            "name": "routers",
+            "type": "directory",
+            "path": "server/routers",
+            "children": [
+              {
+                "name": "memory.ts",
+                "type": "file",
+                "path": "server/routers/memory.ts"
+              },
+              {
+                "name": "tts.ts",
+                "type": "file",
+                "path": "server/routers/tts.ts"
+              },
+              {
+                "name": "voice.ts",
+                "type": "file",
+                "path": "server/routers/voice.ts"
+              }
+            ]
+          },
+          {
+            "name": "db.ts",
+            "type": "file",
+            "path": "server/db.ts"
+          },
+          {
+            "name": "README.md",
+            "type": "file",
+            "path": "server/README.md"
+          },
+          {
+            "name": "routers.ts",
+            "type": "file",
+            "path": "server/routers.ts"
+          },
+          {
+            "name": "storage.ts",
+            "type": "file",
+            "path": "server/storage.ts"
+          }
+        ]
+      },
+      {
+        "name": "shared",
+        "type": "directory",
+        "path": "shared",
+        "children": [
+          {
+            "name": "_core",
+            "type": "directory",
+            "path": "shared/_core",
+            "children": [
+              {
+                "name": "errors.ts",
+                "type": "file",
+                "path": "shared/_core/errors.ts"
+              }
+            ]
+          },
+          {
+            "name": "const.ts",
+            "type": "file",
+            "path": "shared/const.ts"
+          },
+          {
+            "name": "types.ts",
+            "type": "file",
+            "path": "shared/types.ts"
+          }
+        ]
+      },
+      {
+        "name": "tests",
+        "type": "directory",
+        "path": "tests",
+        "children": [
+          {
+            "name": "auth.logout.test.ts",
+            "type": "file",
+            "path": "tests/auth.logout.test.ts"
+          }
+        ]
+      },
+      {
+        "name": "types",
+        "type": "directory",
+        "path": "types",
+        "children": [
+          {
+            "name": "chat.ts",
+            "type": "file",
+            "path": "types/chat.ts"
+          },
+          {
+            "name": "memory.ts",
+            "type": "file",
+            "path": "types/memory.ts"
+          }
+        ]
+      },
+      {
+        "name": "app.config.ts",
+        "type": "file",
+        "path": "app.config.ts"
+      },
+      {
+        "name": "babel.config.js",
+        "type": "file",
+        "path": "babel.config.js"
+      },
+      {
+        "name": "design.md",
+        "type": "file",
+        "path": "design.md"
+      },
+      {
+        "name": "drizzle.config.ts",
+        "type": "file",
+        "path": "drizzle.config.ts"
+      },
+      {
+        "name": "eslint.config.js",
+        "type": "file",
+        "path": "eslint.config.js"
+      },
+      {
+        "name": "global.css",
+        "type": "file",
+        "path": "global.css"
+      },
+      {
+        "name": "metro.config.js",
+        "type": "file",
+        "path": "metro.config.js"
+      },
+      {
+        "name": "nativewind-env.d.ts",
+        "type": "file",
+        "path": "nativewind-env.d.ts"
+      },
+      {
+        "name": "package.json",
+        "type": "file",
+        "path": "package.json"
+      },
+      {
+        "name": "pnpm-lock.yaml",
+        "type": "file",
+        "path": "pnpm-lock.yaml"
+      },
+      {
+        "name": "README.md",
+        "type": "file",
+        "path": "README.md"
+      },
+      {
+        "name": "tailwind.config.js",
+        "type": "file",
+        "path": "tailwind.config.js"
+      },
+      {
+        "name": "theme.config.d.ts",
+        "type": "file",
+        "path": "theme.config.d.ts"
+      },
+      {
+        "name": "theme.config.js",
+        "type": "file",
+        "path": "theme.config.js"
+      },
+      {
+        "name": "todo.md",
+        "type": "file",
+        "path": "todo.md"
+      },
+      {
+        "name": "tsconfig.json",
+        "type": "file",
+        "path": "tsconfig.json"
+      }
+    ]
+  },
+  "graphData": {
+    "nodes": [
+      {
+        "id": "AI-Companion",
+        "name": "AI-Companion",
+        "path": "AI-Companion",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": null,
+        "childFileCount": 16
+      },
+      {
+        "id": "AI-Companion/__tests__",
+        "name": "__tests__",
+        "path": "AI-Companion/__tests__",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 2
+      },
+      {
+        "id": "AI-Companion/__tests__/chat.test.ts",
+        "name": "chat.test.ts",
+        "path": "AI-Companion/__tests__/chat.test.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/__tests__",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/__tests__/memory.test.ts",
+        "name": "memory.test.ts",
+        "path": "AI-Companion/__tests__/memory.test.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/__tests__",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/app",
+        "name": "app",
+        "path": "AI-Companion/app",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 1
+      },
+      {
+        "id": "AI-Companion/app/(tabs)",
+        "name": "(tabs)",
+        "path": "AI-Companion/app/(tabs)",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app",
+        "childFileCount": 4
+      },
+      {
+        "id": "AI-Companion/app/(tabs)/_layout.tsx",
+        "name": "_layout.tsx",
+        "path": "AI-Companion/app/(tabs)/_layout.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app/(tabs)",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/app/(tabs)/index.tsx",
+        "name": "index.tsx",
+        "path": "AI-Companion/app/(tabs)/index.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app/(tabs)",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/app/(tabs)/memories.tsx",
+        "name": "memories.tsx",
+        "path": "AI-Companion/app/(tabs)/memories.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app/(tabs)",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/app/(tabs)/settings.tsx",
+        "name": "settings.tsx",
+        "path": "AI-Companion/app/(tabs)/settings.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app/(tabs)",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/app/dev",
+        "name": "dev",
+        "path": "AI-Companion/app/dev",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app",
+        "childFileCount": 1
+      },
+      {
+        "id": "AI-Companion/app/dev/theme-lab.tsx",
+        "name": "theme-lab.tsx",
+        "path": "AI-Companion/app/dev/theme-lab.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app/dev",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/app/oauth",
+        "name": "oauth",
+        "path": "AI-Companion/app/oauth",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app",
+        "childFileCount": 1
+      },
+      {
+        "id": "AI-Companion/app/oauth/callback.tsx",
+        "name": "callback.tsx",
+        "path": "AI-Companion/app/oauth/callback.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app/oauth",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/app/_layout.tsx",
+        "name": "_layout.tsx",
+        "path": "AI-Companion/app/_layout.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/app",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/assets",
+        "name": "assets",
+        "path": "AI-Companion/assets",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/assets/images",
+        "name": "images",
+        "path": "AI-Companion/assets/images",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/assets",
+        "childFileCount": 7
+      },
+      {
+        "id": "AI-Companion/assets/images/favicon.png",
+        "name": "favicon.png",
+        "path": "AI-Companion/assets/images/favicon.png",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#ffb347",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/assets/images",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/assets/images/icon.png",
+        "name": "icon.png",
+        "path": "AI-Companion/assets/images/icon.png",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#ffb347",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/assets/images",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/assets/images/partial-react-logo.png",
+        "name": "partial-react-logo.png",
+        "path": "AI-Companion/assets/images/partial-react-logo.png",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#ffb347",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/assets/images",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/assets/images/react-logo.png",
+        "name": "react-logo.png",
+        "path": "AI-Companion/assets/images/react-logo.png",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#ffb347",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/assets/images",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/assets/images/react-logo@2x.png",
+        "name": "react-logo@2x.png",
+        "path": "AI-Companion/assets/images/react-logo@2x.png",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#ffb347",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/assets/images",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/assets/images/react-logo@3x.png",
+        "name": "react-logo@3x.png",
+        "path": "AI-Companion/assets/images/react-logo@3x.png",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#ffb347",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/assets/images",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/assets/images/splash-icon.png",
+        "name": "splash-icon.png",
+        "path": "AI-Companion/assets/images/splash-icon.png",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#ffb347",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/assets/images",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components",
+        "name": "components",
+        "path": "AI-Companion/components",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 10
+      },
+      {
+        "id": "AI-Companion/components/ui",
+        "name": "ui",
+        "path": "AI-Companion/components/ui",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 3
+      },
+      {
+        "id": "AI-Companion/components/ui/collapsible.tsx",
+        "name": "collapsible.tsx",
+        "path": "AI-Companion/components/ui/collapsible.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components/ui",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/ui/icon-symbol.ios.tsx",
+        "name": "icon-symbol.ios.tsx",
+        "path": "AI-Companion/components/ui/icon-symbol.ios.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components/ui",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/ui/icon-symbol.tsx",
+        "name": "icon-symbol.tsx",
+        "path": "AI-Companion/components/ui/icon-symbol.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components/ui",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/external-link.tsx",
+        "name": "external-link.tsx",
+        "path": "AI-Companion/components/external-link.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/haptic-tab.tsx",
+        "name": "haptic-tab.tsx",
+        "path": "AI-Companion/components/haptic-tab.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/hello-wave.tsx",
+        "name": "hello-wave.tsx",
+        "path": "AI-Companion/components/hello-wave.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/memory-card.tsx",
+        "name": "memory-card.tsx",
+        "path": "AI-Companion/components/memory-card.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/message-bubble.tsx",
+        "name": "message-bubble.tsx",
+        "path": "AI-Companion/components/message-bubble.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/parallax-scroll-view.tsx",
+        "name": "parallax-scroll-view.tsx",
+        "path": "AI-Companion/components/parallax-scroll-view.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/screen-container.tsx",
+        "name": "screen-container.tsx",
+        "path": "AI-Companion/components/screen-container.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/themed-view.tsx",
+        "name": "themed-view.tsx",
+        "path": "AI-Companion/components/themed-view.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/typing-indicator.tsx",
+        "name": "typing-indicator.tsx",
+        "path": "AI-Companion/components/typing-indicator.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/components/voice-input-button.tsx",
+        "name": "voice-input-button.tsx",
+        "path": "AI-Companion/components/voice-input-button.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/components",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/constants",
+        "name": "constants",
+        "path": "AI-Companion/constants",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 3
+      },
+      {
+        "id": "AI-Companion/constants/const.ts",
+        "name": "const.ts",
+        "path": "AI-Companion/constants/const.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/constants",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/constants/oauth.ts",
+        "name": "oauth.ts",
+        "path": "AI-Companion/constants/oauth.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/constants",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/constants/theme.ts",
+        "name": "theme.ts",
+        "path": "AI-Companion/constants/theme.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/constants",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/drizzle",
+        "name": "drizzle",
+        "path": "AI-Companion/drizzle",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 3
+      },
+      {
+        "id": "AI-Companion/drizzle/meta",
+        "name": "meta",
+        "path": "AI-Companion/drizzle/meta",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/drizzle",
+        "childFileCount": 2
+      },
+      {
+        "id": "AI-Companion/drizzle/meta/_journal.json",
+        "name": "_journal.json",
+        "path": "AI-Companion/drizzle/meta/_journal.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#8e44ad",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/drizzle/meta",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/drizzle/meta/0000_snapshot.json",
+        "name": "0000_snapshot.json",
+        "path": "AI-Companion/drizzle/meta/0000_snapshot.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#8e44ad",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/drizzle/meta",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/drizzle/migrations",
+        "name": "migrations",
+        "path": "AI-Companion/drizzle/migrations",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/drizzle",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/drizzle/0000_elite_eternals.sql",
+        "name": "0000_elite_eternals.sql",
+        "path": "AI-Companion/drizzle/0000_elite_eternals.sql",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#57606f",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/drizzle",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/drizzle/relations.ts",
+        "name": "relations.ts",
+        "path": "AI-Companion/drizzle/relations.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/drizzle",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/drizzle/schema.ts",
+        "name": "schema.ts",
+        "path": "AI-Companion/drizzle/schema.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/drizzle",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/hooks",
+        "name": "hooks",
+        "path": "AI-Companion/hooks",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 4
+      },
+      {
+        "id": "AI-Companion/hooks/use-auth.ts",
+        "name": "use-auth.ts",
+        "path": "AI-Companion/hooks/use-auth.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/hooks",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/hooks/use-color-scheme.ts",
+        "name": "use-color-scheme.ts",
+        "path": "AI-Companion/hooks/use-color-scheme.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/hooks",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/hooks/use-color-scheme.web.ts",
+        "name": "use-color-scheme.web.ts",
+        "path": "AI-Companion/hooks/use-color-scheme.web.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/hooks",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/hooks/use-colors.ts",
+        "name": "use-colors.ts",
+        "path": "AI-Companion/hooks/use-colors.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/hooks",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib",
+        "name": "lib",
+        "path": "AI-Companion/lib",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 6
+      },
+      {
+        "id": "AI-Companion/lib/_core",
+        "name": "_core",
+        "path": "AI-Companion/lib/_core",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib",
+        "childFileCount": 5
+      },
+      {
+        "id": "AI-Companion/lib/_core/api.ts",
+        "name": "api.ts",
+        "path": "AI-Companion/lib/_core/api.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/_core/auth.ts",
+        "name": "auth.ts",
+        "path": "AI-Companion/lib/_core/auth.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/_core/manus-runtime.ts",
+        "name": "manus-runtime.ts",
+        "path": "AI-Companion/lib/_core/manus-runtime.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/_core/nativewind-pressable.ts",
+        "name": "nativewind-pressable.ts",
+        "path": "AI-Companion/lib/_core/nativewind-pressable.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/_core/theme.ts",
+        "name": "theme.ts",
+        "path": "AI-Companion/lib/_core/theme.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/audio-recorder.ts",
+        "name": "audio-recorder.ts",
+        "path": "AI-Companion/lib/audio-recorder.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/memory-storage.ts",
+        "name": "memory-storage.ts",
+        "path": "AI-Companion/lib/memory-storage.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/settings.ts",
+        "name": "settings.ts",
+        "path": "AI-Companion/lib/settings.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/theme-provider.tsx",
+        "name": "theme-provider.tsx",
+        "path": "AI-Companion/lib/theme-provider.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#61dafb",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/trpc.ts",
+        "name": "trpc.ts",
+        "path": "AI-Companion/lib/trpc.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/lib/utils.ts",
+        "name": "utils.ts",
+        "path": "AI-Companion/lib/utils.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/lib",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/scripts",
+        "name": "scripts",
+        "path": "AI-Companion/scripts",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 3
+      },
+      {
+        "id": "AI-Companion/scripts/generate_qr.mjs",
+        "name": "generate_qr.mjs",
+        "path": "AI-Companion/scripts/generate_qr.mjs",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#57606f",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/scripts",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/scripts/load-env.js",
+        "name": "load-env.js",
+        "path": "AI-Companion/scripts/load-env.js",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#f7df1e",
+        "baseColor": "#f7df1e",
+        "originalColor": "#f7df1e",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/scripts",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/scripts/reset-project.js",
+        "name": "reset-project.js",
+        "path": "AI-Companion/scripts/reset-project.js",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#f7df1e",
+        "baseColor": "#f7df1e",
+        "originalColor": "#f7df1e",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/scripts",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server",
+        "name": "server",
+        "path": "AI-Companion/server",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 4
+      },
+      {
+        "id": "AI-Companion/server/__tests__",
+        "name": "__tests__",
+        "path": "AI-Companion/server/__tests__",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server",
+        "childFileCount": 2
+      },
+      {
+        "id": "AI-Companion/server/__tests__/chat.test.ts",
+        "name": "chat.test.ts",
+        "path": "AI-Companion/server/__tests__/chat.test.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/__tests__",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/__tests__/tts.test.ts",
+        "name": "tts.test.ts",
+        "path": "AI-Companion/server/__tests__/tts.test.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/__tests__",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core",
+        "name": "_core",
+        "path": "AI-Companion/server/_core",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server",
+        "childFileCount": 14
+      },
+      {
+        "id": "AI-Companion/server/_core/types",
+        "name": "types",
+        "path": "AI-Companion/server/_core/types",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 2
+      },
+      {
+        "id": "AI-Companion/server/_core/types/cookie.d.ts",
+        "name": "cookie.d.ts",
+        "path": "AI-Companion/server/_core/types/cookie.d.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core/types",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/types/manusTypes.ts",
+        "name": "manusTypes.ts",
+        "path": "AI-Companion/server/_core/types/manusTypes.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core/types",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/context.ts",
+        "name": "context.ts",
+        "path": "AI-Companion/server/_core/context.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/cookies.ts",
+        "name": "cookies.ts",
+        "path": "AI-Companion/server/_core/cookies.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/dataApi.ts",
+        "name": "dataApi.ts",
+        "path": "AI-Companion/server/_core/dataApi.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/env.ts",
+        "name": "env.ts",
+        "path": "AI-Companion/server/_core/env.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/imageGeneration.ts",
+        "name": "imageGeneration.ts",
+        "path": "AI-Companion/server/_core/imageGeneration.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/index.ts",
+        "name": "index.ts",
+        "path": "AI-Companion/server/_core/index.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/llm.ts",
+        "name": "llm.ts",
+        "path": "AI-Companion/server/_core/llm.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/notification.ts",
+        "name": "notification.ts",
+        "path": "AI-Companion/server/_core/notification.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/oauth.ts",
+        "name": "oauth.ts",
+        "path": "AI-Companion/server/_core/oauth.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/sdk.ts",
+        "name": "sdk.ts",
+        "path": "AI-Companion/server/_core/sdk.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/systemRouter.ts",
+        "name": "systemRouter.ts",
+        "path": "AI-Companion/server/_core/systemRouter.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/textToSpeech.ts",
+        "name": "textToSpeech.ts",
+        "path": "AI-Companion/server/_core/textToSpeech.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/trpc.ts",
+        "name": "trpc.ts",
+        "path": "AI-Companion/server/_core/trpc.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/_core/voiceTranscription.ts",
+        "name": "voiceTranscription.ts",
+        "path": "AI-Companion/server/_core/voiceTranscription.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/routers",
+        "name": "routers",
+        "path": "AI-Companion/server/routers",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server",
+        "childFileCount": 3
+      },
+      {
+        "id": "AI-Companion/server/routers/memory.ts",
+        "name": "memory.ts",
+        "path": "AI-Companion/server/routers/memory.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/routers",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/routers/tts.ts",
+        "name": "tts.ts",
+        "path": "AI-Companion/server/routers/tts.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/routers",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/routers/voice.ts",
+        "name": "voice.ts",
+        "path": "AI-Companion/server/routers/voice.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server/routers",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/db.ts",
+        "name": "db.ts",
+        "path": "AI-Companion/server/db.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/README.md",
+        "name": "README.md",
+        "path": "AI-Companion/server/README.md",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3498db",
+        "baseColor": "#3498db",
+        "originalColor": "#3498db",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/routers.ts",
+        "name": "routers.ts",
+        "path": "AI-Companion/server/routers.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/server/storage.ts",
+        "name": "storage.ts",
+        "path": "AI-Companion/server/storage.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/server",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/shared",
+        "name": "shared",
+        "path": "AI-Companion/shared",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 2
+      },
+      {
+        "id": "AI-Companion/shared/_core",
+        "name": "_core",
+        "path": "AI-Companion/shared/_core",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion/shared",
+        "childFileCount": 1
+      },
+      {
+        "id": "AI-Companion/shared/_core/errors.ts",
+        "name": "errors.ts",
+        "path": "AI-Companion/shared/_core/errors.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/shared/_core",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/shared/const.ts",
+        "name": "const.ts",
+        "path": "AI-Companion/shared/const.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/shared",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/shared/types.ts",
+        "name": "types.ts",
+        "path": "AI-Companion/shared/types.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/shared",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/tests",
+        "name": "tests",
+        "path": "AI-Companion/tests",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 1
+      },
+      {
+        "id": "AI-Companion/tests/auth.logout.test.ts",
+        "name": "auth.logout.test.ts",
+        "path": "AI-Companion/tests/auth.logout.test.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/tests",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/types",
+        "name": "types",
+        "path": "AI-Companion/types",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#4d515a",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 2
+      },
+      {
+        "id": "AI-Companion/types/chat.ts",
+        "name": "chat.ts",
+        "path": "AI-Companion/types/chat.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/types",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/types/memory.ts",
+        "name": "memory.ts",
+        "path": "AI-Companion/types/memory.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion/types",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/app.config.ts",
+        "name": "app.config.ts",
+        "path": "AI-Companion/app.config.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/babel.config.js",
+        "name": "babel.config.js",
+        "path": "AI-Companion/babel.config.js",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#f7df1e",
+        "baseColor": "#f7df1e",
+        "originalColor": "#f7df1e",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/design.md",
+        "name": "design.md",
+        "path": "AI-Companion/design.md",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3498db",
+        "baseColor": "#3498db",
+        "originalColor": "#3498db",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/drizzle.config.ts",
+        "name": "drizzle.config.ts",
+        "path": "AI-Companion/drizzle.config.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/eslint.config.js",
+        "name": "eslint.config.js",
+        "path": "AI-Companion/eslint.config.js",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#f7df1e",
+        "baseColor": "#f7df1e",
+        "originalColor": "#f7df1e",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/global.css",
+        "name": "global.css",
+        "path": "AI-Companion/global.css",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#1572b6",
+        "baseColor": "#1572b6",
+        "originalColor": "#1572b6",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/metro.config.js",
+        "name": "metro.config.js",
+        "path": "AI-Companion/metro.config.js",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#f7df1e",
+        "baseColor": "#f7df1e",
+        "originalColor": "#f7df1e",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/nativewind-env.d.ts",
+        "name": "nativewind-env.d.ts",
+        "path": "AI-Companion/nativewind-env.d.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/package.json",
+        "name": "package.json",
+        "path": "AI-Companion/package.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#8e44ad",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/pnpm-lock.yaml",
+        "name": "pnpm-lock.yaml",
+        "path": "AI-Companion/pnpm-lock.yaml",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#f1c40f",
+        "baseColor": "#f1c40f",
+        "originalColor": "#f1c40f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/README.md",
+        "name": "README.md",
+        "path": "AI-Companion/README.md",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3498db",
+        "baseColor": "#3498db",
+        "originalColor": "#3498db",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/tailwind.config.js",
+        "name": "tailwind.config.js",
+        "path": "AI-Companion/tailwind.config.js",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#f7df1e",
+        "baseColor": "#f7df1e",
+        "originalColor": "#f7df1e",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/theme.config.d.ts",
+        "name": "theme.config.d.ts",
+        "path": "AI-Companion/theme.config.d.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3178c6",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/theme.config.js",
+        "name": "theme.config.js",
+        "path": "AI-Companion/theme.config.js",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#f7df1e",
+        "baseColor": "#f7df1e",
+        "originalColor": "#f7df1e",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0.1,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/todo.md",
+        "name": "todo.md",
+        "path": "AI-Companion/todo.md",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#3498db",
+        "baseColor": "#3498db",
+        "originalColor": "#3498db",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      },
+      {
+        "id": "AI-Companion/tsconfig.json",
+        "name": "tsconfig.json",
+        "path": "AI-Companion/tsconfig.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#8e44ad",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0.18,
+        "highlighted": false,
+        "parentPath": "AI-Companion",
+        "childFileCount": 0
+      }
+    ],
+    "links": [
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/__tests__",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/__tests__",
+        "target": "AI-Companion/__tests__/chat.test.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/__tests__",
+        "target": "AI-Companion/__tests__/memory.test.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/app",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app",
+        "target": "AI-Companion/app/(tabs)",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app/(tabs)",
+        "target": "AI-Companion/app/(tabs)/_layout.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app/(tabs)",
+        "target": "AI-Companion/app/(tabs)/index.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app/(tabs)",
+        "target": "AI-Companion/app/(tabs)/memories.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app/(tabs)",
+        "target": "AI-Companion/app/(tabs)/settings.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app",
+        "target": "AI-Companion/app/dev",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app/dev",
+        "target": "AI-Companion/app/dev/theme-lab.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app",
+        "target": "AI-Companion/app/oauth",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app/oauth",
+        "target": "AI-Companion/app/oauth/callback.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/app",
+        "target": "AI-Companion/app/_layout.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/assets",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/assets",
+        "target": "AI-Companion/assets/images",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/assets/images",
+        "target": "AI-Companion/assets/images/favicon.png",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/assets/images",
+        "target": "AI-Companion/assets/images/icon.png",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/assets/images",
+        "target": "AI-Companion/assets/images/partial-react-logo.png",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/assets/images",
+        "target": "AI-Companion/assets/images/react-logo.png",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/assets/images",
+        "target": "AI-Companion/assets/images/react-logo@2x.png",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/assets/images",
+        "target": "AI-Companion/assets/images/react-logo@3x.png",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/assets/images",
+        "target": "AI-Companion/assets/images/splash-icon.png",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/components",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/ui",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components/ui",
+        "target": "AI-Companion/components/ui/collapsible.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components/ui",
+        "target": "AI-Companion/components/ui/icon-symbol.ios.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components/ui",
+        "target": "AI-Companion/components/ui/icon-symbol.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/external-link.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/haptic-tab.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/hello-wave.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/memory-card.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/message-bubble.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/parallax-scroll-view.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/screen-container.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/themed-view.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/typing-indicator.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/components",
+        "target": "AI-Companion/components/voice-input-button.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/constants",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/constants",
+        "target": "AI-Companion/constants/const.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/constants",
+        "target": "AI-Companion/constants/oauth.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/constants",
+        "target": "AI-Companion/constants/theme.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/drizzle",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/drizzle",
+        "target": "AI-Companion/drizzle/meta",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/drizzle/meta",
+        "target": "AI-Companion/drizzle/meta/_journal.json",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/drizzle/meta",
+        "target": "AI-Companion/drizzle/meta/0000_snapshot.json",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/drizzle",
+        "target": "AI-Companion/drizzle/migrations",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/drizzle",
+        "target": "AI-Companion/drizzle/0000_elite_eternals.sql",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/drizzle",
+        "target": "AI-Companion/drizzle/relations.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/drizzle",
+        "target": "AI-Companion/drizzle/schema.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/hooks",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/hooks",
+        "target": "AI-Companion/hooks/use-auth.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/hooks",
+        "target": "AI-Companion/hooks/use-color-scheme.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/hooks",
+        "target": "AI-Companion/hooks/use-color-scheme.web.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/hooks",
+        "target": "AI-Companion/hooks/use-colors.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/lib",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib",
+        "target": "AI-Companion/lib/_core",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib/_core",
+        "target": "AI-Companion/lib/_core/api.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib/_core",
+        "target": "AI-Companion/lib/_core/auth.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib/_core",
+        "target": "AI-Companion/lib/_core/manus-runtime.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib/_core",
+        "target": "AI-Companion/lib/_core/nativewind-pressable.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib/_core",
+        "target": "AI-Companion/lib/_core/theme.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib",
+        "target": "AI-Companion/lib/audio-recorder.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib",
+        "target": "AI-Companion/lib/memory-storage.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib",
+        "target": "AI-Companion/lib/settings.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib",
+        "target": "AI-Companion/lib/theme-provider.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib",
+        "target": "AI-Companion/lib/trpc.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/lib",
+        "target": "AI-Companion/lib/utils.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/scripts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/scripts",
+        "target": "AI-Companion/scripts/generate_qr.mjs",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/scripts",
+        "target": "AI-Companion/scripts/load-env.js",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/scripts",
+        "target": "AI-Companion/scripts/reset-project.js",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/server",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server",
+        "target": "AI-Companion/server/__tests__",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/__tests__",
+        "target": "AI-Companion/server/__tests__/chat.test.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/__tests__",
+        "target": "AI-Companion/server/__tests__/tts.test.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server",
+        "target": "AI-Companion/server/_core",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/types",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core/types",
+        "target": "AI-Companion/server/_core/types/cookie.d.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core/types",
+        "target": "AI-Companion/server/_core/types/manusTypes.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/context.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/cookies.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/dataApi.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/env.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/imageGeneration.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/index.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/llm.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/notification.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/oauth.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/sdk.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/systemRouter.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/textToSpeech.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/trpc.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/_core",
+        "target": "AI-Companion/server/_core/voiceTranscription.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server",
+        "target": "AI-Companion/server/routers",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/routers",
+        "target": "AI-Companion/server/routers/memory.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/routers",
+        "target": "AI-Companion/server/routers/tts.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server/routers",
+        "target": "AI-Companion/server/routers/voice.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server",
+        "target": "AI-Companion/server/db.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server",
+        "target": "AI-Companion/server/README.md",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server",
+        "target": "AI-Companion/server/routers.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/server",
+        "target": "AI-Companion/server/storage.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/shared",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/shared",
+        "target": "AI-Companion/shared/_core",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/shared/_core",
+        "target": "AI-Companion/shared/_core/errors.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/shared",
+        "target": "AI-Companion/shared/const.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/shared",
+        "target": "AI-Companion/shared/types.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/tests",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/tests",
+        "target": "AI-Companion/tests/auth.logout.test.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/types",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/types",
+        "target": "AI-Companion/types/chat.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion/types",
+        "target": "AI-Companion/types/memory.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/app.config.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/babel.config.js",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/design.md",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/drizzle.config.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/eslint.config.js",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/global.css",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/metro.config.js",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/nativewind-env.d.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/package.json",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/pnpm-lock.yaml",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/README.md",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/tailwind.config.js",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/theme.config.d.ts",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/theme.config.js",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/todo.md",
+        "type": "tree"
+      },
+      {
+        "source": "AI-Companion",
+        "target": "AI-Companion/tsconfig.json",
+        "type": "tree"
+      }
+    ]
+  },
+  "trackedFiles": [
+    ".gitignore",
+    ".gitkeep",
+    ".kamui/tasks-state.json",
+    ".npmrc",
+    ".watchmanconfig",
+    "README.md",
+    "__tests__/chat.test.ts",
+    "__tests__/memory.test.ts",
+    "app.config.ts",
+    "app/(tabs)/_layout.tsx",
+    "app/(tabs)/index.tsx",
+    "app/(tabs)/memories.tsx",
+    "app/(tabs)/settings.tsx",
+    "app/_layout.tsx",
+    "app/dev/theme-lab.tsx",
+    "app/oauth/callback.tsx",
+    "assets/images/android-icon-background.png",
+    "assets/images/android-icon-foreground.png",
+    "assets/images/android-icon-monochrome.png",
+    "assets/images/favicon.png",
+    "assets/images/icon.png",
+    "assets/images/partial-react-logo.png",
+    "assets/images/react-logo.png",
+    "assets/images/react-logo@2x.png",
+    "assets/images/react-logo@3x.png",
+    "assets/images/splash-icon.png",
+    "babel.config.js",
+    "components/external-link.tsx",
+    "components/haptic-tab.tsx",
+    "components/hello-wave.tsx",
+    "components/memory-card.tsx",
+    "components/message-bubble.tsx",
+    "components/parallax-scroll-view.tsx",
+    "components/screen-container.tsx",
+    "components/themed-view.tsx",
+    "components/typing-indicator.tsx",
+    "components/ui/collapsible.tsx",
+    "components/ui/icon-symbol.ios.tsx",
+    "components/ui/icon-symbol.tsx",
+    "components/voice-input-button.tsx",
+    "constants/const.ts",
+    "constants/oauth.ts",
+    "constants/theme.ts",
+    "design.md",
+    "drizzle.config.ts",
+    "drizzle/0000_elite_eternals.sql",
+    "drizzle/meta/0000_snapshot.json",
+    "drizzle/meta/_journal.json",
+    "drizzle/migrations/.gitkeep",
+    "drizzle/relations.ts",
+    "drizzle/schema.ts",
+    "eslint.config.js",
+    "global.css",
+    "hooks/use-auth.ts",
+    "hooks/use-color-scheme.ts",
+    "hooks/use-color-scheme.web.ts",
+    "hooks/use-colors.ts",
+    "lib/_core/api.ts",
+    "lib/_core/auth.ts",
+    "lib/_core/manus-runtime.ts",
+    "lib/_core/nativewind-pressable.ts",
+    "lib/_core/theme.ts",
+    "lib/audio-recorder.ts",
+    "lib/memory-storage.ts",
+    "lib/settings.ts",
+    "lib/theme-provider.tsx",
+    "lib/trpc.ts",
+    "lib/utils.ts",
+    "metro.config.js",
+    "nativewind-env.d.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "scripts/generate_qr.mjs",
+    "scripts/load-env.js",
+    "scripts/reset-project.js",
+    "server/README.md",
+    "server/__tests__/chat.test.ts",
+    "server/__tests__/tts.test.ts",
+    "server/_core/context.ts",
+    "server/_core/cookies.ts",
+    "server/_core/dataApi.ts",
+    "server/_core/env.ts",
+    "server/_core/imageGeneration.ts",
+    "server/_core/index.ts",
+    "server/_core/llm.ts",
+    "server/_core/notification.ts",
+    "server/_core/oauth.ts",
+    "server/_core/sdk.ts",
+    "server/_core/systemRouter.ts",
+    "server/_core/textToSpeech.ts",
+    "server/_core/trpc.ts",
+    "server/_core/types/cookie.d.ts",
+    "server/_core/types/manusTypes.ts",
+    "server/_core/voiceTranscription.ts",
+    "server/db.ts",
+    "server/routers.ts",
+    "server/routers/memory.ts",
+    "server/routers/tts.ts",
+    "server/routers/voice.ts",
+    "server/storage.ts",
+    "shared/_core/errors.ts",
+    "shared/const.ts",
+    "shared/types.ts",
+    "tailwind.config.js",
+    "tests/auth.logout.test.ts",
+    "theme.config.d.ts",
+    "theme.config.js",
+    "todo.md",
+    "tsconfig.json",
+    "types/chat.ts",
+    "types/memory.ts"
+  ],
+  "uiState": {
+    "expandedDirs": [
+      "AI-Companion",
+      "AI-Companion/AI-Companion",
+      "AI-Companion/.kamui",
+      "AI-Companion/AI-Companion/.kamui",
+      "AI-Companion/.kamui/apps",
+      "AI-Companion/AI-Companion/.kamui/apps",
+      "AI-Companion/.kamui/gantte",
+      "AI-Companion/AI-Companion/.kamui/gantte",
+      "AI-Companion/.kamui/prompt",
+      "AI-Companion/AI-Companion/.kamui/prompt",
+      "task-1767197562373-429cbd",
+      "task-1767197565275-90c710",
+      "AI-Companion/.kamui/manager",
+      "AI-Companion/AI-Companion/.kamui/manager",
+      "AI-Companion/app",
+      "AI-Companion/AI-Companion/app",
+      "AI-Companion/app/(tabs)",
+      "AI-Companion/AI-Companion/app/(tabs)",
+      "AI-Companion/lib",
+      "AI-Companion/AI-Companion/lib",
+      "task-1767197561372-1c9bf8"
+    ],
+    "selectedPath": null
+  },
+  "directoryTreeMeta": {
+    "mode": "full",
+    "maxDepthApplied": 10,
+    "maxEntriesPerDirectory": 0,
+    "isPartial": false
+  },
+  "gitHistoryMeta": {
+    "mode": "full",
+    "isPartial": false,
+    "branchPulse": {
+      "generatedAt": 1767210540850,
+      "targets": [
+        "main",
+        "task/task-1767197561372-1c9bf8",
+        "task/task-1767197561573-2389a9",
+        "task/task-1767197561773-624ee0",
+        "task/task-1767197561972-e43713",
+        "task/task-1767197562172-1c787b",
+        "task/task-1767197562373-429cbd",
+        "task/task-1767197565275-90c710",
+        "master"
+      ],
+      "statsByBranch": {
+        "main": {
+          "branch": "main",
+          "head": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "baseRef": "origin/main",
+          "baseHead": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "mergeBase": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 0,
+            "fileCount": 0
+          },
+          "upstream": null
+        },
+        "task/task-1767197561372-1c9bf8": {
+          "branch": "task/task-1767197561372-1c9bf8",
+          "head": "1087dbad91a69df9fbd871426dd66b320cee68cb",
+          "baseRef": "main",
+          "baseHead": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "mergeBase": "1087dbad91a69df9fbd871426dd66b320cee68cb",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 2,
+            "fileCount": 1
+          },
+          "upstream": null
+        },
+        "task/task-1767197561773-624ee0": {
+          "branch": "task/task-1767197561773-624ee0",
+          "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "baseRef": "main",
+          "baseHead": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "mergeBase": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 3,
+            "fileCount": 6
+          },
+          "upstream": null
+        },
+        "task/task-1767197561573-2389a9": {
+          "branch": "task/task-1767197561573-2389a9",
+          "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "baseRef": "main",
+          "baseHead": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "mergeBase": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 3,
+            "fileCount": 6
+          },
+          "upstream": null
+        },
+        "task/task-1767197561972-e43713": {
+          "branch": "task/task-1767197561972-e43713",
+          "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "baseRef": "main",
+          "baseHead": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "mergeBase": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 3,
+            "fileCount": 6
+          },
+          "upstream": null
+        },
+        "task/task-1767197562172-1c787b": {
+          "branch": "task/task-1767197562172-1c787b",
+          "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "baseRef": "main",
+          "baseHead": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "mergeBase": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 3,
+            "fileCount": 6
+          },
+          "upstream": null
+        },
+        "task/task-1767197562373-429cbd": {
+          "branch": "task/task-1767197562373-429cbd",
+          "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "baseRef": "main",
+          "baseHead": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "mergeBase": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 3,
+            "fileCount": 6
+          },
+          "upstream": null
+        },
+        "task/task-1767197565275-90c710": {
+          "branch": "task/task-1767197565275-90c710",
+          "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "baseRef": "main",
+          "baseHead": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "mergeBase": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 3,
+            "fileCount": 6
+          },
+          "upstream": null
+        }
+      }
+    }
+  },
+  "gitHistoryState": {
+    "selectedTimelineIndex": 1,
+    "activeCommitHash": null,
+    "entries": [
+      {
+        "type": "live",
+        "label": "現在のコードベース",
+        "files": [],
+        "branch": "main",
+        "targetCommitHash": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion",
+        "timestamp": 1767210540866,
+        "lane": 0,
+        "branchLabel": "main",
+        "branchTags": [
+          "main"
+        ],
+        "isDefaultWorktree": true,
+        "branchColor": "#4f85e8",
+        "index": 0
+      },
+      {
+        "type": "unstaged",
+        "label": "未ステージ (8)",
+        "files": [
+          ".kamui/apps/kamui-os-intro-20251125.css",
+          ".kamui/apps/kamui-os-intro-20251125.html",
+          ".kamui/apps/kamui-os-intro-20251125.js",
+          ".kamui/gantte/test.yaml",
+          ".kamui/manager/202601010124_monitor_comp-1767197561371-kmgpd5ty-1767197568642.html",
+          ".kamui/manager/202601010245_eval_comp-1767197561371-kmgpd5ty-1767197568642.html",
+          ".kamui/model-versions-cache.json",
+          ".kamui/prompt/merge-prompt.txt"
+        ],
+        "branch": "main",
+        "targetCommitHash": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion",
+        "timestamp": 1767210540866,
+        "sortOrder": 0,
+        "lane": 0,
+        "branchColor": "#4f85e8",
+        "index": 1
+      },
+      {
+        "type": "commit",
+        "label": "Merge branch 'task/task-1767197561372-1c9bf8'",
+        "commit": {
+          "hash": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+          "subject": "Merge branch 'task/task-1767197561372-1c9bf8'",
+          "author": "Yuya Fujita",
+          "timestamp": 1767203555,
+          "parents": [
+            "7333e82f5cbfbc7e45bc9c423275cb8d5f80d845",
+            "1087dbad91a69df9fbd871426dd66b320cee68cb"
+          ],
+          "parent": "7333e82f5cbfbc7e45bc9c423275cb8d5f80d845",
+          "refs": "HEAD -> main, origin/main, origin/HEAD",
+          "branches": [
+            "HEAD -> main",
+            "origin/main",
+            "origin/HEAD",
+            "main",
+            "task/task-1767197561372-1c9bf8"
+          ]
+        },
+        "commitHash": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "7333e82f5cbfbc7e45bc9c423275cb8d5f80d845",
+            "lane": 0
+          },
+          {
+            "hash": "1087dbad91a69df9fbd871426dd66b320cee68cb",
+            "lane": 1
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [
+          "main",
+          "task/task-1767197561372-1c9bf8"
+        ],
+        "worktrees": [
+          {
+            "path": "/Users/yuyafujita/Desktop/workspaces/AI-Companion",
+            "head": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+            "branch": "main",
+            "isMerged": false,
+            "mergeCommitHash": null,
+            "status": {
+              "staged": [],
+              "unstaged": [],
+              "untracked": [
+                {
+                  "path": ".kamui/apps/kamui-os-intro-20251125.css",
+                  "status": "untracked",
+                  "rawPath": ".kamui/apps/kamui-os-intro-20251125.css",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".kamui/apps/kamui-os-intro-20251125.html",
+                  "status": "untracked",
+                  "rawPath": ".kamui/apps/kamui-os-intro-20251125.html",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".kamui/apps/kamui-os-intro-20251125.js",
+                  "status": "untracked",
+                  "rawPath": ".kamui/apps/kamui-os-intro-20251125.js",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".kamui/gantte/test.yaml",
+                  "status": "untracked",
+                  "rawPath": ".kamui/gantte/test.yaml",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".kamui/manager/202601010124_monitor_comp-1767197561371-kmgpd5ty-1767197568642.html",
+                  "status": "untracked",
+                  "rawPath": ".kamui/manager/202601010124_monitor_comp-1767197561371-kmgpd5ty-1767197568642.html",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".kamui/manager/202601010245_eval_comp-1767197561371-kmgpd5ty-1767197568642.html",
+                  "status": "untracked",
+                  "rawPath": ".kamui/manager/202601010245_eval_comp-1767197561371-kmgpd5ty-1767197568642.html",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".kamui/model-versions-cache.json",
+                  "status": "untracked",
+                  "rawPath": ".kamui/model-versions-cache.json",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".kamui/prompt/merge-prompt.txt",
+                  "status": "untracked",
+                  "rawPath": ".kamui/prompt/merge-prompt.txt",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".worktrees/task-1767197561372-1c9bf8/",
+                  "status": "untracked",
+                  "rawPath": ".worktrees/task-1767197561372-1c9bf8/",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".worktrees/task-1767197561573-2389a9/",
+                  "status": "untracked",
+                  "rawPath": ".worktrees/task-1767197561573-2389a9/",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".worktrees/task-1767197561773-624ee0/",
+                  "status": "untracked",
+                  "rawPath": ".worktrees/task-1767197561773-624ee0/",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".worktrees/task-1767197561972-e43713/",
+                  "status": "untracked",
+                  "rawPath": ".worktrees/task-1767197561972-e43713/",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".worktrees/task-1767197562172-1c787b/",
+                  "status": "untracked",
+                  "rawPath": ".worktrees/task-1767197562172-1c787b/",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".worktrees/task-1767197562373-429cbd/",
+                  "status": "untracked",
+                  "rawPath": ".worktrees/task-1767197562373-429cbd/",
+                  "timestamp": 1767210540540
+                },
+                {
+                  "path": ".worktrees/task-1767197565275-90c710/",
+                  "status": "untracked",
+                  "rawPath": ".worktrees/task-1767197565275-90c710/",
+                  "timestamp": 1767210540540
+                }
+              ],
+              "capturedAt": 1767210540540
+            },
+            "normalizedPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion",
+            "lane": 0
+          }
+        ],
+        "index": 2
+      },
+      {
+        "type": "commit",
+        "label": "Update tasks state",
+        "commit": {
+          "hash": "7333e82f5cbfbc7e45bc9c423275cb8d5f80d845",
+          "subject": "Update tasks state",
+          "author": "Yuya Fujita",
+          "timestamp": 1767203552,
+          "parents": [
+            "2342654558d2fc6610d9685c1b6a6adea31102e2"
+          ],
+          "parent": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "7333e82f5cbfbc7e45bc9c423275cb8d5f80d845",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 3
+      },
+      {
+        "type": "commit",
+        "label": "Add audio toggles and dark mode setting",
+        "commit": {
+          "hash": "1087dbad91a69df9fbd871426dd66b320cee68cb",
+          "subject": "Add audio toggles and dark mode setting",
+          "author": "Yuya Fujita",
+          "timestamp": 1767203391,
+          "parents": [
+            "2342654558d2fc6610d9685c1b6a6adea31102e2"
+          ],
+          "parent": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "refs": "task/task-1767197561372-1c9bf8",
+          "branches": [
+            "task/task-1767197561372-1c9bf8"
+          ]
+        },
+        "commitHash": "1087dbad91a69df9fbd871426dd66b320cee68cb",
+        "lane": 1,
+        "parentLinks": [
+          {
+            "hash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "task/task-1767197561372-1c9bf8",
+        "branchColor": "#e84f7f",
+        "branchTags": [],
+        "worktrees": [
+          {
+            "path": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561372-1c9bf8",
+            "head": "1087dbad91a69df9fbd871426dd66b320cee68cb",
+            "branch": "task/task-1767197561372-1c9bf8",
+            "isMerged": true,
+            "mergeCommitHash": "2ffd94a0bb1069561965cae86972a2ba98eee477",
+            "status": {
+              "staged": [],
+              "unstaged": [],
+              "untracked": [],
+              "capturedAt": 1767210540539
+            },
+            "normalizedPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561372-1c9bf8",
+            "lane": 1
+          }
+        ],
+        "index": 4
+      },
+      {
+        "type": "unstaged",
+        "label": "未ステージ [task/task-1767197561573-2389a9] (28)",
+        "files": [
+          "app/(tabs)/index.tsx",
+          "app/(tabs)/memories.tsx",
+          "app/(tabs)/settings.tsx",
+          "app/_layout.tsx",
+          "assets/images/android-icon-background.png",
+          "assets/images/android-icon-foreground.png",
+          "assets/images/android-icon-monochrome.png",
+          "assets/images/favicon.png",
+          "assets/images/icon.png",
+          "assets/images/splash-icon.png",
+          "components/memory-card.tsx",
+          "components/message-bubble.tsx",
+          "components/ui/icon-symbol.tsx",
+          "components/voice-input-button.tsx",
+          "lib/theme-provider.tsx",
+          "server/routers.ts",
+          "todo.md",
+          "assets/images/character/cat-happy.png",
+          "assets/images/character/cat-normal.png",
+          "assets/images/character/cat-troubled.png",
+          "components/character-avatar.tsx",
+          "lib/character-utils.ts",
+          "lib/chat-storage.ts",
+          "lib/notifications.ts",
+          "lib/settings-storage.ts",
+          "scripts/generate_cat_assets.mjs",
+          "server/routers/companion.ts",
+          "shared/character.ts"
+        ],
+        "branch": "task/task-1767197561573-2389a9",
+        "targetCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9",
+        "timestamp": 1767210540553,
+        "sortOrder": 0,
+        "lane": 2,
+        "branchColor": "#4fe8b8",
+        "index": 5
+      },
+      {
+        "type": "staged",
+        "label": "ステージ済み [task/task-1767197561573-2389a9] (1)",
+        "files": [
+          "pp.config.ts"
+        ],
+        "branch": "task/task-1767197561573-2389a9",
+        "targetCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9",
+        "timestamp": 1767210540553,
+        "sortOrder": 1,
+        "lane": 2,
+        "branchColor": "#4fe8b8",
+        "index": 6
+      },
+      {
+        "type": "unstaged",
+        "label": "未ステージ [task/task-1767197561972-e43713] (7)",
+        "files": [
+          "app/(tabs)/settings.tsx",
+          "components/ui/icon-symbol.tsx",
+          "components/voice-input-button.tsx",
+          "hooks/use-color-scheme.web.ts",
+          "lib/theme-provider.tsx",
+          "server/routers.ts",
+          "todo.md"
+        ],
+        "branch": "task/task-1767197561972-e43713",
+        "targetCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713",
+        "timestamp": 1767210540567,
+        "sortOrder": 0,
+        "lane": 4,
+        "branchColor": "#b84fe8",
+        "index": 7
+      },
+      {
+        "type": "staged",
+        "label": "ステージ済み [task/task-1767197561972-e43713] (1)",
+        "files": [
+          "pp/(tabs)/index.tsx"
+        ],
+        "branch": "task/task-1767197561972-e43713",
+        "targetCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713",
+        "timestamp": 1767210540567,
+        "sortOrder": 1,
+        "lane": 4,
+        "branchColor": "#b84fe8",
+        "index": 8
+      },
+      {
+        "type": "anchor",
+        "label": "[作業中] CodexCLI2: 以下未実装のToDo機能を実装して\n\n# …",
+        "branch": "task/task-1767197561573-2389a9",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9",
+        "parentCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "lane": 2,
+        "isMerged": false,
+        "mergeCommitHash": null,
+        "statusChildren": [
+          {
+            "type": "unstaged",
+            "label": "未ステージ [task/task-1767197561573-2389a9] (28)",
+            "files": [
+              "app/(tabs)/index.tsx",
+              "app/(tabs)/memories.tsx",
+              "app/(tabs)/settings.tsx",
+              "app/_layout.tsx",
+              "assets/images/android-icon-background.png",
+              "assets/images/android-icon-foreground.png",
+              "assets/images/android-icon-monochrome.png",
+              "assets/images/favicon.png",
+              "assets/images/icon.png",
+              "assets/images/splash-icon.png",
+              "components/memory-card.tsx",
+              "components/message-bubble.tsx",
+              "components/ui/icon-symbol.tsx",
+              "components/voice-input-button.tsx",
+              "lib/theme-provider.tsx",
+              "server/routers.ts",
+              "todo.md",
+              "assets/images/character/cat-happy.png",
+              "assets/images/character/cat-normal.png",
+              "assets/images/character/cat-troubled.png",
+              "components/character-avatar.tsx",
+              "lib/character-utils.ts",
+              "lib/chat-storage.ts",
+              "lib/notifications.ts",
+              "lib/settings-storage.ts",
+              "scripts/generate_cat_assets.mjs",
+              "server/routers/companion.ts",
+              "shared/character.ts"
+            ],
+            "branch": "task/task-1767197561573-2389a9",
+            "targetCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9",
+            "timestamp": 1767210540553,
+            "sortOrder": 0,
+            "lane": 2,
+            "branchColor": "#4fe8b8",
+            "index": 5
+          },
+          {
+            "type": "staged",
+            "label": "ステージ済み [task/task-1767197561573-2389a9] (1)",
+            "files": [
+              "pp.config.ts"
+            ],
+            "branch": "task/task-1767197561573-2389a9",
+            "targetCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9",
+            "timestamp": 1767210540553,
+            "sortOrder": 1,
+            "lane": 2,
+            "branchColor": "#4fe8b8",
+            "index": 6
+          }
+        ],
+        "isDefaultWorktree": false,
+        "renderMode": "node",
+        "shouldHide": false,
+        "tagLabel": "task/task-1767197561573-2389a9",
+        "taskId": "task-1767197561573-2389a9",
+        "taskStatus": "working",
+        "taskStatusLabel": "作業中",
+        "taskName": "CodexCLI2: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）",
+        "tooltip": "タスク: CodexCLI2: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）\nステータス: 作業中\nID: task-1767197561573-2389a9\nBranch: task/task-1767197561573-2389a9\nWorktree: Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9",
+        "branchColor": "#4fe8b8",
+        "index": 9
+      },
+      {
+        "type": "anchor",
+        "label": "[作業中] CodexCLI3: 以下未実装のToDo機能を実装して\n\n# …",
+        "branch": "task/task-1767197561773-624ee0",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561773-624ee0",
+        "parentCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "lane": 3,
+        "isMerged": false,
+        "mergeCommitHash": null,
+        "statusChildren": [],
+        "isDefaultWorktree": false,
+        "renderMode": "node",
+        "shouldHide": false,
+        "tagLabel": "task/task-1767197561773-624ee0",
+        "taskId": "task-1767197561773-624ee0",
+        "taskStatus": "working",
+        "taskStatusLabel": "作業中",
+        "taskName": "CodexCLI3: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）",
+        "tooltip": "タスク: CodexCLI3: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）\nステータス: 作業中\nID: task-1767197561773-624ee0\nBranch: task/task-1767197561773-624ee0\nWorktree: Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561773-624ee0",
+        "branchColor": "#e8a84f",
+        "index": 10
+      },
+      {
+        "type": "anchor",
+        "label": "[作業中] CodexCLI4: 以下未実装のToDo機能を実装して\n\n# …",
+        "branch": "task/task-1767197561972-e43713",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713",
+        "parentCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "lane": 4,
+        "isMerged": false,
+        "mergeCommitHash": null,
+        "statusChildren": [
+          {
+            "type": "unstaged",
+            "label": "未ステージ [task/task-1767197561972-e43713] (7)",
+            "files": [
+              "app/(tabs)/settings.tsx",
+              "components/ui/icon-symbol.tsx",
+              "components/voice-input-button.tsx",
+              "hooks/use-color-scheme.web.ts",
+              "lib/theme-provider.tsx",
+              "server/routers.ts",
+              "todo.md"
+            ],
+            "branch": "task/task-1767197561972-e43713",
+            "targetCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713",
+            "timestamp": 1767210540567,
+            "sortOrder": 0,
+            "lane": 4,
+            "branchColor": "#b84fe8",
+            "index": 7
+          },
+          {
+            "type": "staged",
+            "label": "ステージ済み [task/task-1767197561972-e43713] (1)",
+            "files": [
+              "pp/(tabs)/index.tsx"
+            ],
+            "branch": "task/task-1767197561972-e43713",
+            "targetCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713",
+            "timestamp": 1767210540567,
+            "sortOrder": 1,
+            "lane": 4,
+            "branchColor": "#b84fe8",
+            "index": 8
+          }
+        ],
+        "isDefaultWorktree": false,
+        "renderMode": "node",
+        "shouldHide": false,
+        "tagLabel": "task/task-1767197561972-e43713",
+        "taskId": "task-1767197561972-e43713",
+        "taskStatus": "working",
+        "taskStatusLabel": "作業中",
+        "taskName": "CodexCLI4: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）",
+        "tooltip": "タスク: CodexCLI4: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）\nステータス: 作業中\nID: task-1767197561972-e43713\nBranch: task/task-1767197561972-e43713\nWorktree: Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713",
+        "branchColor": "#b84fe8",
+        "index": 11
+      },
+      {
+        "type": "anchor",
+        "label": "[作業中] ClaudeCode1: 以下未実装のToDo機能を実装して\n\n…",
+        "branch": "task/task-1767197562172-1c787b",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562172-1c787b",
+        "parentCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "lane": 5,
+        "isMerged": false,
+        "mergeCommitHash": null,
+        "statusChildren": [],
+        "isDefaultWorktree": false,
+        "renderMode": "node",
+        "shouldHide": false,
+        "tagLabel": "task/task-1767197562172-1c787b",
+        "taskId": "task-1767197562172-1c787b",
+        "taskStatus": "working",
+        "taskStatusLabel": "作業中",
+        "taskName": "ClaudeCode1: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）",
+        "tooltip": "タスク: ClaudeCode1: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）\nステータス: 作業中\nID: task-1767197562172-1c787b\nBranch: task/task-1767197562172-1c787b\nWorktree: Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562172-1c787b",
+        "branchColor": "#4fe84f",
+        "index": 12
+      },
+      {
+        "type": "anchor",
+        "label": "[作業中] ClaudeCode2: 以下未実装のToDo機能を実装して\n\n…",
+        "branch": "task/task-1767197562373-429cbd",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562373-429cbd",
+        "parentCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "lane": 6,
+        "isMerged": false,
+        "mergeCommitHash": null,
+        "statusChildren": [],
+        "isDefaultWorktree": false,
+        "renderMode": "node",
+        "shouldHide": false,
+        "tagLabel": "task/task-1767197562373-429cbd",
+        "taskId": "task-1767197562373-429cbd",
+        "taskStatus": "working",
+        "taskStatusLabel": "作業中",
+        "taskName": "ClaudeCode2: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）",
+        "tooltip": "タスク: ClaudeCode2: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）\nステータス: 作業中\nID: task-1767197562373-429cbd\nBranch: task/task-1767197562373-429cbd\nWorktree: Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562373-429cbd",
+        "branchColor": "#e8e84f",
+        "index": 13
+      },
+      {
+        "type": "anchor",
+        "label": "[作業中] 🔍Monitor: 以下未実装のToDo機能を実装して\n\n# …",
+        "branch": "task/task-1767197565275-90c710",
+        "worktreePath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197565275-90c710",
+        "parentCommitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "lane": 7,
+        "isMerged": false,
+        "mergeCommitHash": null,
+        "statusChildren": [],
+        "isDefaultWorktree": false,
+        "renderMode": "node",
+        "shouldHide": false,
+        "tagLabel": "task/task-1767197565275-90c710",
+        "taskId": "task-1767197565275-90c710",
+        "taskStatus": "working",
+        "taskStatusLabel": "作業中",
+        "taskName": "🔍Monitor: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）",
+        "tooltip": "タスク: 🔍Monitor: 以下未実装のToDo機能を実装して\n\n# AI Companion アプリ TODO\n\n## ブランディング\n- [x] アプリロゴを生成してassets/images/に配置\n- [x] app.config.tsのブランディング情報を更新\n\n## チャット機能\n- [x] チャット画面のUI実装 (メッセージリスト)\n- [x] テキスト入力フィールドと送信ボタン\n- [x] メッセージ吹き出しコンポーネント (ユーザー/AI)\n- [x] AI応答生成中のローディングインジケーター\n- [x] サーバーのLLM APIとの連携\n\n## 音声機能\n- [x] 音声入力ボタンのUI実装\n- [x] 音声録音機能 (expo-audio)\n- [x] 音声からテキストへの変換 (サーバーAPI)\n- [ ] AI応答の音声再生機能 (TTS)\n- [x] 音声入力中のビジュアルフィードバック\n\n## 記憶システム\n- [x] 会話履歴をローカルストレージに保存\n- [x] 記憶の種類を定義 (FACT, PREFERENCE, EVENT, CONVERSATION_SUMMARY)\n- [x] 会話から記憶を抽出するロジック (LLM使用)\n- [x] 記憶の重要度スコアリング\n- [x] 記憶の検索機能\n\n## 記憶画面\n- [x] 記憶一覧画面のUI実装\n- [x] 記憶カードコンポーネント\n- [x] 記憶の種類別フィルター (セグメントコントロール)\n- [x] 記憶の詳細表示\n- [x] 記憶の削除機能 (スワイプ)\n\n## 設定画面\n- [x] 設定画面のUI実装\n- [ ] 音声入力/出力の有効/無効トグル\n- [x] 会話履歴クリア機能\n- [ ] ダークモード切り替え\n\n## タブナビゲーション\n- [x] タブバーにChat, Memories, Settingsを追加\n- [x] 各タブのアイコン設定\n\n## データ管理\n- [x] AsyncStorageでの会話履歴保存\n- [x] 記憶データの永続化\n- [ ] データのエクスポート/インポート機能 (将来的)\n\n## テスト\n- [x] チャット送信のテスト\n- [x] 音声入力のテスト\n- [x] 記憶保存のテスト\n- [x] 記憶検索のテスト\n\n## 最終調整\n- [x] アニメーションの調整\n- [x] ハプティックフィードバックの実装\n- [x] エラーハンドリング\n- [x] ローディング状態の改善\n\n## TTS（音声読み上げ）機能\n- [x] サーバー側のTTS APIエンドポイントを実装\n- [x] クライアント側の音声再生機能を実装\n- [x] AI応答時に自動的に音声を再生\n- [x] 設定画面にTTS有効/無効トグルを追加\n- [x] 音声再生中のUI表示（再生中インジケーター）\n- [x] 音声再生の停止機能\n- [x] TTSのテストを作成\n\n---\n\n## 🐱 新機能バックログ: 「どこでもいっしょ」風キャラクターアプリへの変更\n\n### フェーズ1: キャラクター設定\n- [ ] 猫キャラクターのペルソナを定義（名前、性格、語尾「〜だにゃ」）\n- [ ] システムプロンプトにキャラクター設定を追加\n- [ ] AI応答に猫の語尾を自動追加する機能\n- [ ] キャラクターの性格に合わせた応答スタイル\n\n### フェーズ2: キャラクターデザイン\n- [ ] 猫キャラクターのアイコン画像を生成\n- [ ] アプリロゴを猫キャラクターに変更\n- [ ] チャット画面にキャラクターアイコンを表示\n- [ ] キャラクターの表情バリエーション（通常、嬉しい、困った）\n\n### フェーズ3: 自発的な話しかけ機能\n- [ ] バックグラウンド通知の実装\n- [ ] 1日に数回ランダムでキャラクターから話しかける\n- [ ] 過去の会話内容と記憶を基にメッセージを生成\n- [ ] 通知タイミングの設定機能（朝、昼、夜など）\n- [ ] 通知の有効/無効トグル\n\n### フェーズ4: UI/UXの改善\n- [ ] チャット画面をキャラクターアプリ風にリデザイン\n- [ ] キャラクターの「ごきげん」ステータス表示\n- [ ] 会話回数や日数のカウンター表示\n- [ ] キャラクターとの「なかよし度」システム\n- [ ] ホーム画面にキャラクターの大きなイラスト表示\n\n### フェーズ5: 知識の可視化\n- [ ] 記憶画面を「キャラクターが覚えたこと」として表示\n- [ ] カテゴリ別に整理（あなたのこと、好きなもの、思い出）\n- [ ] 記憶の数に応じてキャラクターが成長する演出\n\n### フェーズ6: その他の機能\n- [ ] キャラクター名をカスタマイズ可能に\n- [ ] 複数の語尾パターン（だにゃ、にゃん、にゃー）\n- [ ] 特別なイベント（記念日、誕生日など）\n- [ ] キャラクターとの会話統計（総会話数、最長連続日数）\nステータス: 作業中\nID: task-1767197565275-90c710\nBranch: task/task-1767197565275-90c710\nWorktree: Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197565275-90c710",
+        "branchColor": "#e84f4f",
+        "index": 14
+      },
+      {
+        "type": "commit",
+        "label": "Add backlog for cat character app features",
+        "commit": {
+          "hash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+          "subject": "Add backlog for cat character app features",
+          "author": "Manus",
+          "timestamp": 1767196203,
+          "parents": [
+            "123805d15b7dc1f8d1b225cd1764a62d78a21f6b"
+          ],
+          "parent": "123805d15b7dc1f8d1b225cd1764a62d78a21f6b",
+          "refs": "task/task-1767197565275-90c710, task/task-1767197562373-429cbd, task/task-1767197562172-1c787b, task/task-1767197561972-e43713, task/task-1767197561773-624ee0, task/task-1767197561573-2389a9",
+          "branches": [
+            "task/task-1767197565275-90c710",
+            "task/task-1767197562373-429cbd",
+            "task/task-1767197562172-1c787b",
+            "task/task-1767197561972-e43713",
+            "task/task-1767197561773-624ee0",
+            "task/task-1767197561573-2389a9",
+            "main",
+            "task/task-1767197561372-1c9bf8"
+          ]
+        },
+        "commitHash": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "123805d15b7dc1f8d1b225cd1764a62d78a21f6b",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "worktrees": [
+          {
+            "path": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9",
+            "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "branch": "task/task-1767197561573-2389a9",
+            "isMerged": false,
+            "mergeCommitHash": null,
+            "status": {
+              "staged": [
+                {
+                  "path": "pp.config.ts",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "pp.config.ts",
+                  "timestamp": 1767210540553
+                }
+              ],
+              "unstaged": [
+                {
+                  "path": "app/(tabs)/index.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "app/(tabs)/index.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "app/(tabs)/memories.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "app/(tabs)/memories.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "app/(tabs)/settings.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "app/(tabs)/settings.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "app/_layout.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "app/_layout.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "assets/images/android-icon-background.png",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "assets/images/android-icon-background.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "assets/images/android-icon-foreground.png",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "assets/images/android-icon-foreground.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "assets/images/android-icon-monochrome.png",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "assets/images/android-icon-monochrome.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "assets/images/favicon.png",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "assets/images/favicon.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "assets/images/icon.png",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "assets/images/icon.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "assets/images/splash-icon.png",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "assets/images/splash-icon.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "components/memory-card.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "components/memory-card.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "components/message-bubble.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "components/message-bubble.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "components/ui/icon-symbol.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "components/ui/icon-symbol.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "components/voice-input-button.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "components/voice-input-button.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "lib/theme-provider.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "lib/theme-provider.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "server/routers.ts",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "server/routers.ts",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "todo.md",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "todo.md",
+                  "timestamp": 1767210540553
+                }
+              ],
+              "untracked": [
+                {
+                  "path": "assets/images/character/cat-happy.png",
+                  "status": "untracked",
+                  "rawPath": "assets/images/character/cat-happy.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "assets/images/character/cat-normal.png",
+                  "status": "untracked",
+                  "rawPath": "assets/images/character/cat-normal.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "assets/images/character/cat-troubled.png",
+                  "status": "untracked",
+                  "rawPath": "assets/images/character/cat-troubled.png",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "components/character-avatar.tsx",
+                  "status": "untracked",
+                  "rawPath": "components/character-avatar.tsx",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "lib/character-utils.ts",
+                  "status": "untracked",
+                  "rawPath": "lib/character-utils.ts",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "lib/chat-storage.ts",
+                  "status": "untracked",
+                  "rawPath": "lib/chat-storage.ts",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "lib/notifications.ts",
+                  "status": "untracked",
+                  "rawPath": "lib/notifications.ts",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "lib/settings-storage.ts",
+                  "status": "untracked",
+                  "rawPath": "lib/settings-storage.ts",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "scripts/generate_cat_assets.mjs",
+                  "status": "untracked",
+                  "rawPath": "scripts/generate_cat_assets.mjs",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "server/routers/companion.ts",
+                  "status": "untracked",
+                  "rawPath": "server/routers/companion.ts",
+                  "timestamp": 1767210540553
+                },
+                {
+                  "path": "shared/character.ts",
+                  "status": "untracked",
+                  "rawPath": "shared/character.ts",
+                  "timestamp": 1767210540553
+                }
+              ],
+              "capturedAt": 1767210540553
+            },
+            "normalizedPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9",
+            "lane": 2
+          },
+          {
+            "path": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561773-624ee0",
+            "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "branch": "task/task-1767197561773-624ee0",
+            "isMerged": false,
+            "mergeCommitHash": null,
+            "status": {
+              "staged": [],
+              "unstaged": [],
+              "untracked": [],
+              "capturedAt": 1767210540553
+            },
+            "normalizedPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561773-624ee0",
+            "lane": 3
+          },
+          {
+            "path": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713",
+            "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "branch": "task/task-1767197561972-e43713",
+            "isMerged": false,
+            "mergeCommitHash": null,
+            "status": {
+              "staged": [
+                {
+                  "path": "pp/(tabs)/index.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "pp/(tabs)/index.tsx",
+                  "timestamp": 1767210540567
+                }
+              ],
+              "unstaged": [
+                {
+                  "path": "app/(tabs)/settings.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "app/(tabs)/settings.tsx",
+                  "timestamp": 1767210540567
+                },
+                {
+                  "path": "components/ui/icon-symbol.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "components/ui/icon-symbol.tsx",
+                  "timestamp": 1767210540567
+                },
+                {
+                  "path": "components/voice-input-button.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "components/voice-input-button.tsx",
+                  "timestamp": 1767210540567
+                },
+                {
+                  "path": "hooks/use-color-scheme.web.ts",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "hooks/use-color-scheme.web.ts",
+                  "timestamp": 1767210540567
+                },
+                {
+                  "path": "lib/theme-provider.tsx",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "lib/theme-provider.tsx",
+                  "timestamp": 1767210540567
+                },
+                {
+                  "path": "server/routers.ts",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "server/routers.ts",
+                  "timestamp": 1767210540567
+                },
+                {
+                  "path": "todo.md",
+                  "originalPath": null,
+                  "status": "modified",
+                  "rawPath": "todo.md",
+                  "timestamp": 1767210540567
+                }
+              ],
+              "untracked": [],
+              "capturedAt": 1767210540567
+            },
+            "normalizedPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713",
+            "lane": 4
+          },
+          {
+            "path": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562172-1c787b",
+            "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "branch": "task/task-1767197562172-1c787b",
+            "isMerged": false,
+            "mergeCommitHash": null,
+            "status": {
+              "staged": [],
+              "unstaged": [],
+              "untracked": [],
+              "capturedAt": 1767210540567
+            },
+            "normalizedPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562172-1c787b",
+            "lane": 5
+          },
+          {
+            "path": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562373-429cbd",
+            "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "branch": "task/task-1767197562373-429cbd",
+            "isMerged": false,
+            "mergeCommitHash": null,
+            "status": {
+              "staged": [],
+              "unstaged": [],
+              "untracked": [],
+              "capturedAt": 1767210540580
+            },
+            "normalizedPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562373-429cbd",
+            "lane": 6
+          },
+          {
+            "path": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197565275-90c710",
+            "head": "2342654558d2fc6610d9685c1b6a6adea31102e2",
+            "branch": "task/task-1767197565275-90c710",
+            "isMerged": false,
+            "mergeCommitHash": null,
+            "status": {
+              "staged": [],
+              "unstaged": [],
+              "untracked": [],
+              "capturedAt": 1767210540580
+            },
+            "normalizedPath": "/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197565275-90c710",
+            "lane": 7
+          }
+        ],
+        "index": 15
+      },
+      {
+        "type": "commit",
+        "label": "Checkpoint: AI応答の音声読み上げ機能（TTS）を追加。設定画面でON/OFF切り替え可能。",
+        "commit": {
+          "hash": "123805d15b7dc1f8d1b225cd1764a62d78a21f6b",
+          "subject": "Checkpoint: AI応答の音声読み上げ機能（TTS）を追加。設定画面でON/OFF切り替え可能。",
+          "author": "Manus",
+          "timestamp": 1767195477,
+          "parents": [
+            "88a9a1a15b2ca5861772c94d982dd37cab9b552a"
+          ],
+          "parent": "88a9a1a15b2ca5861772c94d982dd37cab9b552a",
+          "refs": "",
+          "branches": [
+            "task/task-1767197561573-2389a9",
+            "main",
+            "task/task-1767197561372-1c9bf8",
+            "task/task-1767197562172-1c787b",
+            "task/task-1767197561773-624ee0",
+            "task/task-1767197562373-429cbd",
+            "task/task-1767197561972-e43713",
+            "task/task-1767197565275-90c710"
+          ]
+        },
+        "commitHash": "123805d15b7dc1f8d1b225cd1764a62d78a21f6b",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "88a9a1a15b2ca5861772c94d982dd37cab9b552a",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 16
+      },
+      {
+        "type": "commit",
+        "label": "Checkpoint: AI Companionアプリの完成版。音声/テキストチャット、記憶システム、記憶可視化画面を実…",
+        "commit": {
+          "hash": "88a9a1a15b2ca5861772c94d982dd37cab9b552a",
+          "subject": "Checkpoint: AI Companionアプリの完成版。音声/テキストチャット、記憶システム、記憶可視化画面を実装。",
+          "author": "Manus",
+          "timestamp": 1767194624,
+          "parents": [
+            "9ac200b1c4cfd4d706033fb8431898eca9fe346b"
+          ],
+          "parent": "9ac200b1c4cfd4d706033fb8431898eca9fe346b",
+          "refs": "",
+          "branches": [
+            "task/task-1767197561573-2389a9",
+            "main",
+            "task/task-1767197561372-1c9bf8",
+            "task/task-1767197562172-1c787b",
+            "task/task-1767197561773-624ee0",
+            "task/task-1767197562373-429cbd",
+            "task/task-1767197561972-e43713",
+            "task/task-1767197565275-90c710"
+          ]
+        },
+        "commitHash": "88a9a1a15b2ca5861772c94d982dd37cab9b552a",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "9ac200b1c4cfd4d706033fb8431898eca9fe346b",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 17
+      },
+      {
+        "type": "commit",
+        "label": "Initial project bootstrap",
+        "commit": {
+          "hash": "9ac200b1c4cfd4d706033fb8431898eca9fe346b",
+          "subject": "Initial project bootstrap",
+          "author": "Manus",
+          "timestamp": 1767193481,
+          "parents": [],
+          "parent": null,
+          "refs": "",
+          "branches": [
+            "task/task-1767197561573-2389a9",
+            "main",
+            "task/task-1767197561372-1c9bf8",
+            "task/task-1767197562172-1c787b",
+            "task/task-1767197561773-624ee0",
+            "task/task-1767197562373-429cbd",
+            "task/task-1767197561972-e43713",
+            "task/task-1767197565275-90c710"
+          ]
+        },
+        "commitHash": "9ac200b1c4cfd4d706033fb8431898eca9fe346b",
+        "lane": 0,
+        "parentLinks": [],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 18
+      },
+      {
+        "type": "empty",
+        "label": "初期状態 (初回コミット以前)",
+        "files": [],
+        "marker": "pre-history",
+        "index": 19
+      }
+    ]
+  },
+  "projectRoot": "/Users/yuyafujita/Desktop/workspaces/AI-Companion",
+  "savedAt": 1767210588457
+}

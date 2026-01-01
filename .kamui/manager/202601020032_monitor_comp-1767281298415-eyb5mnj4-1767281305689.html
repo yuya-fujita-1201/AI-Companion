@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>監査レポート</title>
+    <style>
+      body {
+        font-family: "Hiragino Sans", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        margin: 24px;
+        background-color: #E9F0F2;
+        color: #2C3A40;
+      }
+      .monitor-wrapper {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 32px;
+        background: #F5F8F9;
+        border: 1px solid #C7D8DC;
+      }
+      .monitor-header {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+      .monitor-title {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #2C3A40;
+      }
+      .monitor-description {
+        font-size: 14px;
+        color: #405257;
+      }
+      table.monitor-report {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #F5F8F9;
+        border: 1px solid #C7D8DC;
+      }
+      col.timestamp-column {
+        width: 180px;
+      }
+      col.agent-column {
+        width: calc((100% - 180px) / 6);
+      }
+      th,
+      td {
+        border: 1px solid #C7D8DC;
+        padding: 16px;
+        vertical-align: top;
+        background-color: #F5F8F9;
+      }
+      th {
+        background: #D8E6E9;
+        text-align: left;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #2C3A40;
+      }
+      tbody tr:nth-child(even) td {
+        background-color: #E6EEF0;
+      }
+      details {
+        display: block;
+        margin: 0;
+      }
+      details summary {
+        list-style: none;
+      }
+      details[open] summary {
+        margin-bottom: 12px;
+      }
+      .details-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 13px;
+        color: #2C3A40;
+        padding: 0;
+        background: transparent;
+        border: none;
+      }
+      .details-toggle::before {
+        content: "▶";
+        font-size: 10px;
+        transition: transform 160ms ease;
+        display: inline-block;
+      }
+      details[open] .details-toggle::before {
+        transform: rotate(90deg);
+      }
+      .timestamp {
+        font-weight: 600;
+        color: #2C3A40;
+        overflow-wrap: anywhere;
+      }
+      .snapshot-summary {
+        margin-bottom: 12px;
+        font-weight: 500;
+        color: #2C3A40;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.55;
+        color: #2C3A40;
+        background: #E6EEF0;
+        border: 1px solid #C7D8DC;
+        padding: 16px;
+      }
+      .status-badge {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding: 1px 6px;
+        background: #D8E6E9;
+        border: 1px solid #B9CDD2;
+        color: #2C3A40;
+        white-space: nowrap;
+        line-height: 1.3;
+        vertical-align: top;
+      }
+      .status-badge--running {
+        background: #D8E6E9;
+        border-color: #C2D6DB;
+      }
+      .status-badge--completed {
+        background: #C7D8DC;
+        border-color: #B0C7CC;
+      }
+      .status-badge--pending {
+        background: #E6EEF0;
+        border-color: #D2E1E5;
+      }
+      .status-badge--investigating {
+        background: #D8E6E9;
+        border-color: #C2D6DB;
+      }
+      .status-badge--planning {
+        background: #E2ECEF;
+        border-color: #C2D6DB;
+      }
+      .status-badge--error {
+        background: #C7D8DC;
+        border-color: #AFC3C8;
+      }
+      .agent-meta {
+        display: block;
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+      .agent-meta .status-badge {
+        margin-right: 6px;
+      }
+      .agent-meta .agent-label {
+        display: inline;
+        font-size: 13px;
+        color: #405257;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="monitor-wrapper">
+      <header class="monitor-header">
+        <h1 class="monitor-title">監査レポート</h1>
+        <p class="monitor-description">tmuxセッションを巡回し、出力の要約と詳細を1分ごとに蓄積します。ステータスごとの色付きラベルで進捗を即座に把握できます。</p>
+      </header>
+      <table class="monitor-report">
+        <colgroup>
+          <col class="timestamp-column" />
+          <col class="agent-column" />
+          <col class="agent-column" />
+          <col class="agent-column" />
+          <col class="agent-column" />
+          <col class="agent-column" />
+          <col class="agent-column" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Agent task-1767281298416-e1cacb</th>
+            <th>Agent task-1767281298617-f5100a</th>
+            <th>Agent task-1767281298817-6eda92</th>
+            <th>Agent task-1767281299020-ca2314</th>
+            <th>Agent task-1767281299217-8b0068</th>
+            <th>Agent task-1767281299425-838abf</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="timestamp">2026-01-02 00:32</td>
+            
+        <td>
+          <div class="agent-meta">
+            <span class="status-badge status-badge--running">実装進行</span>
+            <span class="agent-label">記憶画面リデザイン準備中（memories.tsx/ memory-card.tsx を確認、FadeIn例を調査）。</span>
+          </div>
+          <details class="snapshot-details">
+            <summary class="details-toggle">ログ詳細</summary>
+            <pre>  - ファイル: kebab-case（例: `message-bubble.tsx`）
+  - 定数: UPPER_SNAKE_CASE（例: `MAX_MESSAGE_LENGTH`）
+
+  ### テスト
+  - Vitestを使用
+  - ファイル名: `*.test.ts`
+  - カバレッジ目標: 主要ロジックは80%以上
+
+  ---
+
+  ## 🚀 デプロイとテスト
+
+  ### テストの実行
+
+  ```bash
+  # すべてのテストを実行
+  pnpm test
+
+  # 特定のテストファイルを実行
+  pnpm test memory
+
+  # ウォッチモード
+  pnpm test --watch
+  ```
+
+  ### ビルド
+
+  ```bash
+  # プロダクションビルド
+  pnpm build
+
+  # 型チェック
+  pnpm check
+
+  # リンター
+  pnpm lint
+  ```
+
+  ### 実機テスト
+
+  1. Expo Goアプリをインストール（iOS/Android）
+  2. 開発サーバーのQRコードをスキャン
+  3. アプリが実機で起動
+
+  ---
+
+  ## 📚 参考資料
+
+  ### 公式ドキュメント
+  - [Expo Documentation](https://docs.expo.dev/)
+  - [React Native Documentation](https://reactnative.dev/)
+  - [NativeWind Documentation](https://www.nativewind.dev/)
+  - [tRPC Documentation](https://trpc.io/)
+
+  ### プロジェクト固有のドキュメント
+  - `README.md`: プロジェクト全体の概要
+  - `design.md`: UI/UXデザインの設計書
+  - `todo.md`: 現在のタスクリスト
+  - `server/README.md`: バックエンドAPIのドキュメント
+
+  ---
+
+  ## ⚠️ 注意事項
+
+  ### 必ず守ること
+  1. **todo.mdの更新**: タスク完了時は必ず`[ ]`を`[x]`に変更
+  2. **型安全性**: TypeScriptの型エラーは必ず解決
+  3. **テストの実行**: 変更後は必ずテストを実行
+  4. **コミットメッセージ**: 明確で具体的なメッセージを記述
+  5. **既存機能の破壊**: 既存の動作を壊さないこと
+
+  ### 避けるべきこと
+  1. **直接的なgit操作**: `webdev_save_checkpoint`を使用
+  2. **ハードコーディング**: 設定値は定数化
+  3. **過度な最適化**: 動作確認が優先
+  4. **無駄な依存関係**: 新しいパッケージは慎重に
+  5. **グローバル状態の乱用**: 必要最小限に
+
+  ---
+
+  ## 🤝 コンペ形式での開発について
+
+  ### タスクの選択
+  - 上記のタスクから1つ以上を選択して実装してください
+  - 優先度が高いものから取り組むことを推奨します
+  - 複数のタスクを組み合わせても構いません
+
+  ### 提出物
+  1. **実装コード**: 変更したすべてのファイル
+  2. **テストコード**: 新機能のテスト
+  3. **ドキュメント**: 実装内容の説明（Markdown形式）
+  4. **スクリーンショット**: UI変更がある場合
+
+  ### 評価基準
+  - **機能の完成度**: 要件を満たしているか
+  - **コード品質**: 読みやすく保守しやすいか
+  - **テストカバレッジ**: 適切にテストされているか
+  - **デザイン**: UIが美しく使いやすいか
+  - **パフォーマンス**: 動作が快適か
+
+  ---
+
+  ## 📞 質問・サポート
+
+  - **GitHub Issues**: https://github.com/yuya-fujita-1201/AI-Companion/issues
+  - **プロジェクトオーナー**: @yuya-fujita-1201
+
+  ---
+
+  **最終更新**: 2026年1月2日
+  **ドキュメントバージョン**: 1.0
+
+  作業ディレクトリ: /Users/yuyafujita/Desktop/workspaces/AI-
+  Companion/.worktrees/task-1767281298416-e1cacb
+
+  作業開始前に次のコマンドで作業ディレクトリへ移動してください:
+  cd .worktrees/task-1767281298416-e1cacb
+
+
+• Explored
+  └ List ls
+    Search memories|memory|記憶|stats|統計|なかよし in todo.md
+    List ls -a
+
+• I&#x27;m thinking about creating a minimal docs/ folder with a placeholder for the
+  required screenshot since I can&#x27;t generate one in this environment. The user
+  wants a memory redesign as a high priority, so I&#x27;ll focus on inspecting
+  relevant files like types/memory.ts, components/memory-card.tsx, and app/
+  (tabs)/memories.tsx to prepare for that.
+
+• Explored
+  └ Read memory.ts, memory-storage.ts, memory-card.tsx
+
+• Ran sed -n &#x27;1,260p&#x27; app/(tabs)/memories.tsx
+  └ zsh:1: no matches found: app/(tabs)/memories.tsx
+
+• Explored
+  └ Read memories.tsx
+    Search reanimated in components
+    Read typing-indicator.tsx, use-colors.ts
+    Search MemoryType
+
+• There&#x27;s a lot of planning to update memory category labels and comments
+  without changing enum values to keep tests stable. I’m thinking of adding
+  progress bars, levels, milestone messages, and new icons for categories and
+  importance in the memory screen. I’m considering fade-in animations for memory
+  cards, header updates showing memory count and knowledge level, as well as
+  visual tweaks using tailwind classes and theme tokens for consistent styling.
+  I&#x27;ll handle date conversions and may update memory-related tests accordingly.
+  This feels like a solid approach to meet the category definition update and UI
+  requirements.
+
+• Explored
+  └ Read memory.test.ts
+
+• I&#x27;ll add tests for new helper functions related to memory progress
+  calculations, create documentation with a placeholder for screenshots, adjust
+  UI colors to warm tones, and implement visual elements like icons and progress
+  bars. This work requires a moderate multi-file plan, so I&#x27;ll formalize a 3-
+  step plan using the planning tool.
+
+• Updated Plan
+  └ 記憶画面のリデザインを中心に、必要な表示ロジックとテスト・ドキュメントを追加
+    するための段取りです。
+    ✔ 現状の記憶関連UI/型/ストレージを確認し、カテゴリ表示と進捗表示の仕様を整理
+      する
+    □ 記憶カードと記憶画面のUIを改修し、進捗計算のユーティリティとテストを追加
+      する
+    □ todo更新・ドキュメント作成・テスト実行を行い仕上げる
+
+• I&#x27;m crafting a new memory-progress helper to track levels and progress with
+  Japanese labels and milestone messages. Alongside, I&#x27;m revamping the memory
+  card to show importance visually through bars and labels, adding fade-in
+  animation, date info, and refining the memory screen header with filters,
+  icons, and warm messages to create a friendly, engaging user experience.
+
+• Explored
+  └ Read tailwind.config.js
+    List constants
+    Read utils.ts
+
+• I&#x27;m outlining the plan to create new memory-related utility files, update type
+  constants with labels and icons to keep things consistent, improve UI elements
+  like progress bars and importance labels with warm colors, and add user-
+  friendly date formatting. I&#x27;ll implement a memory progress calculation
+  function with tests and prepare documentation covering the redesign overview,
+  UI, and testing, while also updating todo lists accordingly. This approach
+  keeps the improvements modular and maintainable.
+
+• Edited types/memory.ts (+18 -4)
+     1  export enum MemoryType {
+     2 -  FACT = &quot;FACT&quot;, // 一般的な事実や知識
+     3 -  PREFERENCE = &quot;PREFERENCE&quot;, // ユーザーの好み
+     4 -  EVENT = &quot;EVENT&quot;, // 重要なイベント
+     5 -  CONVERSATION_SUMMARY = &quot;CONVERSATION_SUMMARY&quot;, // 会話の要約
+     2 +  FACT = &quot;FACT&quot;, // あなたのこと（名前・誕生日・仕事など）
+     3 +  PREFERENCE = &quot;PREFERENCE&quot;, // 好きなもの（食べ物・趣味・音楽など）
+     4 +  EVENT = &quot;EVENT&quot;, // 思い出（一緒に話したこと・特別な出来事）
+     5 +  CONVERSATION_SUMMARY = &quot;CONVERSATION_SUMMARY&quot;, // 最近の話題
+     6  }
+       ⋮
+    20  }
+    21 +
+    22 +export const MEMORY_TYPE_LABELS: Record&lt;MemoryType, string&gt; = {
+    23 +  [MemoryType.FACT]: &quot;あなたのこと&quot;,
+    24 +  [MemoryType.PREFERENCE]: &quot;好きなもの&quot;,
+    25 +  [MemoryType.EVENT]: &quot;思い出&quot;,
+    26 +  [MemoryType.CONVERSATION_SUMMARY]: &quot;最近の話題&quot;,
+    27 +};
+    28 +
+    29 +export const MEMORY_TYPE_ICONS: Record&lt;MemoryType, string&gt; = {
+    30 +  [MemoryType.FACT]: &quot;👤&quot;,
+    31 +  [MemoryType.PREFERENCE]: &quot;❤️&quot;,
+    32 +  [MemoryType.EVENT]: &quot;📖&quot;,
+    33 +  [MemoryType.CONVERSATION_SUMMARY]: &quot;💬&quot;,
+    34 +};
+
+• Organizing memory feature enhancements (3m 17s • esc to interrupt)
+
+
+› Improve documentation in @filename
+
+  93% context left · ? for shortcuts
+</pre>
+          </details>
+        </td>
+        
+        <td>
+          <div class="agent-meta">
+            <span class="status-badge status-badge--running">実装進行</span>
+            <span class="agent-label">記憶画面のUI方針検討中（Tailwind設定とメモリ関連ファイルを確認）。</span>
+          </div>
+          <details class="snapshot-details">
+            <summary class="details-toggle">ログ詳細</summary>
+            <pre>  ### セットアップ手順
+
+  ```bash
+  # リポジトリをクローン
+  git clone https://github.com/yuya-fujita-1201/AI-Companion.git
+  cd AI-Companion
+
+  # 依存関係をインストール
+  pnpm install
+
+  # 開発サーバーを起動
+  pnpm dev
+
+  # 別のターミナルでテストを実行
+  pnpm test
+  ```
+
+  ### ディレクトリ構造
+
+  ```
+  ai-companion-app/
+  ├── app/                         # Expo Router画面
+  │   ├── (tabs)/                  # タブナビゲーション
+  │   │   ├── index.tsx            # チャット画面
+  │   │   ├── memories.tsx         # 記憶画面
+  │   │   └── settings.tsx         # 設定画面
+  │   └── _layout.tsx              # ルートレイアウト
+  ├── components/                  # 再利用可能なコンポーネント
+  │   ├── message-bubble.tsx       # メッセージ吹き出し
+  │   ├── memory-card.tsx          # 記憶カード
+  │   └── character-status.tsx     # キャラクター状態表示
+  ├── lib/                         # ユーティリティとヘルパー
+  │   ├── memory-storage.ts        # 記憶の保存・読み込み
+  │   ├── notification-manager.ts  # 通知管理
+  │   └── emotion-analyzer.ts      # 感情分析
+  ├── server/                      # バックエンドAPI
+  │   ├── routers/                 # tRPCルーター
+  │   │   ├── chat.ts              # チャットAPI
+  │   │   ├── memory.ts            # 記憶API
+  │   │   └── tts.ts               # 音声読み上げAPI
+  │   └── _core/                   # コア機能
+  │       ├── llm.ts               # LLM統合
+  │       └── textToSpeech.ts      # TTS機能
+  ├── types/                       # TypeScript型定義
+  │   ├── chat.ts                  # チャット関連の型
+  │   └── memory.ts                # 記憶関連の型
+  ├── assets/images/               # 画像アセット
+  │   ├── cat-character.png        # キャラクター画像
+  │   └── cat-character-*.png      # 表情バリエーション
+  └── __tests__/                   # テストファイル
+  ```
+
+  ---
+
+  ## 📝 コーディング規約
+
+  ### TypeScript
+  - 厳格な型チェックを使用（`strict: true`）
+  - `any`型の使用は最小限に
+  - インターフェースよりも型エイリアスを優先
+
+  ### React Native / Expo
+  - 関数コンポーネントとHooksを使用
+  - `ScreenContainer`コンポーネントで画面をラップ
+  - NativeWind (Tailwind CSS) でスタイリング
+  - `className`を使用（`style`プロパティは最小限に）
+
+  ### スタイリング
+  - Tailwind CSS クラスを使用
+  - カスタムカラー: `primary`, `background`, `foreground`, `muted`, `surface`,
+  `border`
+  - ダークモード: 色トークンを直接使用（`dark:`プレフィックス不要）
+
+  ### 命名規則
+  - コンポーネント: PascalCase（例: `MessageBubble`）
+  - 関数: camelCase（例: `handleSendMessage`）
+  - ファイル: kebab-case（例: `message-bubble.tsx`）
+  - 定数: UPPER_SNAKE_CASE（例: `MAX_MESSAGE_LENGTH`）
+
+  ### テスト
+  - Vitestを使用
+  - ファイル名: `*.test.ts`
+  - カバレッジ目標: 主要ロジックは80%以上
+
+  ---
+
+  ## 🚀 デプロイとテスト
+
+  ### テストの実行
+
+  ```bash
+  # すべてのテストを実行
+  pnpm test
+
+  # 特定のテストファイルを実行
+  pnpm test memory
+
+  # ウォッチモード
+  pnpm test --watch
+  ```
+
+  ### ビルド
+
+  ```bash
+  # プロダクションビルド
+  pnpm build
+
+  # 型チェック
+  pnpm check
+
+  # リンター
+  pnpm lint
+  ```
+
+  ### 実機テスト
+
+  1. Expo Goアプリをインストール（iOS/Android）
+  2. 開発サーバーのQRコードをスキャン
+  3. アプリが実機で起動
+
+  ---
+
+  ## 📚 参考資料
+
+  ### 公式ドキュメント
+  - [Expo Documentation](https://docs.expo.dev/)
+  - [React Native Documentation](https://reactnative.dev/)
+  - [NativeWind Documentation](https://www.nativewind.dev/)
+  - [tRPC Documentation](https://trpc.io/)
+
+  ### プロジェクト固有のドキュメント
+  - `README.md`: プロジェクト全体の概要
+  - `design.md`: UI/UXデザインの設計書
+  - `todo.md`: 現在のタスクリスト
+  - `server/README.md`: バックエンドAPIのドキュメント
+
+  ---
+
+  ## ⚠️ 注意事項
+
+  ### 必ず守ること
+  1. **todo.mdの更新**: タスク完了時は必ず`[ ]`を`[x]`に変更
+  2. **型安全性**: TypeScriptの型エラーは必ず解決
+  3. **テストの実行**: 変更後は必ずテストを実行
+  4. **コミットメッセージ**: 明確で具体的なメッセージを記述
+  5. **既存機能の破壊**: 既存の動作を壊さないこと
+
+  ### 避けるべきこと
+  1. **直接的なgit操作**: `webdev_save_checkpoint`を使用
+  2. **ハードコーディング**: 設定値は定数化
+  3. **過度な最適化**: 動作確認が優先
+  4. **無駄な依存関係**: 新しいパッケージは慎重に
+  5. **グローバル状態の乱用**: 必要最小限に
+
+  ---
+
+  ## 🤝 コンペ形式での開発について
+
+  ### タスクの選択
+  - 上記のタスクから1つ以上を選択して実装してください
+  - 優先度が高いものから取り組むことを推奨します
+  - 複数のタスクを組み合わせても構いません
+
+  ### 提出物
+  1. **実装コード**: 変更したすべてのファイル
+  2. **テストコード**: 新機能のテスト
+  3. **ドキュメント**: 実装内容の説明（Markdown形式）
+  4. **スクリーンショット**: UI変更がある場合
+
+  ### 評価基準
+  - **機能の完成度**: 要件を満たしているか
+  - **コード品質**: 読みやすく保守しやすいか
+  - **テストカバレッジ**: 適切にテストされているか
+  - **デザイン**: UIが美しく使いやすいか
+  - **パフォーマンス**: 動作が快適か
+
+  ---
+
+  ## 📞 質問・サポート
+
+  - **GitHub Issues**: https://github.com/yuya-fujita-1201/AI-Companion/issues
+  - **プロジェクトオーナー**: @yuya-fujita-1201
+
+  ---
+
+  **最終更新**: 2026年1月2日
+  **ドキュメントバージョン**: 1.0
+
+  作業ディレクトリ: /Users/yuyafujita/Desktop/workspaces/AI-
+  Companion/.worktrees/task-1767281298617-f5100a
+
+  作業開始前に次のコマンドで作業ディレクトリへ移動してください:
+  cd .worktrees/task-1767281298617-f5100a
+
+
+• Explored
+  └ List ls
+    Search rg --files -g AGENTS.md
+    Read memory.ts, memory-storage.ts, memory-card.tsx
+
+• Ran sed -n &#x27;1,240p&#x27; app/(tabs)/memories.tsx
+  └ zsh:1: no matches found: app/(tabs)/memories.tsx
+
+• Explored
+  └ Read memories.tsx, theme.config.js, tailwind.config.js, todo.md
+
+• I&#x27;m checking the TODO list related to the memory redesign in phase5, noting
+  which tasks should be marked done and realizing the user expects documentation
+  and screenshots. Since capturing real screenshots isn’t feasible here, I’m
+  considering how to handle placeholders or notes in the docs and preparing to
+  inspect components next for code modifications.
+
+• Explored
+  └ Read screen-container.tsx, use-colors.ts
+    Search MemoryType
+    Read memory.test.ts
+
+• Planning memory UI redesign and enhancements (3m 11s • esc to interrupt)
+
+
+› Summarize recent commits
+
+  95% context left · ? for shortcuts
+</pre>
+          </details>
+        </td>
+        
+        <td>
+          <div class="agent-meta">
+            <span class="status-badge status-badge--running">実装進行</span>
+            <span class="agent-label">記憶画面更新の準備段階（types/memory.ts と memory-card.tsx を確認）。</span>
+          </div>
+          <details class="snapshot-details">
+            <summary class="details-toggle">ログ詳細</summary>
+            <pre>  │       └── textToSpeech.ts      # TTS機能
+  ├── types/                       # TypeScript型定義
+  │   ├── chat.ts                  # チャット関連の型
+  │   └── memory.ts                # 記憶関連の型
+  ├── assets/images/               # 画像アセット
+  │   ├── cat-character.png        # キャラクター画像
+  │   └── cat-character-*.png      # 表情バリエーション
+  └── __tests__/                   # テストファイル
+  ```
+
+  ---
+
+  ## 📝 コーディング規約
+
+  ### TypeScript
+  - 厳格な型チェックを使用（`strict: true`）
+  - `any`型の使用は最小限に
+  - インターフェースよりも型エイリアスを優先
+
+  ### React Native / Expo
+  - 関数コンポーネントとHooksを使用
+  - `ScreenContainer`コンポーネントで画面をラップ
+  - NativeWind (Tailwind CSS) でスタイリング
+  - `className`を使用（`style`プロパティは最小限に）
+
+  ### スタイリング
+  - Tailwind CSS クラスを使用
+  - カスタムカラー: `primary`, `background`, `foreground`, `muted`, `surface`,
+  `border`
+  - ダークモード: 色トークンを直接使用（`dark:`プレフィックス不要）
+
+  ### 命名規則
+  - コンポーネント: PascalCase（例: `MessageBubble`）
+  - 関数: camelCase（例: `handleSendMessage`）
+  - ファイル: kebab-case（例: `message-bubble.tsx`）
+  - 定数: UPPER_SNAKE_CASE（例: `MAX_MESSAGE_LENGTH`）
+
+  ### テスト
+  - Vitestを使用
+  - ファイル名: `*.test.ts`
+  - カバレッジ目標: 主要ロジックは80%以上
+
+  ---
+
+  ## 🚀 デプロイとテスト
+
+  ### テストの実行
+
+  ```bash
+  # すべてのテストを実行
+  pnpm test
+
+  # 特定のテストファイルを実行
+  pnpm test memory
+
+  # ウォッチモード
+  pnpm test --watch
+  ```
+
+  ### ビルド
+
+  ```bash
+  # プロダクションビルド
+  pnpm build
+
+  # 型チェック
+  pnpm check
+
+  # リンター
+  pnpm lint
+  ```
+
+  ### 実機テスト
+
+  1. Expo Goアプリをインストール（iOS/Android）
+  2. 開発サーバーのQRコードをスキャン
+  3. アプリが実機で起動
+
+  ---
+
+  ## 📚 参考資料
+
+  ### 公式ドキュメント
+  - [Expo Documentation](https://docs.expo.dev/)
+  - [React Native Documentation](https://reactnative.dev/)
+  - [NativeWind Documentation](https://www.nativewind.dev/)
+  - [tRPC Documentation](https://trpc.io/)
+
+  ### プロジェクト固有のドキュメント
+  - `README.md`: プロジェクト全体の概要
+  - `design.md`: UI/UXデザインの設計書
+  - `todo.md`: 現在のタスクリスト
+  - `server/README.md`: バックエンドAPIのドキュメント
+
+  ---
+
+  ## ⚠️ 注意事項
+
+  ### 必ず守ること
+  1. **todo.mdの更新**: タスク完了時は必ず`[ ]`を`[x]`に変更
+  2. **型安全性**: TypeScriptの型エラーは必ず解決
+  3. **テストの実行**: 変更後は必ずテストを実行
+  4. **コミットメッセージ**: 明確で具体的なメッセージを記述
+  5. **既存機能の破壊**: 既存の動作を壊さないこと
+
+  ### 避けるべきこと
+  1. **直接的なgit操作**: `webdev_save_checkpoint`を使用
+  2. **ハードコーディング**: 設定値は定数化
+  3. **過度な最適化**: 動作確認が優先
+  4. **無駄な依存関係**: 新しいパッケージは慎重に
+  5. **グローバル状態の乱用**: 必要最小限に
+
+  ---
+
+  ## 🤝 コンペ形式での開発について
+
+  ### タスクの選択
+  - 上記のタスクから1つ以上を選択して実装してください
+  - 優先度が高いものから取り組むことを推奨します
+  - 複数のタスクを組み合わせても構いません
+
+  ### 提出物
+  1. **実装コード**: 変更したすべてのファイル
+  2. **テストコード**: 新機能のテスト
+  3. **ドキュメント**: 実装内容の説明（Markdown形式）
+  4. **スクリーンショット**: UI変更がある場合
+
+  ### 評価基準
+  - **機能の完成度**: 要件を満たしているか
+  - **コード品質**: 読みやすく保守しやすいか
+  - **テストカバレッジ**: 適切にテストされているか
+  - **デザイン**: UIが美しく使いやすいか
+  - **パフォーマンス**: 動作が快適か
+
+  ---
+
+  ## 📞 質問・サポート
+
+  - **GitHub Issues**: https://github.com/yuya-fujita-1201/AI-Companion/issues
+  - **プロジェクトオーナー**: @yuya-fujita-1201
+
+  ---
+
+  **最終更新**: 2026年1月2日
+  **ドキュメントバージョン**: 1.0
+
+  作業ディレクトリ: /Users/yuyafujita/Desktop/workspaces/AI-
+  Companion/.worktrees/task-1767281298817-6eda92
+
+  作業開始前に次のコマンドで作業ディレクトリへ移動してください:
+  cd .worktrees/task-1767281298817-6eda92
+
+
+• Explored
+  └ List ls
+    Read memory.ts
+    Search MemoryType
+    Read memory-card.tsx
+
+• Ran sed -n &#x27;1,240p&#x27; app/(tabs)/memories.tsx
+  └ zsh:1: no matches found: app/(tabs)/memories.tsx
+
+• Explored
+  └ Read memories.tsx, memory-storage.ts, memory.test.ts, todo.md
+    Search Progress|progress in components
+    List components
+    Read character-status.tsx
+    List ui
+    Read use-colors.ts
+
+• I’m mapping out how to update the memory screen with new category names,
+  icons, UI improvements like a header and total count, plus warm colors and
+  animations. I’ll also look into using existing theme tokens and React Native
+  Reanimated for fade-in effects. This feels like a nice blend of styling and UX
+  tweaks!
+
+• Explored
+  └ Read message-bubble.tsx
+    Search reanimated
+    Read typing-indicator.tsx, index.tsx, theme.ts, theme.config.js,
+         tailwind.config.js
+
+• I’m planning how to update the memory screen to align with the warm palette
+  requirement, focusing on theme tokens for backgrounds and category tag colors.
+  I want to enhance the memory cards with icons for categories, visually
+  represent dates and importance using stars or dots, and add milestone messages
+  for progress. I’m also figuring out a unified approach to mapping memory types
+  to labels, icons, and colors, likely in types/memory.ts. For layout, I’ll use
+  subtle backgrounds, borders, rounded corners, and a fade-in animation with
+  Reanimated’s FadeIn. Let’s explore these design elements to meet the user’s
+  detailed requirements!
+
+• Explored
+  └ Search FadeIn
+
+• I’m planning to implement Reanimated’s FadeIn for layout animations, trusting
+  the current setup handles required plugins. I’m also considering UI updates
+  like adding a progress bar, knowledge level display, milestone messages, icons
+  with emojis, and refining the memory list’s header and empty state, plus
+  creating helper functions for memory progress in a new lib file with
+  accompanying tests. There’s a lot to arrange carefully for a smooth,
+  informative user experience!
+
+• Explored
+  └ List __tests__
+    List tests
+    Read utils.ts
+
+• I’m mapping out all the key steps to implement the memory redesign, including
+  code updates across types, components, and app tabs, plus testing and
+  documentation. I’m also thinking about handling the screenshot requirement and
+  testing strategy carefully since automation might be limited. Let’s see how to
+  approach running tests and documenting everything efficiently!
+
+• Explored
+  └ Read package.json
+
+• Outlining memory redesign tasks (3m 06s • esc to interrupt)
+
+
+› Implement {feature}
+
+  90% context left · ? for shortcuts
+</pre>
+          </details>
+        </td>
+        
+        <td>
+          <div class="agent-meta">
+            <span class="status-badge status-badge--running">実装進行</span>
+            <span class="agent-label">記憶カードのアニメーション/進捗UIを検討中（memory-storage.ts 調査）。</span>
+          </div>
+          <details class="snapshot-details">
+            <summary class="details-toggle">ログ詳細</summary>
+            <pre>  │   │   ├── memory.ts            # 記憶API
+  │   │   └── tts.ts               # 音声読み上げAPI
+  │   └── _core/                   # コア機能
+  │       ├── llm.ts               # LLM統合
+  │       └── textToSpeech.ts      # TTS機能
+  ├── types/                       # TypeScript型定義
+  │   ├── chat.ts                  # チャット関連の型
+  │   └── memory.ts                # 記憶関連の型
+  ├── assets/images/               # 画像アセット
+  │   ├── cat-character.png        # キャラクター画像
+  │   └── cat-character-*.png      # 表情バリエーション
+  └── __tests__/                   # テストファイル
+  ```
+
+  ---
+
+  ## 📝 コーディング規約
+
+  ### TypeScript
+  - 厳格な型チェックを使用（`strict: true`）
+  - `any`型の使用は最小限に
+  - インターフェースよりも型エイリアスを優先
+
+  ### React Native / Expo
+  - 関数コンポーネントとHooksを使用
+  - `ScreenContainer`コンポーネントで画面をラップ
+  - NativeWind (Tailwind CSS) でスタイリング
+  - `className`を使用（`style`プロパティは最小限に）
+
+  ### スタイリング
+  - Tailwind CSS クラスを使用
+  - カスタムカラー: `primary`, `background`, `foreground`, `muted`, `surface`,
+  `border`
+  - ダークモード: 色トークンを直接使用（`dark:`プレフィックス不要）
+
+  ### 命名規則
+  - コンポーネント: PascalCase（例: `MessageBubble`）
+  - 関数: camelCase（例: `handleSendMessage`）
+  - ファイル: kebab-case（例: `message-bubble.tsx`）
+  - 定数: UPPER_SNAKE_CASE（例: `MAX_MESSAGE_LENGTH`）
+
+  ### テスト
+  - Vitestを使用
+  - ファイル名: `*.test.ts`
+  - カバレッジ目標: 主要ロジックは80%以上
+
+  ---
+
+  ## 🚀 デプロイとテスト
+
+  ### テストの実行
+
+  ```bash
+  # すべてのテストを実行
+  pnpm test
+
+  # 特定のテストファイルを実行
+  pnpm test memory
+
+  # ウォッチモード
+  pnpm test --watch
+  ```
+
+  ### ビルド
+
+  ```bash
+  # プロダクションビルド
+  pnpm build
+
+  # 型チェック
+  pnpm check
+
+  # リンター
+  pnpm lint
+  ```
+
+  ### 実機テスト
+
+  1. Expo Goアプリをインストール（iOS/Android）
+  2. 開発サーバーのQRコードをスキャン
+  3. アプリが実機で起動
+
+  ---
+
+  ## 📚 参考資料
+
+  ### 公式ドキュメント
+  - [Expo Documentation](https://docs.expo.dev/)
+  - [React Native Documentation](https://reactnative.dev/)
+  - [NativeWind Documentation](https://www.nativewind.dev/)
+  - [tRPC Documentation](https://trpc.io/)
+
+  ### プロジェクト固有のドキュメント
+  - `README.md`: プロジェクト全体の概要
+  - `design.md`: UI/UXデザインの設計書
+  - `todo.md`: 現在のタスクリスト
+  - `server/README.md`: バックエンドAPIのドキュメント
+
+  ---
+
+  ## ⚠️ 注意事項
+
+  ### 必ず守ること
+  1. **todo.mdの更新**: タスク完了時は必ず`[ ]`を`[x]`に変更
+  2. **型安全性**: TypeScriptの型エラーは必ず解決
+  3. **テストの実行**: 変更後は必ずテストを実行
+  4. **コミットメッセージ**: 明確で具体的なメッセージを記述
+  5. **既存機能の破壊**: 既存の動作を壊さないこと
+
+  ### 避けるべきこと
+  1. **直接的なgit操作**: `webdev_save_checkpoint`を使用
+  2. **ハードコーディング**: 設定値は定数化
+  3. **過度な最適化**: 動作確認が優先
+  4. **無駄な依存関係**: 新しいパッケージは慎重に
+  5. **グローバル状態の乱用**: 必要最小限に
+
+  ---
+
+  ## 🤝 コンペ形式での開発について
+
+  ### タスクの選択
+  - 上記のタスクから1つ以上を選択して実装してください
+  - 優先度が高いものから取り組むことを推奨します
+  - 複数のタスクを組み合わせても構いません
+
+  ### 提出物
+  1. **実装コード**: 変更したすべてのファイル
+  2. **テストコード**: 新機能のテスト
+  3. **ドキュメント**: 実装内容の説明（Markdown形式）
+  4. **スクリーンショット**: UI変更がある場合
+
+  ### 評価基準
+  - **機能の完成度**: 要件を満たしているか
+  - **コード品質**: 読みやすく保守しやすいか
+  - **テストカバレッジ**: 適切にテストされているか
+  - **デザイン**: UIが美しく使いやすいか
+  - **パフォーマンス**: 動作が快適か
+
+  ---
+
+  ## 📞 質問・サポート
+
+  - **GitHub Issues**: https://github.com/yuya-fujita-1201/AI-Companion/issues
+  - **プロジェクトオーナー**: @yuya-fujita-1201
+
+  ---
+
+  **最終更新**: 2026年1月2日
+  **ドキュメントバージョン**: 1.0
+
+  作業ディレクトリ: /Users/yuyafujita/Desktop/workspaces/AI-
+  Companion/.worktrees/task-1767281299020-ca2314
+
+  作業開始前に次のコマンドで作業ディレクトリへ移動してください:
+  cd .worktrees/task-1767281299020-ca2314
+
+
+• Explored
+  └ List ls
+
+• I’m focusing on the highest-priority task—redesigning memory—since it’s a big
+  job and the user gave a broad set of tasks. I’ll update todo.md and run tests
+  after changes. To be thorough, I want to read relevant files using rg and plan
+  steps carefully with the plan tool before starting.
+
+• Ran rg -n &quot;memory&quot; types components app/(tabs)/memories.tsx
+  └ zsh:1: no matches found: app/(tabs)/memories.tsx
+
+• Explored
+  └ List (tabs)
+    Search Memory|memory in memory.ts
+    Read memory.ts, memory-card.tsx, memories.tsx
+    Search reanimated|FadeIn|Animated in components
+
+• I’m figuring out how to add a FadeIn animation to MemoryCard using reanimated,
+  check if useColors is needed or can be removed to avoid lint warnings, and
+  thinking about updating memory labels, showing date and importance with icons,
+  plus adding progress and growth indicators, which will involve exploring
+  memory-storage for data.
+
+• Explored
+  └ Read memory-storage.ts
+
+• I&#x27;m working on updating memory categories by keeping enum values stable for
+  compatibility but changing labels to be more user-friendly and localized.
+  Alongside, I’ll refresh the UI with new icons, colors in warm tones, and
+  visual indicators like progress bars and importance stars, aiming to show
+  memory counts, levels, and milestone celebrations dynamically. I&#x27;ll also check
+  for existing progress bar components to reuse.
+
+• Explored
+  └ Search progress|Progress in components
+    Read voice-input-button.tsx
+    Search entering=|FadeIn in app
+
+• I&#x27;m mapping out updates to the memory screen and MemoryCard component,
+  including adding fade-in animation with Reanimated&#x27;s FadeIn, showing progress
+  bars and milestone messages for memory counts, visualizing importance with
+  pips, updating labels with emojis, and integrating date icons. I&#x27;ll carefully
+  balance using Animated.View with NativeWind&#x27;s className support and ensure the
+  UI reflects warm, visually clear feedback throughout.
+
+• Explored
+  └ Read todo.md, design.md
+    Search MemoryType in app
+
+• I’m working through how to update memory labels, icons, colors, and progress
+  visuals consistently across the memory screen and memory cards, including
+  milestone progress bars and warm styling. I’m also thinking about where best
+  to centralize these shared constants to keep the UI consistent without
+  overcomplicating the structure.
+
+• Explored
+  └ Read chat.ts
+    List constants
+    Read const.ts
+
+• Checking UI constants file (3m 01s • esc to interrupt)
+
+
+› Improve documentation in @filename
+
+  92% context left · ? for shortcuts
+</pre>
+          </details>
+        </td>
+        
+        <td>
+          <div class="agent-meta">
+            <span class="status-badge status-badge--pending">保留</span>
+            <span class="agent-label">タスク選定の確認中（記憶リデザイン/統計ダッシュボードの順序を問い合わせ）。</span>
+          </div>
+          <details class="snapshot-details">
+            <summary class="details-toggle">ログ詳細</summary>
+            <pre>│   ├── routers/                 # tRPCルーター
+│   │   ├── chat.ts              # チャットAPI
+│   │   ├── memory.ts            # 記憶API
+│   │   └── tts.ts               # 音声読み上げAPI
+│   └── _core/                   # コア機能
+│       ├── llm.ts               # LLM統合
+│       └── textToSpeech.ts      # TTS機能
+├── types/                       # TypeScript型定義
+│   ├── chat.ts                  # チャット関連の型
+│   └── memory.ts                # 記憶関連の型
+├── assets/images/               # 画像アセット
+│   ├── cat-character.png        # キャラクター画像
+│   └── cat-character-*.png      # 表情バリエーション
+└── __tests__/                   # テストファイル
+```
+
+---
+
+## 📝 コーディング規約
+
+### TypeScript
+- 厳格な型チェックを使用（`strict: true`）
+- `any`型の使用は最小限に
+- インターフェースよりも型エイリアスを優先
+
+### React Native / Expo
+- 関数コンポーネントとHooksを使用
+- `ScreenContainer`コンポーネントで画面をラップ
+- NativeWind (Tailwind CSS) でスタイリング
+- `className`を使用（`style`プロパティは最小限に）
+
+### スタイリング
+- Tailwind CSS クラスを使用
+- カスタムカラー: `primary`, `background`, `foreground`, `muted`, `surface`,
+ `border`
+- ダークモード: 色トークンを直接使用（`dark:`プレフィックス不要）
+
+### 命名規則
+- コンポーネント: PascalCase（例: `MessageBubble`）
+- 関数: camelCase（例: `handleSendMessage`）
+- ファイル: kebab-case（例: `message-bubble.tsx`）
+- 定数: UPPER_SNAKE_CASE（例: `MAX_MESSAGE_LENGTH`）
+
+### テスト
+- Vitestを使用
+- ファイル名: `*.test.ts`
+- カバレッジ目標: 主要ロジックは80%以上
+
+---
+
+## 🚀 デプロイとテスト
+
+### テストの実行
+
+```bash
+# すべてのテストを実行
+pnpm test
+
+# 特定のテストファイルを実行
+pnpm test memory
+
+# ウォッチモード
+pnpm test --watch
+```
+
+### ビルド
+
+```bash
+# プロダクションビルド
+pnpm build
+
+# 型チェック
+pnpm check
+
+# リンター
+pnpm lint
+```
+
+### 実機テスト
+
+1. Expo Goアプリをインストール（iOS/Android）
+2. 開発サーバーのQRコードをスキャン
+3. アプリが実機で起動
+
+---
+
+## 📚 参考資料
+
+### 公式ドキュメント
+- [Expo Documentation](https://docs.expo.dev/)
+- [React Native Documentation](https://reactnative.dev/)
+- [NativeWind Documentation](https://www.nativewind.dev/)
+- [tRPC Documentation](https://trpc.io/)
+
+### プロジェクト固有のドキュメント
+- `README.md`: プロジェクト全体の概要
+- `design.md`: UI/UXデザインの設計書
+- `todo.md`: 現在のタスクリスト
+- `server/README.md`: バックエンドAPIのドキュメント
+
+---
+
+## ⚠️ 注意事項
+
+### 必ず守ること
+1. **todo.mdの更新**: タスク完了時は必ず`[ ]`を`[x]`に変更
+2. **型安全性**: TypeScriptの型エラーは必ず解決
+3. **テストの実行**: 変更後は必ずテストを実行
+4. **コミットメッセージ**: 明確で具体的なメッセージを記述
+5. **既存機能の破壊**: 既存の動作を壊さないこと
+
+### 避けるべきこと
+1. **直接的なgit操作**: `webdev_save_checkpoint`を使用
+2. **ハードコーディング**: 設定値は定数化
+3. **過度な最適化**: 動作確認が優先
+4. **無駄な依存関係**: 新しいパッケージは慎重に
+5. **グローバル状態の乱用**: 必要最小限に
+
+---
+
+## 🤝 コンペ形式での開発について
+
+### タスクの選択
+- 上記のタスクから1つ以上を選択して実装してください
+- 優先度が高いものから取り組むことを推奨します
+- 複数のタスクを組み合わせても構いません
+
+### 提出物
+1. **実装コード**: 変更したすべてのファイル
+2. **テストコード**: 新機能のテスト
+3. **ドキュメント**: 実装内容の説明（Markdown形式）
+4. **スクリーンショット**: UI変更がある場合
+
+### 評価基準
+- **機能の完成度**: 要件を満たしているか
+- **コード品質**: 読みやすく保守しやすいか
+- **テストカバレッジ**: 適切にテストされているか
+- **デザイン**: UIが美しく使いやすいか
+- **パフォーマンス**: 動作が快適か
+
+---
+
+## 📞 質問・サポート
+
+- **GitHub Issues**: https://github.com/yuya-fujita-1201/AI-Companion/issues
+- **プロジェクトオーナー**: @yuya-fujita-1201
+
+---
+
+**最終更新**: 2026年1月2日
+**ドキュメントバージョン**: 1.0
+
+作業ディレクトリ: /Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktre
+es/task-1767281299217-8b0068
+
+作業開始前に次のコマンドで作業ディレクトリへ移動してください:
+cd .worktrees/task-1767281299217-8b0068
+
+⏺ AI Companionアプリの開発タスク指示書を確認しました。詳細な仕様書をありがとうご
+ざいます。
+
+  まず、現在のプロジェクト構造を確認して、どのタスクに取り組むか決めましょう。
+
+⏺ Bash(pwd)
+  ⎿ /Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-17672
+    81299217-8b0068
+
+
+⏺ Bash(ls -la)
+  ⎿  total 1088
+     drwxr-xr-x@  7 yuyafujita  staff     224  1  2 00:28 __tests__
+     drwxr-xr-x@ 38 yuyafujita  staff    1216  1  2 00:28 .
+     … +37 lines (ctrl+o to expand)
+
+⏺ Search(pattern: &quot;app/(tabs)/*.tsx&quot;)
+  ⎿  Found 4 files (ctrl+o to expand)
+
+⏺ Read(todo.md)
+  ⎿  Read 227 lines
+
+⏺ プロジェクトの現状を確認しました。多くの機能が既に実装されていますね！
+
+  指示書の内容と現在のtodo.mdを比較すると、優先度の高いタスクは以下の2つです：
+
+  1. 記憶画面のリデザイン - 現在の記憶画面を「ミケが覚えたこと」としてキャラクタ
+ーアプリらしくリデザイン
+  2. 会話統計ダッシュボード - 新しいタブを追加して、会話統計やなかよし度を可視化
+
+  まず、現在の記憶画面の実装を確認してみましょう：
+
+⏺ Read(app/(tabs)/memories.tsx)
+  ⎿  Read 163 lines
+
+⏺ Read(components/memory-card.tsx)
+  ⎿  Read 84 lines
+
+⏺ Read(types/memory.ts)
+  ⎿  Read 21 lines
+
+⏺ 現在の実装を確認しました。記憶画面は基本的な機能は実装されていますが、よりキャ
+ラクターアプリらしくする余地がありますね。
+
+  優先度の高いタスクは2つあります：
+
+  1. 記憶画面のリデザイン - カテゴリを「あなたのこと」「好きなもの」「思い出」に
+変更し、アイコンと成長の可視化を追加
+  2. 会話統計ダッシュボード - 新しいタブを追加して、会話回数やなかよし度を表示
+
+  どちらのタスクから取り組みますか？それとも両方を順番に実装しましょうか？
+
+  個人的には、記憶画面のリデザインから始めるのをおすすめします。既存の画面を改善
+するだけなので、比較的スムーズに実装できます。その後、統計ダッシュボードの新規タ
+ブ追加に進むという流れが良いと思います。
+
+  いかがでしょうか？
+
+────────────────────────────────────────────────────────────────────────────────
+&gt; start with the memory screen redesign                                  ↵ send
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+
+
+
+</pre>
+          </details>
+        </td>
+        
+        <td>
+          <div class="agent-meta">
+            <span class="status-badge status-badge--pending">保留</span>
+            <span class="agent-label">優先タスクの選択待ち（記憶リデザインと統計タブの順序提案）。</span>
+          </div>
+          <details class="snapshot-details">
+            <summary class="details-toggle">ログ詳細</summary>
+            <pre>│   └── character-status.tsx     # キャラクター状態表示
+├── lib/                         # ユーティリティとヘルパー
+│   ├── memory-storage.ts        # 記憶の保存・読み込み
+│   ├── notification-manager.ts  # 通知管理
+│   └── emotion-analyzer.ts      # 感情分析
+├── server/                      # バックエンドAPI
+│   ├── routers/                 # tRPCルーター
+│   │   ├── chat.ts              # チャットAPI
+│   │   ├── memory.ts            # 記憶API
+│   │   └── tts.ts               # 音声読み上げAPI
+│   └── _core/                   # コア機能
+│       ├── llm.ts               # LLM統合
+│       └── textToSpeech.ts      # TTS機能
+├── types/                       # TypeScript型定義
+│   ├── chat.ts                  # チャット関連の型
+│   └── memory.ts                # 記憶関連の型
+├── assets/images/               # 画像アセット
+│   ├── cat-character.png        # キャラクター画像
+│   └── cat-character-*.png      # 表情バリエーション
+└── __tests__/                   # テストファイル
+```
+
+---
+
+## 📝 コーディング規約
+
+### TypeScript
+- 厳格な型チェックを使用（`strict: true`）
+- `any`型の使用は最小限に
+- インターフェースよりも型エイリアスを優先
+
+### React Native / Expo
+- 関数コンポーネントとHooksを使用
+- `ScreenContainer`コンポーネントで画面をラップ
+- NativeWind (Tailwind CSS) でスタイリング
+- `className`を使用（`style`プロパティは最小限に）
+
+### スタイリング
+- Tailwind CSS クラスを使用
+- カスタムカラー: `primary`, `background`, `foreground`, `muted`, `surface`,
+ `border`
+- ダークモード: 色トークンを直接使用（`dark:`プレフィックス不要）
+
+### 命名規則
+- コンポーネント: PascalCase（例: `MessageBubble`）
+- 関数: camelCase（例: `handleSendMessage`）
+- ファイル: kebab-case（例: `message-bubble.tsx`）
+- 定数: UPPER_SNAKE_CASE（例: `MAX_MESSAGE_LENGTH`）
+
+### テスト
+- Vitestを使用
+- ファイル名: `*.test.ts`
+- カバレッジ目標: 主要ロジックは80%以上
+
+---
+
+## 🚀 デプロイとテスト
+
+### テストの実行
+
+```bash
+# すべてのテストを実行
+pnpm test
+
+# 特定のテストファイルを実行
+pnpm test memory
+
+# ウォッチモード
+pnpm test --watch
+```
+
+### ビルド
+
+```bash
+# プロダクションビルド
+pnpm build
+
+# 型チェック
+pnpm check
+
+# リンター
+pnpm lint
+```
+
+### 実機テスト
+
+1. Expo Goアプリをインストール（iOS/Android）
+2. 開発サーバーのQRコードをスキャン
+3. アプリが実機で起動
+
+---
+
+## 📚 参考資料
+
+### 公式ドキュメント
+- [Expo Documentation](https://docs.expo.dev/)
+- [React Native Documentation](https://reactnative.dev/)
+- [NativeWind Documentation](https://www.nativewind.dev/)
+- [tRPC Documentation](https://trpc.io/)
+
+### プロジェクト固有のドキュメント
+- `README.md`: プロジェクト全体の概要
+- `design.md`: UI/UXデザインの設計書
+- `todo.md`: 現在のタスクリスト
+- `server/README.md`: バックエンドAPIのドキュメント
+
+---
+
+## ⚠️ 注意事項
+
+### 必ず守ること
+1. **todo.mdの更新**: タスク完了時は必ず`[ ]`を`[x]`に変更
+2. **型安全性**: TypeScriptの型エラーは必ず解決
+3. **テストの実行**: 変更後は必ずテストを実行
+4. **コミットメッセージ**: 明確で具体的なメッセージを記述
+5. **既存機能の破壊**: 既存の動作を壊さないこと
+
+### 避けるべきこと
+1. **直接的なgit操作**: `webdev_save_checkpoint`を使用
+2. **ハードコーディング**: 設定値は定数化
+3. **過度な最適化**: 動作確認が優先
+4. **無駄な依存関係**: 新しいパッケージは慎重に
+5. **グローバル状態の乱用**: 必要最小限に
+
+---
+
+## 🤝 コンペ形式での開発について
+
+### タスクの選択
+- 上記のタスクから1つ以上を選択して実装してください
+- 優先度が高いものから取り組むことを推奨します
+- 複数のタスクを組み合わせても構いません
+
+### 提出物
+1. **実装コード**: 変更したすべてのファイル
+2. **テストコード**: 新機能のテスト
+3. **ドキュメント**: 実装内容の説明（Markdown形式）
+4. **スクリーンショット**: UI変更がある場合
+
+### 評価基準
+- **機能の完成度**: 要件を満たしているか
+- **コード品質**: 読みやすく保守しやすいか
+- **テストカバレッジ**: 適切にテストされているか
+- **デザイン**: UIが美しく使いやすいか
+- **パフォーマンス**: 動作が快適か
+
+---
+
+## 📞 質問・サポート
+
+- **GitHub Issues**: https://github.com/yuya-fujita-1201/AI-Companion/issues
+- **プロジェクトオーナー**: @yuya-fujita-1201
+
+---
+
+**最終更新**: 2026年1月2日
+**ドキュメントバージョン**: 1.0
+
+作業ディレクトリ: /Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktre
+es/task-1767281299425-838abf
+
+作業開始前に次のコマンドで作業ディレクトリへ移動してください:
+cd .worktrees/task-1767281299425-838abf
+
+⏺ AI Companionアプリの開発タスクについて承知しました。詳細な指示書をありがとうご
+ざいます。
+
+  まず、プロジェクトの現状を把握してから、優先度の高いタスクに取り組みたいと思い
+ます。プロジェクト構造と主要ファイルを確認させてください。
+
+⏺ Bash(pwd)
+  ⎿ /Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-17672
+    81299425-838abf
+
+
+⏺ Search(pattern: &quot;**/*.tsx&quot;)
+  ⎿  Found 22 files (ctrl+o to expand)
+
+⏺ Search(pattern: &quot;**/memory*.ts*&quot;)
+  ⎿  Found 5 files (ctrl+o to expand)
+
+⏺ Read(todo.md)
+  ⎿  Read 227 lines
+
+⏺ Read(types/memory.ts)
+  ⎿  Read 21 lines
+
+⏺ Read(app/(tabs)/memories.tsx)
+  ⎿  Read 163 lines
+
+⏺ Read(components/memory-card.tsx)
+  ⎿  Read 84 lines
+
+⏺ プロジェクトの現状を確認しました。現在の実装は基本機能がよく整っており、記憶シ
+ステムも動作しています。
+
+  指示書を確認したところ、優先度の高いタスクは以下の2つです：
+
+  1. 【優先度: 高】記憶画面のリデザイン
+    - カテゴリを「あなたのこと」「好きなもの」「思い出」「最近の話題」に変更
+    - アイコンと統計表示を追加
+    - 成長の可視化（進捗バー）を実装
+  2. 【優先度: 高】会話統計ダッシュボード
+    - 新しい「統計」タブを追加
+    - 会話回数、なかよし度、グラフなどを表示
+    - マイルストーンバッジの実装
+
+  どちらのタスクから始めますか？それとも両方を順番に実装しましょうか？
+
+  個人的には、記憶画面のリデザインから始めるのがおすすめです。理由は：
+  - 既存のコードベースがあるので、修正が比較的容易
+  - ユーザー体験の改善が即座に感じられる
+  - 会話統計ダッシュボードの実装にも応用できる知見が得られる
+
+  どちらから始めるか、またはその他のタスクをご希望か、お聞かせください。
+
+────────────────────────────────────────────────────────────────────────────────
+&gt; start with the memory screen redesign                                  ↵ send
+────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+
+
+
+</pre>
+          </details>
+        </td>
+        
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

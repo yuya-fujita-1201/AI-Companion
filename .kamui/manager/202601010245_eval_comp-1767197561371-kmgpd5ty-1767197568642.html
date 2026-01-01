@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>評価レポート</title>
+    <style>
+      body {
+        font-family: "Hiragino Sans", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        margin: 24px;
+        background-color: #e9f0f2;
+        color: #1f2a30;
+      }
+      .report-wrapper {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 32px;
+        background: #ffffff;
+        border: 1px solid #c4d3d7;
+      }
+      .report-header h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+        letter-spacing: 0.04em;
+      }
+      .report-header p {
+        margin: 0;
+        color: #3a4b53;
+        font-size: 14px;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        margin: 24px 0 32px;
+      }
+      .score-card {
+        border: 1px solid #c4d3d7;
+        background: #f4f7f8;
+        padding: 12px;
+      }
+      .score-task {
+        font-size: 12px;
+        color: #3a4b53;
+      }
+      .score-value {
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 6px;
+      }
+      .score-value span {
+        font-size: 12px;
+        font-weight: 500;
+        color: #3a4b53;
+      }
+      .score-trophy {
+        font-size: 22px;
+        margin-top: 4px;
+      }
+      .score-reason {
+        font-size: 12px;
+        color: #3a4b53;
+      }
+      .task-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+      .task-table col {
+        width: 50%;
+      }
+      .task-table td {
+        border: 1px solid #c4d3d7;
+        vertical-align: top;
+        padding: 18px;
+        background: #ffffff;
+      }
+      .task-cell h3 {
+        margin: 0 0 4px;
+        font-size: 16px;
+      }
+      .task-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: 12px;
+        color: #3a4b53;
+      }
+      .score-line {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 12px 0;
+      }
+      .score-total {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .score-trophy {
+        font-size: 20px;
+      }
+      .radar-block {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .radar-chart {
+        width: 120px;
+        height: 120px;
+      }
+      .radar-base {
+        fill: #e4eef1;
+        stroke: #c4d3d7;
+        stroke-width: 1;
+      }
+      .radar-frame {
+        fill: none;
+        stroke: #aebfc5;
+        stroke-width: 1;
+      }
+      .radar-data {
+        fill: rgba(146, 174, 183, 0.55);
+        stroke: #7f98a2;
+        stroke-width: 1.2;
+      }
+      .metric-list {
+        margin: 0;
+        padding-left: 16px;
+        font-size: 12px;
+        color: #2c3a40;
+      }
+      .task-section {
+        margin-top: 12px;
+      }
+      .task-section h4 {
+        margin: 0 0 6px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #2c3a40;
+      }
+      .task-section ul {
+        margin: 0;
+        padding-left: 16px;
+        font-size: 12px;
+        color: #2c3a40;
+      }
+      .reason-list li {
+        margin-bottom: 4px;
+      }
+      .task-section a {
+        color: #1f2a30;
+        text-decoration: underline;
+      }
+      .summary-box {
+        margin-top: 16px;
+        padding: 12px;
+        border: 1px solid #c4d3d7;
+        background: #f7fafb;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="report-wrapper">
+      <header class="report-header">
+        <h1>評価レポート</h1>
+        <p>対象: AI Companion 未実装ToDo・キャラクター化タスク。差分とログを確認し、6指標で採点しました。</p>
+        <p>評価日時: 2026-01-01 02:45</p>
+      </header>
+
+      <section class="summary-box">
+        <strong>作業概要</strong>
+        <p>音声/テーマ設定の追加、データのエクスポート・インポート、猫キャラクター化、通知・UI/アセット刷新などが実装されたブランチを確認しました。3タスクは変更が確認できず失格扱いとしています。成果物リンクは各 worktree のパスを示しています。</p>
+      </section>
+
+      <section class="score-grid">
+        
+        <div class="score-card">
+          <div class="score-task">task-1767197561372-1c9bf8</div>
+          <div class="score-value">430 <span>/ 600</span></div>
+          <div class="score-trophy">🥉</div>
+          <div class="score-reason">評価対象</div>
+        </div>
+        
+        <div class="score-card">
+          <div class="score-task">task-1767197561573-2389a9</div>
+          <div class="score-value">419 <span>/ 600</span></div>
+          <div class="score-trophy">🥉</div>
+          <div class="score-reason">評価対象</div>
+        </div>
+        
+        <div class="score-card">
+          <div class="score-task">task-1767197561773-624ee0</div>
+          <div class="score-value">0 <span>/ 600</span></div>
+          <div class="score-trophy">❌</div>
+          <div class="score-reason">変更なし / 入力待ち</div>
+        </div>
+        
+        <div class="score-card">
+          <div class="score-task">task-1767197561972-e43713</div>
+          <div class="score-value">405 <span>/ 600</span></div>
+          <div class="score-trophy">🥉</div>
+          <div class="score-reason">評価対象</div>
+        </div>
+        
+        <div class="score-card">
+          <div class="score-task">task-1767197562172-1c787b</div>
+          <div class="score-value">0 <span>/ 600</span></div>
+          <div class="score-trophy">❌</div>
+          <div class="score-reason">変更なし / 入力待ち</div>
+        </div>
+        
+        <div class="score-card">
+          <div class="score-task">task-1767197562373-429cbd</div>
+          <div class="score-value">0 <span>/ 600</span></div>
+          <div class="score-trophy">❌</div>
+          <div class="score-reason">変更なし / 入力待ち</div>
+        </div>
+        
+      </section>
+
+      <table class="task-table">
+        <colgroup>
+          <col />
+          <col />
+        </colgroup>
+        <tbody>
+          <tr><td>
+      <div class="task-cell">
+        <div class="task-header">
+          <h3>Agent task-1767197561372-1c9bf8</h3>
+          <div class="task-meta">
+            <span class="task-id">task-1767197561372-1c9bf8</span>
+            <span class="task-status">完了</span>
+          </div>
+        </div>
+        <div class="score-line">
+          <span class="score-total">430 / 600</span>
+          <span class="score-trophy">🥉</span>
+        </div>
+        <div class="radar-block">
+          <svg class="radar-chart" viewBox="0 0 120 120" aria-label="hexagon chart">
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-base"></polygon>
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-frame"></polygon>
+            <polygon points="60.00,20.90 92.67,41.14 91.87,78.40 60.00,96.80 28.93,77.94 50.04,54.25" class="radar-data"></polygon>
+          </svg>
+          <ul class="metric-list">
+            <li><strong>要件充足</strong>: 85点</li>
+<li><strong>コード品質</strong>: 82点</li>
+<li><strong>設計/拡張性</strong>: 80点</li>
+<li><strong>安定性</strong>: 80点</li>
+<li><strong>UI/UX</strong>: 78点</li>
+<li><strong>プロセス/コミット</strong>: 25点</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>評価根拠</h4>
+          <ul class="reason-list">
+            <li><strong>要件充足</strong>: 85点 — 音声入力/出力トグルとダークモードを実装。設定値の永続化を共通化。</li>
+<li><strong>コード品質</strong>: 82点 — 設定I/Oを共通化し、読みやすい分割。</li>
+<li><strong>設計/拡張性</strong>: 80点 — settingsユーティリティ追加で再利用性向上。</li>
+<li><strong>安定性</strong>: 80点 — try/catchと再読込で状態不整合を抑制。</li>
+<li><strong>UI/UX</strong>: 78点 — トグル追加は明快だが大きな改善は限定的。</li>
+<li><strong>プロセス/コミット</strong>: 25点 — 未コミットでレビュー容易性が低い。</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>差分/コミット</h4>
+          <ul>
+            <li>変更: app/(tabs)/index.tsx, app/(tabs)/settings.tsx, lib/theme-provider.tsx, todo.md + 新規 lib/settings.ts（134+ / 44-）</li>
+            <li>新規コミットなし（ベース: 2342654, 123805d, 88a9a1a, 9ac200b）</li>
+            <li>テスト: 未実行</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>良い点</h4>
+          <ul><li>設定値を lib/settings.ts に整理し、再利用性を確保</li><li>フォーカス復帰時に設定を再読込して反映を確実化</li><li>TTS無効化時の再生停止処理で状態不整合を抑制</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>改善点・リスク</h4>
+          <ul><li>未コミットのため差分の追跡性が低い</li><li>自動テスト/手動検証の記録がない</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>成果物リンク</h4>
+          <ul><li><a href="file:///Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561372-1c9bf8">/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561372-1c9bf8</a></li></ul>
+        </div>
+      </div>
+    </td><td>
+      <div class="task-cell">
+        <div class="task-header">
+          <h3>Agent task-1767197561573-2389a9</h3>
+          <div class="task-meta">
+            <span class="task-id">task-1767197561573-2389a9</span>
+            <span class="task-status">完了</span>
+          </div>
+        </div>
+        <div class="score-line">
+          <span class="score-total">419 / 600</span>
+          <span class="score-trophy">🥉</span>
+        </div>
+        <div class="radar-block">
+          <svg class="radar-chart" viewBox="0 0 120 120" aria-label="hexagon chart">
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-base"></polygon>
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-frame"></polygon>
+            <polygon points="60.00,17.68 91.07,42.06 90.28,77.48 60.00,93.12 25.74,79.78 54.02,56.55" class="radar-data"></polygon>
+          </svg>
+          <ul class="metric-list">
+            <li><strong>要件充足</strong>: 92点</li>
+<li><strong>コード品質</strong>: 78点</li>
+<li><strong>設計/拡張性</strong>: 76点</li>
+<li><strong>安定性</strong>: 72点</li>
+<li><strong>UI/UX</strong>: 86点</li>
+<li><strong>プロセス/コミット</strong>: 15点</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>評価根拠</h4>
+          <ul class="reason-list">
+            <li><strong>要件充足</strong>: 92点 — 猫キャラ化・通知・設定拡張・UI/資産刷新まで大幅に実装。</li>
+<li><strong>コード品質</strong>: 78点 — モジュール分割は良好だが差分規模が大きい。</li>
+<li><strong>設計/拡張性</strong>: 76点 — 設定/キャラ/通知の分離はあるが統合テスト不足。</li>
+<li><strong>安定性</strong>: 72点 — 通知/LLM依存部の失敗時挙動検証が不足。</li>
+<li><strong>UI/UX</strong>: 86点 — キャラクター演出や画面刷新で体験向上。</li>
+<li><strong>プロセス/コミット</strong>: 15点 — コミットなしで差分追跡が困難。</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>差分/コミット</h4>
+          <ul>
+            <li>変更: 18ファイル + 大量アセット差替 + 新規モジュール複数（1018+ / 171-）</li>
+            <li>新規コミットなし（ベース: 2342654, 123805d, 88a9a1a, 9ac200b）</li>
+            <li>テスト: 未実行</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>良い点</h4>
+          <ul><li>キャラクター設定/通知/設定保存のモジュール分割が明確</li><li>通知生成に記憶/会話を利用し、要件の“自発的な話しかけ”に対応</li><li>UI/アセット刷新で世界観の統一感を強化</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>改善点・リスク</h4>
+          <ul><li>差分規模が大きく回帰リスクが高い</li><li>通知スケジュール/LLM呼び出しの負荷・失敗時挙動の検証不足</li><li>未コミットでレビュー追跡が困難</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>成果物リンク</h4>
+          <ul><li><a href="file:///Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9">/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561573-2389a9</a></li></ul>
+        </div>
+      </div>
+    </td></tr><tr><td>
+      <div class="task-cell">
+        <div class="task-header">
+          <h3>Agent task-1767197561773-624ee0</h3>
+          <div class="task-meta">
+            <span class="task-id">task-1767197561773-624ee0</span>
+            <span class="task-status">失格（変更なし）</span>
+          </div>
+        </div>
+        <div class="score-line">
+          <span class="score-total">0 / 600</span>
+          <span class="score-trophy">❌</span>
+        </div>
+        <div class="radar-block">
+          <svg class="radar-chart" viewBox="0 0 120 120" aria-label="hexagon chart">
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-base"></polygon>
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-frame"></polygon>
+            
+          </svg>
+          <ul class="metric-list">
+            <li><strong>要件充足</strong>: 0点</li>
+<li><strong>コード品質</strong>: 0点</li>
+<li><strong>設計/拡張性</strong>: 0点</li>
+<li><strong>安定性</strong>: 0点</li>
+<li><strong>UI/UX</strong>: 0点</li>
+<li><strong>プロセス/コミット</strong>: 0点</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>評価根拠</h4>
+          <ul class="reason-list">
+            <li><strong>要件充足</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>コード品質</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>設計/拡張性</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>安定性</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>UI/UX</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>プロセス/コミット</strong>: 0点 — 変更が確認できず評価対象外。</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>差分/コミット</h4>
+          <ul>
+            <li>差分なし</li>
+            <li>新規コミットなし</li>
+            <li>テスト: 未実行</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>良い点</h4>
+          <ul><li>該当なし</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>改善点・リスク</h4>
+          <ul><li>作業未着手のため評価対象外</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>成果物リンク</h4>
+          <ul><li><a href="file:///Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561773-624ee0">/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561773-624ee0</a></li></ul>
+        </div>
+      </div>
+    </td><td>
+      <div class="task-cell">
+        <div class="task-header">
+          <h3>Agent task-1767197561972-e43713</h3>
+          <div class="task-meta">
+            <span class="task-id">task-1767197561972-e43713</span>
+            <span class="task-status">完了</span>
+          </div>
+        </div>
+        <div class="score-line">
+          <span class="score-total">405 / 600</span>
+          <span class="score-trophy">🥉</span>
+        </div>
+        <div class="radar-block">
+          <svg class="radar-chart" viewBox="0 0 120 120" aria-label="hexagon chart">
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-base"></polygon>
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-frame"></polygon>
+            <polygon points="60.00,18.60 91.07,42.06 87.89,76.10 60.00,92.20 29.33,77.71 52.03,55.40" class="radar-data"></polygon>
+          </svg>
+          <ul class="metric-list">
+            <li><strong>要件充足</strong>: 90点</li>
+<li><strong>コード品質</strong>: 78点</li>
+<li><strong>設計/拡張性</strong>: 70点</li>
+<li><strong>安定性</strong>: 70点</li>
+<li><strong>UI/UX</strong>: 77点</li>
+<li><strong>プロセス/コミット</strong>: 20点</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>評価根拠</h4>
+          <ul class="reason-list">
+            <li><strong>要件充足</strong>: 90点 — エクスポート/インポート、猫ペルソナ、ダークモード、UI調整を実装。</li>
+<li><strong>コード品質</strong>: 78点 — 既存コードと整合しつつ追加されている。</li>
+<li><strong>設計/拡張性</strong>: 70点 — AsyncStorage直書きなど改善余地あり。</li>
+<li><strong>安定性</strong>: 70点 — 例外処理はあるが入力検証は最小限。</li>
+<li><strong>UI/UX</strong>: 77点 — モーダルUIで操作性向上。</li>
+<li><strong>プロセス/コミット</strong>: 20点 — コミットなし。</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>差分/コミット</h4>
+          <ul>
+            <li>変更: 8ファイル（475+ / 49-）</li>
+            <li>新規コミットなし（ベース: 2342654, 123805d, 88a9a1a, 9ac200b）</li>
+            <li>テスト: 未実行</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>良い点</h4>
+          <ul><li>JSONエクスポート/インポートのUI/バリデーションを追加</li><li>猫キャラの語尾付与でフェーズ1要件をカバー</li><li>テーマ永続化とWeb側のカラー同期を整備</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>改善点・リスク</h4>
+          <ul><li>インポートデータのスキーマ検証が簡易で破損データに弱い</li><li>未コミットで差分追跡が困難</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>成果物リンク</h4>
+          <ul><li><a href="file:///Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713">/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197561972-e43713</a></li></ul>
+        </div>
+      </div>
+    </td></tr><tr><td>
+      <div class="task-cell">
+        <div class="task-header">
+          <h3>Agent task-1767197562172-1c787b</h3>
+          <div class="task-meta">
+            <span class="task-id">task-1767197562172-1c787b</span>
+            <span class="task-status">失格（変更なし）</span>
+          </div>
+        </div>
+        <div class="score-line">
+          <span class="score-total">0 / 600</span>
+          <span class="score-trophy">❌</span>
+        </div>
+        <div class="radar-block">
+          <svg class="radar-chart" viewBox="0 0 120 120" aria-label="hexagon chart">
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-base"></polygon>
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-frame"></polygon>
+            
+          </svg>
+          <ul class="metric-list">
+            <li><strong>要件充足</strong>: 0点</li>
+<li><strong>コード品質</strong>: 0点</li>
+<li><strong>設計/拡張性</strong>: 0点</li>
+<li><strong>安定性</strong>: 0点</li>
+<li><strong>UI/UX</strong>: 0点</li>
+<li><strong>プロセス/コミット</strong>: 0点</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>評価根拠</h4>
+          <ul class="reason-list">
+            <li><strong>要件充足</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>コード品質</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>設計/拡張性</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>安定性</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>UI/UX</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>プロセス/コミット</strong>: 0点 — 変更が確認できず評価対象外。</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>差分/コミット</h4>
+          <ul>
+            <li>差分なし</li>
+            <li>新規コミットなし</li>
+            <li>テスト: 未実行</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>良い点</h4>
+          <ul><li>該当なし</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>改善点・リスク</h4>
+          <ul><li>作業未着手のため評価対象外</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>成果物リンク</h4>
+          <ul><li><a href="file:///Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562172-1c787b">/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562172-1c787b</a></li></ul>
+        </div>
+      </div>
+    </td><td>
+      <div class="task-cell">
+        <div class="task-header">
+          <h3>Agent task-1767197562373-429cbd</h3>
+          <div class="task-meta">
+            <span class="task-id">task-1767197562373-429cbd</span>
+            <span class="task-status">失格（変更なし）</span>
+          </div>
+        </div>
+        <div class="score-line">
+          <span class="score-total">0 / 600</span>
+          <span class="score-trophy">❌</span>
+        </div>
+        <div class="radar-block">
+          <svg class="radar-chart" viewBox="0 0 120 120" aria-label="hexagon chart">
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-base"></polygon>
+            <polygon points="60.00,14.00 99.84,37.00 99.84,83.00 60.00,106.00 20.16,83.00 20.16,37.00" class="radar-frame"></polygon>
+            
+          </svg>
+          <ul class="metric-list">
+            <li><strong>要件充足</strong>: 0点</li>
+<li><strong>コード品質</strong>: 0点</li>
+<li><strong>設計/拡張性</strong>: 0点</li>
+<li><strong>安定性</strong>: 0点</li>
+<li><strong>UI/UX</strong>: 0点</li>
+<li><strong>プロセス/コミット</strong>: 0点</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>評価根拠</h4>
+          <ul class="reason-list">
+            <li><strong>要件充足</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>コード品質</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>設計/拡張性</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>安定性</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>UI/UX</strong>: 0点 — 変更が確認できず評価対象外。</li>
+<li><strong>プロセス/コミット</strong>: 0点 — 変更が確認できず評価対象外。</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>差分/コミット</h4>
+          <ul>
+            <li>差分なし</li>
+            <li>新規コミットなし</li>
+            <li>テスト: 未実行</li>
+          </ul>
+        </div>
+        <div class="task-section">
+          <h4>良い点</h4>
+          <ul><li>該当なし</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>改善点・リスク</h4>
+          <ul><li>作業未着手のため評価対象外</li></ul>
+        </div>
+        <div class="task-section">
+          <h4>成果物リンク</h4>
+          <ul><li><a href="file:///Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562373-429cbd">/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1767197562373-429cbd</a></li></ul>
+        </div>
+      </div>
+    </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
