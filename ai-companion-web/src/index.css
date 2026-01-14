@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "M PLUS Rounded 1c", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background-color: #fef7f0;
+  color: #11181c;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.noise {
+  background-image: radial-gradient(rgba(17, 24, 28, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
