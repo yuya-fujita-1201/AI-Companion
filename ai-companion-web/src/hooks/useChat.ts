@@ -1,17 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Message } from "../types/chat";
-import type { Memory } from "../types/memory";
-import { findRelevantMemories, upsertMemories } from "../lib/memories";
 
 const STORAGE_KEY = "chat_messages";
 const FIRST_MEET_DATE_KEY = "first_meet_date";
 
 type ChatResponse = {
   message: string;
-};
-
-type MemoryResponse = {
-  memories: Memory[];
 };
 
 export function useChat() {
@@ -74,21 +68,24 @@ export function useChat() {
     }
   }, []);
 
-  const playTTS = useCallback((text: string) => {
-    if (!ttsEnabled || !("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "ja-JP";
-    utterance.rate = 1;
-    utterance.onstart = () => setIsPlayingAudio(true);
-    utterance.onend = () => setIsPlayingAudio(false);
-    utterance.onerror = () => setIsPlayingAudio(false);
-    window.speechSynthesis.speak(utterance);
-  }, [ttsEnabled]);
+  const playTTS = useCallback(
+    (text: string) => {
+      if (!ttsEnabled || !("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "ja-JP";
+      utterance.rate = 1;
+      utterance.onstart = () => setIsPlayingAudio(true);
+      utterance.onend = () => setIsPlayingAudio(false);
+      utterance.onerror = () => setIsPlayingAudio(false);
+      window.speechSynthesis.speak(utterance);
+    },
+    [ttsEnabled]
+  );
 
   const extractMemories = useCallback(async (conversation: Message[]) => {
     try {
-      const response = await fetch("/api/memories", {
+      const response = await fetch("/api/memory", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -96,18 +93,7 @@ export function useChat() {
         }),
       });
       if (!response.ok) return;
-      const data = (await response.json()) as MemoryResponse;
-      if (data.memories?.length) {
-        upsertMemories(
-          data.memories.map((memory) => ({
-            ...memory,
-            id: memory.id || crypto.randomUUID(),
-            createdAt: memory.createdAt || new Date().toISOString(),
-            importance: memory.importance ?? 5,
-            type: memory.type ?? "CONVERSATION_SUMMARY",
-          }))
-        );
-      }
+      await response.json();
     } catch (error) {
       console.error("Failed to extract memories", error);
     }
@@ -130,16 +116,6 @@ export function useChat() {
 
       try {
         const history = [...messages, userMessage].slice(-4);
-        const relevantMemories = findRelevantMemories(userMessage.content, 5);
-        const memoryContext =
-          relevantMemories.length > 0
-            ? `【記憶している情報】\n${relevantMemories
-              .map(
-                (memory, index) =>
-                  `${index + 1}. [${memory.type}] ${memory.content} (重要度: ${memory.importance}/10)`
-              )
-              .join("\n")}`
-            : "";
 
         const response = await fetch("/api/chat", {
           method: "POST",
@@ -147,7 +123,6 @@ export function useChat() {
           body: JSON.stringify({
             message: userMessage.content,
             history,
-            memoryContext,
           }),
         });
 
