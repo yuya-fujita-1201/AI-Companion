@@ -21,9 +21,9 @@ export function ChatMessage({ message }: ChatMessageProps) {
         {isUser ? (
           <p className="whitespace-pre-wrap">{message.content}</p>
         ) : (
-          <ReactMarkdown className="whitespace-pre-wrap text-sm text-foreground">
-            {message.content}
-          </ReactMarkdown>
+          <div className="whitespace-pre-wrap text-sm text-foreground">
+            <ReactMarkdown>{message.content}</ReactMarkdown>
+          </div>
         )}
         <p className="mt-2 text-[11px] text-muted">
           {new Date(message.timestamp).toLocaleTimeString("ja-JP", {

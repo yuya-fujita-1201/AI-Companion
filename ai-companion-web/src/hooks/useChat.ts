@@ -60,7 +60,7 @@ export function useChat() {
   const conversationCount = Math.floor(messages.length / 2);
   const friendshipLevel = Math.min(100, conversationCount * 5);
 
-  const mood = useMemo(() => {
+  const mood: "happy" | "thinking" | "normal" = useMemo(() => {
     if (isGenerating) return "thinking";
     const lastMessage = messages[messages.length - 1];
     if (lastMessage?.role === "assistant") return "happy";
@@ -134,11 +134,11 @@ export function useChat() {
         const memoryContext =
           relevantMemories.length > 0
             ? `【記憶している情報】\n${relevantMemories
-                .map(
-                  (memory, index) =>
-                    `${index + 1}. [${memory.type}] ${memory.content} (重要度: ${memory.importance}/10)`
-                )
-                .join("\n")}`
+              .map(
+                (memory, index) =>
+                  `${index + 1}. [${memory.type}] ${memory.content} (重要度: ${memory.importance}/10)`
+              )
+              .join("\n")}`
             : "";
 
         const response = await fetch("/api/chat", {
