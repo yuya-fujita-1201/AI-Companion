@@ -1,65 +1,174 @@
-type Memory = {
-  id?: string;
-  type: "FACT" | "PREFERENCE" | "EVENT" | "CONVERSATION_SUMMARY";
+type MemoryType = "FACT" | "PREFERENCE" | "EVENT" | "CONVERSATION_SUMMARY";
+type MemoryTier = "short" | "mid" | "long";
+type MemoryStatus = "active" | "archived";
+
+type MemoryRow = {
+  id: string;
   content: string;
+  type: MemoryType;
   importance: number;
-  createdAt?: string;
+  tier: MemoryTier;
+  status: MemoryStatus;
+  created_at: string;
 };
 
-export const onRequestPost: PagesFunction = async ({ request, env }) => {
+type Memory = {
+  id: string;
+  type: MemoryType;
+  content: string;
+  importance: number;
+  tier: MemoryTier;
+  status: MemoryStatus;
+  createdAt: string;
+};
+
+type Env = {
+  DB?: D1Database;
+};
+
+function rowToMemory(row: MemoryRow): Memory {
+  return {
+    id: row.id,
+    type: row.type,
+    content: row.content,
+    importance: row.importance,
+    tier: row.tier,
+    status: row.status,
+    createdAt: row.created_at,
+  };
+}
+
+function clampLimit(value: string | null, fallback = 200) {
+  const parsed = Number(value ?? fallback);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.min(500, Math.max(1, parsed));
+}
+
+export const onRequestGet: PagesFunction<Env> = async ({ env, request }) => {
   try {
-    const body = await request.json<{ messages?: { role: string; content: string }[] }>();
-    if (!body.messages?.length) {
-      return Response.json({ memories: [] });
+    if (!env.DB) {
+      return Response.json({ memories: [] }, { status: 500 });
     }
 
-    const apiKey = (env as Record<string, string | undefined>).OPENAI_API_KEY;
-    if (!apiKey) {
-      return Response.json({ memories: [] });
+    const url = new URL(request.url);
+    const type = url.searchParams.get("type") as MemoryType | null;
+    const tier = url.searchParams.get("tier") as MemoryTier | null;
+    const status = url.searchParams.get("status") as MemoryStatus | null;
+    const limit = clampLimit(url.searchParams.get("limit"));
+
+    const clauses: string[] = [];
+    const binds: unknown[] = [];
+
+    if (type) {
+      clauses.push("type = ?");
+      binds.push(type);
+    }
+    if (tier) {
+      clauses.push("tier = ?");
+      binds.push(tier);
+    }
+    if (status) {
+      clauses.push("status = ?");
+      binds.push(status);
     }
 
-    const model = (env as Record<string, string | undefined>).OPENAI_MODEL ?? "gpt-4o-mini";
-    const systemPrompt =
-      "あなたは会話から記憶を抽出するアシスタントです。重要な事実・好み・イベント・要約を短文で抽出してください。";
+    const where = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
+    const stmt = env.DB.prepare(
+      `SELECT id, content, type, importance, tier, status, created_at FROM memories ${where} ORDER BY datetime(created_at) DESC LIMIT ?`
+    );
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: "system", content: systemPrompt },
-          {
-            role: "user",
-            content: `以下の会話から記憶を抽出してください。JSONのみで返してください。\n\n会話:\n${body.messages
-              .map((m) => `${m.role}: ${m.content}`)
-              .join("\n")}\n\n出力フォーマット:\n{"memories":[{"type":"FACT|PREFERENCE|EVENT|CONVERSATION_SUMMARY","content":"...","importance":1-10}]}`,
-          },
-        ],
-        temperature: 0.2,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      return Response.json({ error: errorText }, { status: 500 });
-    }
-
-    const data = (await response.json()) as {
-      choices?: { message?: { content?: string } }[];
-    };
-    const content = data.choices?.[0]?.message?.content?.trim() ?? "";
-    try {
-      const parsed = JSON.parse(content) as { memories?: Memory[] };
-      return Response.json({ memories: parsed.memories ?? [] });
-    } catch {
-      return Response.json({ memories: [] });
-    }
+    const result = await stmt.bind(...binds, limit).all<MemoryRow>();
+    return Response.json({ memories: (result.results ?? []).map(rowToMemory) });
   } catch (error) {
     console.error(error);
-    return Response.json({ memories: [] });
+    return Response.json({ memories: [] }, { status: 500 });
+  }
+};
+
+export const onRequestPatch: PagesFunction<Env> = async ({ env, request }) => {
+  try {
+    if (!env.DB) {
+      return Response.json({ error: "Database unavailable" }, { status: 500 });
+    }
+
+    const body = await request.json<{
+      id?: string;
+      content?: string;
+      importance?: number;
+      type?: MemoryType;
+      tier?: MemoryTier;
+      status?: MemoryStatus;
+    }>();
+
+    if (!body.id) {
+      return Response.json({ error: "id is required" }, { status: 400 });
+    }
+
+    const updates: string[] = [];
+    const binds: unknown[] = [];
+
+    if (typeof body.content === "string") {
+      updates.push("content = ?");
+      binds.push(body.content.trim());
+    }
+    if (typeof body.importance === "number") {
+      updates.push("importance = ?");
+      binds.push(body.importance);
+    }
+    if (body.type) {
+      updates.push("type = ?");
+      binds.push(body.type);
+    }
+    if (body.tier) {
+      updates.push("tier = ?");
+      binds.push(body.tier);
+    }
+    if (body.status) {
+      updates.push("status = ?");
+      binds.push(body.status);
+    }
+
+    if (updates.length === 0) {
+      return Response.json({ error: "No updates provided" }, { status: 400 });
+    }
+
+    binds.push(body.id);
+
+    await env.DB.prepare(`UPDATE memories SET ${updates.join(", ")} WHERE id = ?`).bind(
+      ...binds
+    ).run();
+
+    const updated = await env.DB.prepare(
+      "SELECT id, content, type, importance, tier, status, created_at FROM memories WHERE id = ?"
+    ).bind(body.id).first<MemoryRow>();
+
+    if (!updated) {
+      return Response.json({ error: "Memory not found" }, { status: 404 });
+    }
+
+    return Response.json({ memory: rowToMemory(updated) });
+  } catch (error) {
+    console.error(error);
+    return Response.json({ error: "Unexpected error" }, { status: 500 });
+  }
+};
+
+export const onRequestDelete: PagesFunction<Env> = async ({ env, request }) => {
+  try {
+    if (!env.DB) {
+      return Response.json({ error: "Database unavailable" }, { status: 500 });
+    }
+
+    const url = new URL(request.url);
+    const id = url.searchParams.get("id");
+    if (!id) {
+      return Response.json({ error: "id is required" }, { status: 400 });
+    }
+
+    await env.DB.prepare("DELETE FROM memories WHERE id = ?").bind(id).run();
+    return Response.json({ ok: true });
+  } catch (error) {
+    console.error(error);
+    return Response.json({ error: "Unexpected error" }, { status: 500 });
   }
 };

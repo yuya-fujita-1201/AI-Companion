@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import type { Memory, MemoryType } from "../types/memory";
-import { deleteMemory, loadMemories, updateMemory } from "../lib/memories";
+import { deleteMemory, fetchMemories, updateMemory } from "../lib/memories";
 import { MemoryCard } from "../components/MemoryCard";
 
 type MemoriesViewProps = {
@@ -17,8 +17,21 @@ const tabs: { key: "ALL" | MemoryType; label: string }[] = [
 ];
 
 export function MemoriesView({ onBack }: MemoriesViewProps) {
-  const [memories, setMemories] = useState<Memory[]>(() => loadMemories());
+  const [memories, setMemories] = useState<Memory[]>([]);
   const [activeTab, setActiveTab] = useState<(typeof tabs)[number]["key"]>("ALL");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchMemories().then((data) => {
+      if (!isMounted) return;
+      setMemories(data);
+      setIsLoading(false);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const filtered = useMemo(() => {
     if (activeTab === "ALL") return memories;
@@ -27,6 +40,20 @@ export function MemoriesView({ onBack }: MemoriesViewProps) {
 
   const level = Math.floor(memories.length / 10) + 1;
   const progress = memories.length % 10;
+
+  const handleDelete = async (id: string) => {
+    const ok = await deleteMemory(id);
+    if (ok) {
+      setMemories((prev) => prev.filter((memory) => memory.id !== id));
+    }
+  };
+
+  const handleUpdate = async (updated: Memory) => {
+    const saved = await updateMemory(updated);
+    if (saved) {
+      setMemories((prev) => prev.map((memory) => (memory.id === saved.id ? saved : memory)));
+    }
+  };
 
   return (
     <div className="flex h-full flex-1 flex-col">
@@ -72,9 +99,7 @@ export function MemoriesView({ onBack }: MemoriesViewProps) {
               onClick={() => setActiveTab(tab.key)}
               className={[
                 "rounded-full px-3 py-1 text-xs transition",
-                activeTab === tab.key
-                  ? "bg-primary text-white"
-                  : "bg-white/80 text-muted",
+                activeTab === tab.key ? "bg-primary text-white" : "bg-white/80 text-muted",
               ].join(" ")}
             >
               {tab.label}
@@ -84,7 +109,11 @@ export function MemoriesView({ onBack }: MemoriesViewProps) {
       </div>
 
       <div className="flex-1 space-y-3 overflow-y-auto px-4 pb-6">
-        {filtered.length === 0 ? (
+        {isLoading ? (
+          <div className="rounded-2xl bg-white/80 px-4 py-6 text-center text-sm text-muted">
+            記憶を読み込み中だにゃ…
+          </div>
+        ) : filtered.length === 0 ? (
           <div className="rounded-2xl bg-white/80 px-4 py-6 text-center text-sm text-muted">
             まだ記憶がないにゃ。たくさんお話ししよう！
           </div>
@@ -93,8 +122,8 @@ export function MemoriesView({ onBack }: MemoriesViewProps) {
             <MemoryCard
               key={memory.id}
               memory={memory}
-              onDelete={(id) => setMemories(deleteMemory(id))}
-              onUpdate={(updated) => setMemories(updateMemory(updated))}
+              onDelete={handleDelete}
+              onUpdate={handleUpdate}
             />
           ))
         )}
