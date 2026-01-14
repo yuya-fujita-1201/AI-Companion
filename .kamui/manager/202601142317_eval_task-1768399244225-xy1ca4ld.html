@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>評価レポート</title>
+    <style>
+      body {
+        font-family: "Hiragino Sans", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        margin: 24px;
+        background-color: #e9f0f2;
+        color: #1f2a30;
+      }
+      .report-wrapper {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 32px;
+        background: #ffffff;
+        border: 1px solid #c4d3d7;
+      }
+      .report-title {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin: 0 0 12px;
+      }
+      .report-summary {
+        margin: 0 0 20px;
+        font-size: 14px;
+        color: #3a4b53;
+      }
+      .scoreboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .score-card {
+        border: 1px solid #c4d3d7;
+        background: #dfeaec;
+        padding: 14px 16px;
+      }
+      .score-card h2 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        color: #2c3a40;
+      }
+      .score-card .score {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1f2a30;
+      }
+      .score-card .note {
+        font-size: 12px;
+        color: #3a4b53;
+        margin-top: 4px;
+      }
+      table.eval-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border: 1px solid #c4d3d7;
+      }
+      col.agent-column {
+        width: 20%;
+      }
+      th,
+      td {
+        border: 1px solid #c4d3d7;
+        padding: 14px;
+        vertical-align: top;
+        background-color: #ffffff;
+      }
+      th {
+        background: #d8e6e9;
+        text-align: left;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #2c3a40;
+      }
+      .agent-header {
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .hex-chart {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .hex-chart svg {
+        flex: 0 0 120px;
+      }
+      .metric-list {
+        font-size: 12px;
+        color: #2c3a40;
+      }
+      .metric-list p {
+        margin: 0 0 4px;
+      }
+      .section-title {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 12px 0 6px;
+        color: #2c3a40;
+      }
+      .section-text {
+        font-size: 12px;
+        color: #2c3a40;
+        margin: 0 0 8px;
+      }
+      .artifact {
+        font-size: 12px;
+        color: #2c3a40;
+        margin: 0 0 6px;
+      }
+      ul {
+        margin: 0 0 8px 16px;
+        padding: 0;
+        font-size: 12px;
+        color: #2c3a40;
+      }
+      .warning {
+        color: #6b1f1f;
+      }
+      .divider {
+        height: 1px;
+        background: #c4d3d7;
+        margin: 16px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="report-wrapper">
+      <h1 class="report-title">評価レポート</h1>
+      <p class="report-summary">対象: iOS版AI CompanionのWeb移植タスク。Vite + Tailwind + Cloudflare Pages Functionsを前提に、チャット/音声/メモリ管理をWebへ移行する実装を評価。</p>
+      <p class="report-summary">仕事の概要: 各エージェントがViteプロジェクトを作成し、チャットUI/音声入力/Cloudflare Functions/ローカルストレージ連携を実装。未コミットの成果物と未完了部分を総合評価。</p>
+
+      <div class="scoreboard">
+        <div class="score-card">
+          <h2>Agent task-1768399244226-adc18c</h2>
+          <div class="score">425 / 600 🥈</div>
+          <div class="note">メモリビューとFunctionsまで到達。未コミット。</div>
+        </div>
+        <div class="score-card">
+          <h2>Agent task-1768399244429-96c771</h2>
+          <div class="score">418 / 600 🥈</div>
+          <div class="note">UI/音声/チャットの完成度高め。未コミット。</div>
+        </div>
+        <div class="score-card">
+          <h2>Agent task-1768399244629-a4f58b</h2>
+          <div class="score">295 / 600 🥉</div>
+          <div class="note">基礎構成はあるが未統合。</div>
+        </div>
+        <div class="score-card">
+          <h2>Agent task-1768399244828-a889d7</h2>
+          <div class="score">0 / 600 ❌</div>
+          <div class="note">worktree未発見のため失格。</div>
+        </div>
+        <div class="score-card">
+          <h2>Agent task-1768399245031-08a478</h2>
+          <div class="score">412 / 600 🥈</div>
+          <div class="note">チャット/音声/Functions実装が進行。未コミット。</div>
+        </div>
+      </div>
+
+      <table class="eval-table">
+        <colgroup>
+          <col class="agent-column" />
+          <col class="agent-column" />
+          <col class="agent-column" />
+          <col class="agent-column" />
+          <col class="agent-column" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Agent task-1768399244226-adc18c</th>
+            <th>Agent task-1768399244429-96c771</th>
+            <th>Agent task-1768399244629-a4f58b</th>
+            <th>Agent task-1768399244828-a889d7</th>
+            <th>Agent task-1768399245031-08a478</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="agent-header">総合評価: 425 / 600 (🥈)</div>
+              <div class="hex-chart">
+                <svg viewBox="0 0 120 120" aria-hidden="true">
+                  <polygon points="60,10 102,35 102,85 60,110 18,85 18,35" fill="#e3edf0" stroke="#9fb3ba" stroke-width="2" />
+                  <polygon points="60,22 92,41 92,79 60,98 28,79 28,41" fill="none" stroke="#9fb3ba" stroke-width="1" />
+                </svg>
+                <div class="metric-list">
+                  <p>コード品質 85点</p>
+                  <p>完成度 80点</p>
+                  <p>設計 82点</p>
+                  <p>UX 78点</p>
+                  <p>API連携 70点</p>
+                  <p>コミット 30点</p>
+                </div>
+              </div>
+              <div class="section-title">評価理由</div>
+              <p class="section-text">Home/Chat/Memoryの画面分割とframer-motion遷移が実装され、memories抽出やTTS制御も含む。Cloudflare Functionsのひな形あり。未コミットとテスト未実行が減点。</p>
+              <div class="section-title">成果物リンク</div>
+              <p class="artifact">`/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1768399244226-adc18c/ai-companion-web`</p>
+              <div class="section-title">差分・コミット</div>
+              <p class="section-text">git status: 未追跡 `ai-companion-web/`。</p>
+              <ul>
+                <li>ea0daf0 Add WEB_APP_INSTRUCTION.md for Web App Porting</li>
+                <li>cd4960d Fix index.tsx errors, update tsconfig, and add AI competition prompts in designDocs</li>
+                <li>a413851 記憶画面のリデザインと成長表示を追加</li>
+              </ul>
+            </td>
+            <td>
+              <div class="agent-header">総合評価: 418 / 600 (🥈)</div>
+              <div class="hex-chart">
+                <svg viewBox="0 0 120 120" aria-hidden="true">
+                  <polygon points="60,10 102,35 102,85 60,110 18,85 18,35" fill="#e3edf0" stroke="#9fb3ba" stroke-width="2" />
+                  <polygon points="60,22 92,41 92,79 60,98 28,79 28,41" fill="none" stroke="#9fb3ba" stroke-width="1" />
+                </svg>
+                <div class="metric-list">
+                  <p>コード品質 80点</p>
+                  <p>完成度 78点</p>
+                  <p>設計 75点</p>
+                  <p>UX 85点</p>
+                  <p>API連携 70点</p>
+                  <p>コミット 30点</p>
+                </div>
+              </div>
+              <div class="section-title">評価理由</div>
+              <p class="section-text">UIはかなり完成度が高く、音声/入力/生成状態の制御も内包。構成は整理されているが、API/メモリ抽出の詳細は限定的。未コミット。</p>
+              <div class="section-title">成果物リンク</div>
+              <p class="artifact">`/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1768399244429-96c771/web`</p>
+              <div class="section-title">差分・コミット</div>
+              <p class="section-text">git status: 未追跡 `web/`。</p>
+              <ul>
+                <li>ea0daf0 Add WEB_APP_INSTRUCTION.md for Web App Porting</li>
+                <li>cd4960d Fix index.tsx errors, update tsconfig, and add AI competition prompts in designDocs</li>
+                <li>a413851 記憶画面のリデザインと成長表示を追加</li>
+              </ul>
+            </td>
+            <td>
+              <div class="agent-header">総合評価: 295 / 600 (🥉)</div>
+              <div class="hex-chart">
+                <svg viewBox="0 0 120 120" aria-hidden="true">
+                  <polygon points="60,10 102,35 102,85 60,110 18,85 18,35" fill="#e3edf0" stroke="#9fb3ba" stroke-width="2" />
+                  <polygon points="60,22 92,41 92,79 60,98 28,79 28,41" fill="none" stroke="#9fb3ba" stroke-width="1" />
+                </svg>
+                <div class="metric-list">
+                  <p>コード品質 70点</p>
+                  <p>完成度 45点</p>
+                  <p>設計 60点</p>
+                  <p>UX 55点</p>
+                  <p>API連携 40点</p>
+                  <p>コミット 25点</p>
+                </div>
+              </div>
+              <div class="section-title">評価理由</div>
+              <p class="section-text">型定義やlibの整理は見えるが、UI/画面統合が未完。todo.md更新のみで進捗が限定的。</p>
+              <div class="section-title">成果物リンク</div>
+              <p class="artifact">`/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1768399244629-a4f58b/ai-companion-web`</p>
+              <div class="section-title">差分・コミット</div>
+              <p class="section-text">git status: `todo.md`変更 + 未追跡 `ai-companion-web/`。</p>
+              <ul>
+                <li>ea0daf0 Add WEB_APP_INSTRUCTION.md for Web App Porting</li>
+                <li>cd4960d Fix index.tsx errors, update tsconfig, and add AI competition prompts in designDocs</li>
+                <li>a413851 記憶画面のリデザインと成長表示を追加</li>
+              </ul>
+            </td>
+            <td>
+              <div class="agent-header">総合評価: 0 / 600 (❌)</div>
+              <div class="hex-chart">
+                <svg viewBox="0 0 120 120" aria-hidden="true">
+                  <polygon points="60,10 102,35 102,85 60,110 18,85 18,35" fill="#e3edf0" stroke="#9fb3ba" stroke-width="2" />
+                  <polygon points="60,22 92,41 92,79 60,98 28,79 28,41" fill="none" stroke="#9fb3ba" stroke-width="1" />
+                </svg>
+                <div class="metric-list">
+                  <p>コード品質 0点</p>
+                  <p>完成度 0点</p>
+                  <p>設計 0点</p>
+                  <p>UX 0点</p>
+                  <p>API連携 0点</p>
+                  <p>コミット 0点</p>
+                </div>
+              </div>
+              <div class="section-title">評価理由</div>
+              <p class="section-text warning">該当worktreeが見つからず、実装成果を確認できませんでした。</p>
+              <div class="section-title">成果物リンク</div>
+              <p class="artifact warning">`/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1768399244828-a889d7` (存在せず)</p>
+              <div class="section-title">差分・コミット</div>
+              <p class="section-text warning">コミット/差分情報なし。</p>
+            </td>
+            <td>
+              <div class="agent-header">総合評価: 412 / 600 (🥈)</div>
+              <div class="hex-chart">
+                <svg viewBox="0 0 120 120" aria-hidden="true">
+                  <polygon points="60,10 102,35 102,85 60,110 18,85 18,35" fill="#e3edf0" stroke="#9fb3ba" stroke-width="2" />
+                  <polygon points="60,22 92,41 92,79 60,98 28,79 28,41" fill="none" stroke="#9fb3ba" stroke-width="1" />
+                </svg>
+                <div class="metric-list">
+                  <p>コード品質 82点</p>
+                  <p>完成度 72点</p>
+                  <p>設計 78点</p>
+                  <p>UX 75点</p>
+                  <p>API連携 75点</p>
+                  <p>コミット 30点</p>
+                </div>
+              </div>
+              <div class="section-title">評価理由</div>
+              <p class="section-text">Chat/Homeビューとローカルストレージの会話保存、Cloudflare FunctionsのAPI実装まで進行。メモリ画面や仕上げは未完。未コミット。</p>
+              <div class="section-title">成果物リンク</div>
+              <p class="artifact">`/Users/yuyafujita/Desktop/workspaces/AI-Companion/.worktrees/task-1768399245031-08a478/ai-companion-web`</p>
+              <div class="section-title">差分・コミット</div>
+              <p class="section-text">git status: 未追跡 `ai-companion-web/`。</p>
+              <ul>
+                <li>ea0daf0 Add WEB_APP_INSTRUCTION.md for Web App Porting</li>
+                <li>cd4960d Fix index.tsx errors, update tsconfig, and add AI competition prompts in designDocs</li>
+                <li>a413851 記憶画面のリデザインと成長表示を追加</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="divider"></div>
+      <p class="section-text">補足: すべてのエージェントでコミット作成が行われていないため、成果物は各worktree内の未追跡ディレクトリとして残っています。評価はソースを直接確認して算出。</p>
+    </div>
+  </body>
+</html>
