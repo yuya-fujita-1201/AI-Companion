@@ -31,7 +31,8 @@ function normalizeImportance(value: unknown) {
 }
 
 function classifyTier(memory: { type: MemoryType; importance: number }) {
-  if (memory.importance >= 7 || memory.type === "FACT" || memory.type === "PREFERENCE") {
+  // Lower threshold to 5 to increase "Gain" (retention rate)
+  if (memory.importance >= 5 || memory.type === "FACT" || memory.type === "PREFERENCE") {
     return { tier: "mid" as MemoryTier, status: "active" as MemoryStatus };
   }
   return { tier: "long" as MemoryTier, status: "archived" as MemoryStatus };
@@ -51,7 +52,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
     const model = env.OPENAI_MODEL ?? "gpt-4o-mini";
     const systemPrompt =
-      "あなたは会話から記憶を抽出するアシスタントです。重要な事実・好み・イベント・要約を短文で抽出してください。";
+      "あなたは日記アプリの裏方です。ユーザーの入力から「今日の一言タイトル（10文字以内）」と「感情（Emotion）」を抽出してください。余計な推測はせず、事実と感情のみを抽出します。";
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",

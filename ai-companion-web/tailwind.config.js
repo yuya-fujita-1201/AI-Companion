@@ -4,12 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0a7ea4",
-        background: "#ffffff",
-        surface: "#f5f5f5",
-        foreground: "#11181C",
-        muted: "#687076",
-        border: "#e2e8f0",
+        primary: "#8D8075", // Warm Gray (Mochi)
+        background: "#FAF9F6", // Off-white / Cream
+        text: "#333333", // Dark Charcoal
+        accent: "#768175", // Muted Green (Forest)
+        secondary: "#EAE7E2", // Light Taupe for UI elements
         success: "#22C55E",
         warning: "#F59E0B",
         error: "#EF4444",

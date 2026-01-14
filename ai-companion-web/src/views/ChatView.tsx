@@ -53,16 +53,16 @@ export function ChatView({ onBack, chat }: ChatViewProps) {
 
         <div className="flex items-center gap-3">
           <img
-            src="/assets/images/cat-character.png"
-            alt="ミケ"
+            src="/assets/images/mochi_character.png"
+            alt="モチ"
             className="h-10 w-10 rounded-full bg-white/80 p-1"
           />
           <div>
-            <p className="text-sm font-bold text-foreground">ミケ</p>
+            <p className="text-sm font-bold text-text">モチ</p>
             {chat.isPlayingAudio ? (
-              <span className="text-xs text-primary">🔊 話し中...</span>
+              <span className="text-xs text-primary">🔊 ...</span>
             ) : (
-              <span className="text-xs text-muted">いっしょにおしゃべり</span>
+              <span className="text-xs text-accent">30秒だけ</span>
             )}
           </div>
         </div>

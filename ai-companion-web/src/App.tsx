@@ -26,10 +26,6 @@ export default function App() {
               <HomeView
                 onStartChat={() => setRoute("chat")}
                 onOpenMemories={() => setRoute("memories")}
-                mood={chat.mood}
-                friendshipLevel={chat.friendshipLevel}
-                daysTogether={chat.daysTogether}
-                conversationCount={chat.conversationCount}
               />
             </motion.div>
           ) : route === "chat" ? (

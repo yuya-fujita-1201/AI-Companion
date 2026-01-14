@@ -134,21 +134,21 @@ export function useChat() {
         const assistantMessage: Message = {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: data.message ?? "ごめんなさい、もう一度話しかけてにゃ。",
+          content: data.message ?? "うまく聞き取れなかった。もう一度。",
           timestamp: new Date().toISOString(),
         };
 
         setMessages((prev) => [...prev, assistantMessage]);
         if (ttsEnabled) playTTS(assistantMessage.content);
-        if ((messages.length + 1) % 6 === 0) {
-          extractMemories([userMessage, assistantMessage]);
+        if ((messages.length + 1) % 4 === 0) {
+          extractMemories([...messages, userMessage, assistantMessage].slice(-6));
         }
       } catch (error) {
         console.error("Failed to send message", error);
         const fallbackMessage: Message = {
           id: crypto.randomUUID(),
           role: "assistant",
-          content: "通信に失敗したみたい。あとでもう一度話しかけてにゃ。",
+          content: "通信がうまくいかない。あとでまた教えて。",
           timestamp: new Date().toISOString(),
         };
         setMessages((prev) => [...prev, fallbackMessage]);
