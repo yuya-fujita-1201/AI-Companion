@@ -1,77 +1,103 @@
-# AI Companion Web App Porting Instructions (Cloudflare Edition)
+# AI Companion Web App Porting Instructions
 
-This document serves as a comprehensive guide for AI agents to port the "AI Companion" app to a Cloudflare-native architecture.
+This document serves as a comprehensive guide and "To-Do" instruction set for AI agents (like Codex) to port the existing iOS AI Companion app to a Cloudflare-hosted Web Application.
 
-## Architecture Overview
-- **Frontend**: Cloudflare Pages (React/Vite). Serves the UI.
-- **Backend**: Cloudflare Workers (via Pages Functions). Handles API requests and logic.
-- **Database**: Cloudflare D1 (SQLite). Stores persistent data (Memories).
-- **Architecture Goal**: Separation of concerns. Frontend focuses on display; Backend handles logic and state management.
+## Project Overview
+**Goal:** Create a web-based version of the "AI Companion" app that runs on Cloudflare Pages. The app allows users to chat with an AI character ("Mike"), supports voice input/output, and remembers past conversations.
 
-## Technology Stack
-1.  **Frontend**: React (Vite), Tailwind CSS (NativeWind style).
-2.  **Backend**: Cloudflare Pages Functions (`functions/api/...`).
-3.  **Database**: Cloudflare D1 (`ai-companion-db`).
-4.  **AI Integration**: OpenAI/Anthropic API calls proxied through Workers.
+**Source Information:**
+- Original Design: `designDocs/design.md`
+- Core Logic Reference: `app/(tabs)/index.tsx` (React Native/Expo)
 
-## Memory System Design (Critical)
-The application must distinguish between memory types for optimal performance and context retrieval.
+## Technology Stack & Requirements
+1.  **Platform**: Cloudflare Pages (Hosting) + Cloudflare Functions (Backend/API).
+2.  **Frontend Framework**: React (Vite template).
+3.  **Styling**: Tailwind CSS (Match the "NativeWind" styling from the source).
+4.  **State/Storage**:
+    - `localStorage` for persisting chat history and settings (equivalent to `AsyncStorage`).
+    - Cloudflare D1 (Optional but recommended for "Memories" if syncing is needed, otherwise `localStorage`).
+5.  **Audio**:
+    - Input: Web Audio API (MediaRecorder) for capturing voice.
+    - Output: Web Speech API (Synthesis) or Edge TTS proxy.
+6.  **API Integration**:
+    - Use Cloudflare Pages Functions (`/functions/api/...`) to proxy requests to AI services (OpenAI/Gemini/Anthropic) to keep keys secure.
 
-### 1. Short-term Memory (Context Window)
-- **Storage**: Application State (Frontend) or Ephemeral Worker State.
-- **Purpose**: Immediate conversation context (last 5-10 turns).
-- **Implementation**: Pass as `history` payload in API requests.
+## Step-by-Step Implementation Instructions
 
-### 2. Mid-term Memory (Active Recall)
-- **Storage**: Cloudflare D1 (Table: `memories`).
-- **Purpose**: Frequently accessed facts, user preferences, and recent important events.
-- **Access**: High frequency. Query D1 on every chat session start or context switch.
+### Phase 1: Project Setup
+- [ ] Initialize a new React project using Vite.
+    ```bash
+    npm create vite@latest ai-companion-web -- --template react-ts
+    ```
+- [ ] Install dependencies:
+    - `tailwindcss`, `postcss`, `autoprefixer`.
+    - `lucide-react` (for icons, replacing IconSymbol).
+    - `framer-motion` (replacing react-native-reanimated for web animations).
+    - `react-markdown` (for rendering AI messages).
+- [ ] Configure `wrangler.toml` for Cloudflare Pages.
 
-### 3. Long-term Memory (Archive)
-- **Storage**: Cloudflare D1 (Table: `memories_archive` or `memories` with `status='archived'`).
-- **Purpose**: Historical logs and old conversations.
-- **Access**: Low frequency. Only queried when specific historical context is triggered or during "reflection" periods.
+### Phase 2: Core Components Adaptation (Porting iOS to Web)
+*Replace React Native components (`View`, `Text`, `Pressable`, `FlatList`) with HTML/React Web equivalents (`div`, `p`, `button`, `map`).*
 
-## Step-by-Step Implementation
+- [ ] **Design System Setup**:
+    - Configure Tailwind colors (`primary`, `background`, `surface`, etc.) in `tailwind.config.js` based on `designDocs/design.md`.
+- [ ] **UI Components**:
+    - `MessageBubble`: Port from RN. Use flexbox for bubble layout.
+    - `TypingIndicator`: meaningful animation with CSS.
+    - `ScreenContainer`: Layout wrapper (max-width for mobile view centered on desktop).
+    - `VoiceInputButton`: Web button with touch events.
+- [ ] **Assets**:
+    - Place character images in `/public/assets/images`.
 
-### Phase 1: Environment & D1 Setup
-- [ ] **Initialize Cloudflare D1**:
-    - Run `npx wrangler d1 create ai-companion-db`.
-    - Configure `wrangler.toml` with the binding `[[d1_databases]]`.
-- [ ] **Schema Definition**:
-    - Create SQL schema for `memories`:
-      ```sql
-      CREATE TABLE memories (
-        id TEXT PRIMARY KEY,
-        content TEXT NOT NULL,
-        type TEXT NOT NULL, -- 'fact', 'preference', 'event'
-        importance INTEGER DEFAULT 0,
-        tier TEXT DEFAULT 'mid', -- 'short', 'mid', 'long'
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      );
-      ```
+### Phase 3: Feature Implementation
 
-### Phase 2: Backend Logic (Workers/Functions)
-- [ ] **API: `/functions/api/chat.ts`**:
-    - Receive user message + local history.
-    - **Retrieval**: Query D1 for relevant Mid-term memories.
-    - **Inference**: Construct prompt (System + Mid-term + Short-term history) and call AI.
-    - **Persistence**: Save new turn to D1 (if archiving) or return response.
-- [ ] **API: `/functions/api/memory.ts`**:
-    - Background job (or valid async call) to analyze conversation and extract new memories.
-    - Determine if memory is Mid-term (important) or Long-term (detail).
-    - Insert into D1.
+#### 1. Chat Interface
+- [ ] Implement `ChatScreen` logic:
+    - State for `messages`, `inputText`, `isGenerating`.
+    - `useEffect` to load/save messages to `localStorage` (Key: `chat_messages`).
+    - Auto-scroll to bottom behavior using a `ref` on the chat container.
 
-### Phase 3: Frontend Implementation
-- [ ] **Chat UI**: 
-    - Display Chat.
-    - Manage Short-term history in React State / LocalStorage (for offline cache).
-- [ ] **Settings/Status**:
-    - View stored memories (fetched from D1 via API).
+#### 2. Audio System (Web API)
+- [ ] **Voice Input**:
+    - Implement `useAudioRecorder` hook using `MediaRecorder` API.
+    - Convert audio blob to appropriate format for the transcription API (e.g., FormData).
+- [ ] **Text-to-Speech**:
+    - Implement `playTTS` using `window.speechSynthesis` (easiest) or call a TTS API via Cloudflare Functions.
 
-## To-Do List for AI Agent
-1.  **[Setup]** Configure `wrangler.toml` for D1 and Pages.
-2.  **[DB]** specific migration files for Memory tables.
-3.  **[Backend]** Implement `chat` endpoint with D1 connection.
-4.  **[Backend]** Implement functionality to classify and store memories into tiers (Mid vs Long).
-5.  **[Frontend]** Connect UI to these new Cloudflare native endpoints.
+#### 3. AI & Backend (Cloudflare Functions)
+- [ ] Create `functions/api/chat.ts`:
+    - Handle POST requests with conversation history.
+    - Call the AI Provider (e.g., OpenAI API) with the system prompt and context.
+    - Return the AI response text.
+- [ ] Create `functions/api/transcribe.ts`:
+    - Handle POST file uploads.
+    - Call Whisper API (or similar) to convert speech to text.
+
+#### 4. Logic & Memory
+- [ ] Port `extractMemories` logic:
+    - Can be a client-side logic or a background API call after 3-5 turns.
+    - Save extracted memories to `localStorage` (Key: `memories`).
+- [ ] Implement "Context Awareness":
+    - Retrieve relevant memories before sending the prompt to the Chat API.
+
+### Phase 4: Polish & Deployment
+- [ ] **Responsive Design**: Ensure it looks good on Mobile (PWA style) and Desktop (Centered mobile view).
+- [ ] **Animations**: Use `framer-motion` to replicate the "Character Bounce" and UI transitions.
+- [ ] **Deploy**:
+    - Run `npm run build`.
+    - Deploy to Cloudflare Pages.
+
+## To-Do List for AI Agent (Execute Order)
+
+1.  **[Environment]** Set up Vite React project + Tailwind CSS.
+2.  **[Backend]** Create `functions/api/chat.ts` (Mock or Real integration).
+3.  **[Frontend]** Create `ChatMessage` and `ChatList` components.
+4.  **[Frontend]** Create `HomeView` (Character greeting) and `ChatView`.
+5.  **[Logic]** Implement `useChat` hook for state management & LocalStorage persistence.
+6.  **[Logic]** Implement `useVoiceInput` hook (Web Audio API).
+7.  **[Integration]** Connect Frontend to Cloudflare Functions.
+8.  **[Polish]** Add animations and character images.
+9.  **[Deploy]** Generate production build.
+
+---
+**Note to AI Developer**: When implementing, prioritize the "Mobile-First" look. On desktop, the app should be contained in a centered container resembling a mobile screen to maintain the intended UX.
